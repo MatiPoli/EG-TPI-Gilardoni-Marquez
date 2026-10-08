@@ -1,4 +1,56 @@
-# Checklist de entrega de proyecto — Entornos Gráficos (UTN)
+# Proyecto ViajAir - Reserva de Vuelos
+Trabajo Práctico Integrador - Entornos Gráficos (UTN FRRO)
+
+## Guía de instalación y configuración local
+
+Sigue estos pasos para configurar el entorno y levantar el proyecto en tu computadora.
+
+### 1. Requisitos previos e Instalación
+1. Instalar XAMPP (versión con PHP 8.x). Se recomienda instalarlo directamente en la raíz de un disco, por ejemplo: C:\xampp o D:\xampp para evitar problemas de permisos de Windows.
+2. Durante la instalación de XAMPP, asegúrate de marcar los componentes: Apache, MySQL, phpMyAdmin y Fake Sendmail.
+3. Instalar Git.
+
+### 2. Clonar el repositorio
+1. Abre tu terminal o consola.
+2. Navega hasta la carpeta htdocs de XAMPP. (Ejemplo: cd C:\xampp\htdocs).
+3. Clona el repositorio ejecutando:
+   git clone https://github.com/usuario/tpi.git
+   (Asegúrate de que la carpeta del proyecto se llame "tpi", ya que las rutas internas del código dependen de ese nombre).
+
+### 3. Configurar la Base de Datos
+1. Abre el panel de control de XAMPP e inicia los módulos de Apache y MySQL.
+2. Entra en tu navegador a: http://localhost/phpmyadmin
+3. Ve a la pestaña "SQL", copia todo el código que se encuentra en nuestro archivo database.sql y pégalo en el cuadro de texto.
+4. Presiona "Continuar". Esto creará automáticamente la base de datos aerolinea_bd con todas sus tablas y relaciones.
+
+### 4. Configurar variables de entorno
+1. En la carpeta raíz del proyecto (/tpi), crea un archivo llamado exactamente .env
+2. Pega las siguientes cuatro líneas en su interior:
+
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=
+DB_NAME=aerolinea_bd
+```
+
+### 5. Configurar PHP (php.ini)
+Para que el sistema se conecte a la base de datos y pueda atrapar los correos locales, debemos hacer unos ajustes en XAMPP:
+1. En el panel de XAMPP, en la fila de Apache, haz clic en Config y luego en PHP (php.ini).
+2. Presiona Ctrl+B (o Ctrl+F) para buscar y modificar las siguientes tres líneas:
+   - Activar MySQL: Busca extension=mysqli. Si tiene un punto y coma (;) al principio, bórraselo.
+   - Ruta de extensiones: Busca extension_dir. Asegúrate de que la ruta activa (sin punto y coma) sea exactamente: extension_dir="ext"
+   - Correos locales: Busca sendmail_path. Bórrale el punto y coma si lo tiene, y cambia la ruta para que apunte al ejecutable mailtodisk de tu XAMPP. Debe quedar así (ajusta la letra del disco si es necesario): sendmail_path = "C:\xampp\mailtodisk\mailtodisk.exe"
+3. Guarda el archivo php.ini, ciérralo y reinicia Apache desde el panel de XAMPP (Stop y Start).
+4. A partir de ahora, todos los correos de validación o recuperación que envíe el sistema se guardarán como archivos de texto en la carpeta C:\xampp\mailoutput\. Ábrelos con un editor de texto para ver su contenido y copiar los enlaces.
+
+### 6. Ejecución
+Para visualizar el sitio, abre tu navegador y entra a:
+http://localhost/tpi/index.php
+
+---
+
+## Lista de Verificación (Checklist de la cátedra)
 
 Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, el proyecto no está listo para ser corregido.
 
