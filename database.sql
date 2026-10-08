@@ -5,7 +5,7 @@ CREATE TABLE USUARIOS (
     codUsuario INT AUTO_INCREMENT PRIMARY KEY,
     nombreUsuario VARCHAR(100) NOT NULL,
     claveUsuario VARCHAR(8) NOT NULL,
-    tipoUsuario ENUM('administrador', 'ceo de aerolinea', 'usuario') NOT NULL,
+    tipoUsuario ENUM('administrador', 'ceo', 'usuario') NOT NULL,
     emailUsuario VARCHAR(100) NOT NULL UNIQUE,
     telefonoUsuario VARCHAR(20) NOT NULL
 );
@@ -55,3 +55,7 @@ CREATE TABLE RESERVAS (
     FOREIGN KEY (codUsuario) REFERENCES USUARIOS(codUsuario) ON DELETE CASCADE,
     FOREIGN KEY (codVuelo) REFERENCES VUELOS(codVuelo) ON DELETE CASCADE
 );
+
+ALTER TABLE USUARIOS ADD estadoUsuario ENUM('pendiente', 'activo', 'suspendido') NOT NULL DEFAULT 'pendiente' AFTER tipoUsuario;
+ALTER TABLE USUARIOS ADD tokenRecuperacion VARCHAR(100) NULL AFTER estadoUsuario;
+ALTER TABLE USUARIOS MODIFY claveUsuario VARCHAR(32) NOT NULL;
