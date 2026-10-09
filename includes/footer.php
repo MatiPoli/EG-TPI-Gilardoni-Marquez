@@ -10,7 +10,7 @@
                     
                     <?php if (function_exists('isLoggedIn') && isLoggedIn()): ?>
                         <?php if ($_SESSION['tipoUsuario'] == 'administrador'): ?>
-                            <a href="/tpi/admin/dashboard.php" class="text-white text-decoration-none small me-3">Panel Admin</a>
+                            <a href="/tpi/admin/dashboard.php" class="text-white text-decoration-none small me-3">Administración</a>
                             <a href="/tpi/admin/abm_aerolineas.php" class="text-white text-decoration-none small me-3">Aerolíneas</a>
                             <a href="/tpi/admin/auditoria.php" class="text-white text-decoration-none small me-3">Auditar Promos</a>
                         <?php elseif ($_SESSION['tipoUsuario'] == 'ceo'): ?>

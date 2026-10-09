@@ -30,7 +30,7 @@
                                 <?php echo explode(' ', trim($nameLogin))[0]; ?>
                             </li>
                             <?php if ($roleLogin == 'administrador'): ?>
-                                <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/admin/dashboard.php">Panel Admin</a></li>
+                                <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/admin/dashboard.php">Administración</a></li>
                             <?php elseif ($roleLogin == 'ceo'): ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/ceo/dashboard.php">Panel CEO</a></li>
                             <?php else: ?>
