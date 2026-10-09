@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conexion->prepare("SELECT codUsuario, nombreUsuario, tipoUsuario, claveUsuario, estadoUsuario FROM USUARIOS WHERE emailUsuario = ?");
+    $stmt = $conexion->prepare("SELECT codUsuario, nombreUsuario, tipoUsuario, claveUsuario, estadoUsuario, codAerolinea FROM USUARIOS WHERE emailUsuario = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -32,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['codUsuario'] = $user['codUsuario'];
                 $_SESSION['nombreUsuario'] = $user['nombreUsuario'];
                 $_SESSION['tipoUsuario'] = $user['tipoUsuario'];
+                
+                if (isset($user['codAerolinea'])) {
+                    $_SESSION['codAerolinea'] = $user['codAerolinea'];
+                }
 
                 if ($user['tipoUsuario'] == 'administrador') {
                     header("Location: /tpi/admin/dashboard.php");
