@@ -1,19 +1,19 @@
 <?php
-require '../includes/sesiones.php';
+require '../../includes/sesiones.php';
 checkRole('administrador');
-require '../includes/conexion.php';
+require '../../includes/conexion.php';
 
 $query = "SELECT * FROM AEROLINEAS";
 $result = $conexion->query($query);
 
-require '../includes/header.php';
+require '../../includes/header.php';
 ?>
 
 <div class="row">
     
     <?php 
     $active_page = 'aerolineas';
-    require '../admin/sidebar_admin.php'; 
+    require '../sidebar_admin.php'; 
     ?>
     
     <div class="col-md-9 col-lg-10">
@@ -69,4 +69,4 @@ require '../includes/header.php';
     </div>
 </div>
 
-<?php require '../includes/footer.php'; ?>
+<?php require '../../includes/footer.php'; ?>

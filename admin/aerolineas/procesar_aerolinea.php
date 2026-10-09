@@ -1,7 +1,7 @@
 <?php
-require '../includes/sesiones.php';
+require '../../includes/sesiones.php';
 checkRole('administrador');
-require '../includes/conexion.php';
+require '../../includes/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];

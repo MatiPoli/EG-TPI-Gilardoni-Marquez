@@ -1,7 +1,7 @@
 <?php
-require '../includes/sesiones.php';
+require '../../includes/sesiones.php';
 checkRole('administrador');
-require '../includes/conexion.php';
+require '../../includes/conexion.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
