@@ -1,5 +1,6 @@
 <?php
-require '../includes/conexion.php'; 
+require '../includes/conexion.php';
+checkLoggedIn(true);
 require '../includes/header.php'; 
 
 $message = '';

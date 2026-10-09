@@ -8,6 +8,13 @@ function checkRole($allowedRole) {
     }
 }
 
+function checkLoggedIn($redirect = false) {
+    if (isLoggedIn() === $redirect) {
+        header("Location: /tpi/index.php");
+        exit();
+    }
+}
+
 function isLoggedIn() {
     return isset($_SESSION['codUsuario']);
 }

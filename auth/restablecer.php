@@ -1,5 +1,5 @@
 <?php
-require '../includes/conexion.php'; 
+require '../includes/conexion.php';
 require '../includes/header.php'; 
 
 $message = '';

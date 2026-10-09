@@ -1,5 +1,6 @@
 <?php
-require '../includes/sesiones.php'; 
+require '../includes/sesiones.php';
+checkLoggedIn(true);
 require '../includes/conexion.php'; 
 
 $error = '';
