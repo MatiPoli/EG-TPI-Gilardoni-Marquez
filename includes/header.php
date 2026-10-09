@@ -23,15 +23,15 @@
                     <ul class="navbar-nav align-items-center">
                         <?php 
                         if (function_exists('isLoggedIn') && isLoggedIn()) { 
-                            $role = $_SESSION['tipoUsuario'];
-                            $name = $_SESSION['nombreUsuario'];
+                            $roleLogin = $_SESSION['tipoUsuario'];
+                            $nameLogin = $_SESSION['nombreUsuario'];
                         ?>
                             <li class="nav-item me-3 text-white-50 d-none d-lg-block">
-                                <?php echo explode(' ', trim($name))[0]; ?>
+                                <?php echo explode(' ', trim($nameLogin))[0]; ?>
                             </li>
-                            <?php if ($role == 'administrador'): ?>
+                            <?php if ($roleLogin == 'administrador'): ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/admin/dashboard.php">Panel Admin</a></li>
-                            <?php elseif ($role == 'ceo'): ?>
+                            <?php elseif ($roleLogin == 'ceo'): ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/ceo/dashboard.php">Panel CEO</a></li>
                             <?php else: ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/reservas.php">Mis Reservas</a></li>
