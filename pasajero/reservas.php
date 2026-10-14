@@ -1,42 +1,94 @@
 <?php
 require '../includes/sesiones.php';
 checkRole('usuario');
+require '../includes/conexion.php';
+
+$user_id = $_SESSION['codUsuario'];
+
+$query = "SELECT r.codReserva, r.estadoReserva, v.origenVuelo, v.destinoVuelo, v.fechaSalidaVuelo, v.precioVuelo 
+          FROM RESERVAS r 
+          JOIN VUELOS v ON r.codVuelo = v.codVuelo 
+          WHERE r.codUsuario = ? 
+          ORDER BY v.fechaSalidaVuelo ASC";
+
+$stmt = $conexion->prepare($query);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
 require '../includes/header.php';
 ?>
 
 <div class="row">
-    <div class="col-md-3 col-lg-2">
-        <div class="list-group shadow-sm mb-4">
-            <a href="/tpi/pasajero/reservas.php" class="list-group-item list-group-item-action active">Mis Reservas</a>
-            <a href="/tpi/pasajero/historial.php" class="list-group-item list-group-item-action">Historial de Compras</a>
-            <a href="/tpi/pasajero/perfil.php" class="list-group-item list-group-item-action">Mi Perfil</a>
-        </div>
-    </div>
+    
+    <?php 
+    $active_page = 'reservas';
+    require 'sidebar_pasajero.php'; 
+    ?>
     
     <div class="col-md-9 col-lg-10">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/tpi/index.php">Portada</a></li>
-                <li class="breadcrumb-item"><a href="#">Panel Pasajero</a></li>
+                <li class="breadcrumb-item"><a href="/tpi/pasajero/reservas.php">Panel Pasajero</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Mis Reservas</li>
             </ol>
         </nav>
 
         <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white py-3">
+                <h5 class="mb-0">Reservas del Usuario</h5>
+            </div>
             <div class="card-body p-4">
-                <h4 class="card-title mb-4">Reservas del Usuario</h4>
                 <div class="table-responsive">
-                    <table class="table table-bordered align-middle">
+                    <table class="table table-bordered table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th>Vuelo</th>
-                                <th>Fecha</th>
+                                <th># Reserva</th>
+                                <th>Vuelo (Origen - Destino)</th>
+                                <th>Fecha de Salida</th>
+                                <th>Precio</th>
                                 <th>Estado</th>
-                                <th>Acciones</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            <?php if ($result->num_rows > 0): ?>
+                                <?php while ($row = $result->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?php echo $row['codReserva']; ?></td>
+                                        <td><?php echo htmlspecialchars($row['origenVuelo'] . ' - ' . $row['destinoVuelo']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['fechaSalidaVuelo']); ?></td>
+                                        <td>$<?php echo number_format($row['precioVuelo'], 2); ?></td>
+                                        <td>
+                                            <?php if ($row['estadoReserva'] == 'confirmada'): ?>
+                                                <span class="badge bg-success">Confirmada</span>
+                                            <?php elseif ($row['estadoReserva'] == 'cancelada'): ?>
+                                                <span class="badge bg-danger">Cancelada</span>
+                                            <?php else: ?>
+                                                <span class="badge bg-warning text-dark">Pendiente</span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <?php if ($row['estadoReserva'] == 'pendiente de pago'): ?>
+                                                <a href="pagar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-success">Pagar</a>
+                                            <?php endif; ?>
+                                            
+                                            <?php if ($row['estadoReserva'] != 'cancelada'): ?>
+                                                <a href="cancelar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">Cancelar</a>
+                                            <?php endif; ?>
+
+                                            <?php if ($row['estadoReserva'] == 'confirmada'): ?>
+                                                <a href="imprimir_ticket.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-secondary" target="_blank">Imprimir</a>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">No tienes reservas registradas.</td>
+                                </tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
