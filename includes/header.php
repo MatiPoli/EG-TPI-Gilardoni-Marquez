@@ -4,26 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ViajAir</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/flatly/bootstrap.min.css" rel="stylesheet">
     <link href="/tpi/assets/css/styles.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
     <a href="#contenido-principal" class="saltar-contenido">Saltar al contenido principal</a>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
             <div class="container-fluid px-4">
-                <a class="navbar-brand fw-bold" href="/tpi/index.php">✈️ ViajAir</a>
+                <a class="navbar-brand" href="/tpi/index.php">
+                    <img src="/tpi/assets/img/logo.png" alt="ViajAir" height="46">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto text-center text-lg-start">
                         <li class="nav-item"><a class="nav-link" href="/tpi/public/buscar_vuelos.php">Buscar Vuelos</a></li>
                         <li class="nav-item"><a class="nav-link" href="/tpi/public/novedades.php">Novedades</a></li>
                     </ul>
                     <ul class="navbar-nav align-items-center">
                         <?php 
-                        if (function_exists('isLoggedIn') && isLoggedIn()) { 
+                        if (isLoggedIn()) { 
                             $roleLogin = $_SESSION['tipoUsuario'];
                             $nameLogin = $_SESSION['nombreUsuario'];
                         ?>
@@ -40,7 +42,7 @@
                             <?php endif; ?>
                             <li class="nav-item"><a class="btn btn-sm btn-outline-light ms-2" href="/tpi/auth/logout.php">Salir</a></li>
                         <?php } else { ?>
-                            <li class="nav-item"><a class="nav-link" href="/tpi/auth/login.php">Iniciar Sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-light" href="/tpi/auth/login.php">Iniciar Sesión</a></li>
                             <li class="nav-item"><a class="btn btn-outline-light ms-2" href="/tpi/auth/registro.php">Registrarse</a></li>
                         <?php } ?>
                     </ul>
@@ -48,4 +50,4 @@
             </div>
         </nav>
     </header>
-    <main id="contenido-principal" class="container-fluid px-4 mt-4 flex-grow-1">
+    <main id="contenido-principal" class="container-fluid px-4 mt-4">
