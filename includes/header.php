@@ -8,6 +8,7 @@
     <link href="/tpi/assets/css/styles.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
+    <a href="#contenido-principal" class="saltar-contenido">Saltar al contenido principal</a>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
             <div class="container-fluid px-4">
@@ -47,4 +48,4 @@
             </div>
         </nav>
     </header>
-    <main class="container-fluid px-4 mt-4 flex-grow-1">
+    <main id="contenido-principal" class="container-fluid px-4 mt-4 flex-grow-1">
