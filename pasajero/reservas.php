@@ -30,7 +30,7 @@ require '../includes/header.php';
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="/tpi/pasajero/reservas.php">Panel Pasajero</a></li>
+                <li class="breadcrumb-item"><a href="/tpi/pasajero/perfil.php">Mi Perfil</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Mis Reservas</li>
             </ol>
         </nav>
@@ -44,7 +44,7 @@ require '../includes/header.php';
                     <table class="table table-bordered table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th># Reserva</th>
+                                <th>Reserva</th>
                                 <th>Vuelo (Origen - Destino)</th>
                                 <th>Fecha de Salida</th>
                                 <th>Precio</th>

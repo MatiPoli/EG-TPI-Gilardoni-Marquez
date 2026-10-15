@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ViajAir</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/flatly/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css" rel="stylesheet">
     <link href="/tpi/assets/css/styles.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
@@ -42,10 +42,10 @@
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/reservas.php">Mis Reservas</a></li>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/perfil.php">Mi Perfil</a></li>
                             <?php endif; ?>
-                            <li class="nav-item"><a class="btn btn-sm btn-outline-light ms-2" href="/tpi/auth/logout.php">Salir</a></li>
+                            <li class="nav-item"><a class="btn btn-sm btn-outline-light text-white ms-2" href="/tpi/auth/logout.php">Salir</a></li>
                         <?php } else { ?>
-                            <li class="nav-item"><a class="btn btn-outline-light" href="/tpi/auth/login.php">Iniciar Sesión</a></li>
-                            <li class="nav-item"><a class="btn btn-outline-light ms-2" href="/tpi/auth/registro.php">Registrarse</a></li>
+                            <li class="nav-item"><a class="btn btn-secondary" href="/tpi/auth/login.php">Iniciar Sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-secondary ms-2" href="/tpi/auth/registro.php">Registrarse</a></li>
                         <?php } ?>
                     </ul>
                 </div>
