@@ -34,8 +34,10 @@
                             </li>
                             <?php if ($roleLogin == 'administrador'): ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/admin/dashboard.php">Administración</a></li>
+                                <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/perfil.php">Mi Perfil</a></li>
                             <?php elseif ($roleLogin == 'ceo'): ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/ceo/dashboard.php">Panel CEO</a></li>
+                                <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/perfil.php">Mi Perfil</a></li>
                             <?php else: ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/reservas.php">Mis Reservas</a></li>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/perfil.php">Mi Perfil</a></li>
@@ -50,4 +52,4 @@
             </div>
         </nav>
     </header>
-    <main id="contenido-principal" class="container-fluid px-4 mt-4">
+    <main id="contenido-principal" class="px-4 mt-4">

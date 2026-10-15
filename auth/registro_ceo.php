@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/tpi/index.php">Portada</a></li>
+        <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
         <li class="breadcrumb-item active" aria-current="page">Registro CEO</li>
     </ol>
 </nav>

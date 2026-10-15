@@ -39,7 +39,7 @@ require '../../includes/header.php';
     <div class="col-md-9 col-lg-10">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/tpi/index.php">Portada</a></li>
+                <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="/tpi/admin/dashboard.php">Administración</a></li>
                 <li class="breadcrumb-item"><a href="abm_aerolineas.php">Aerolíneas</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo $id ? 'Editar' : 'Nueva'; ?></li>

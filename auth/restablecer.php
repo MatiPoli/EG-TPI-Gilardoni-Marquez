@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/tpi/index.php">Portada</a></li>
+        <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
         <li class="breadcrumb-item active" aria-current="page">Nueva Contraseña</li>
     </ol>
 </nav>
