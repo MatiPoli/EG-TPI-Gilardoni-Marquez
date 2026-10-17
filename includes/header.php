@@ -6,6 +6,7 @@
     <title>ViajAir</title>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css" rel="stylesheet">
     <link href="/tpi/assets/css/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/tpi/assets/img/favicon.png">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
     <a href="#contenido-principal" class="saltar-contenido">Saltar al contenido principal</a>
