@@ -8,7 +8,7 @@ require 'includes/header.php';
 
     <div id="carruselInicio" class="carousel slide mb-4 shadow-sm rounded overflow-hidden position-relative" data-bs-ride="carousel">
         
-        <div class="carrousel-text position-absolute top-50 start-50 translate-middle text-center p-4 bg-white bg-opacity-50 rounded shadow">
+        <div class="carrousel-text position-absolute top-50 start-50 translate-middle text-center p-4 bg-white bg-opacity-75 rounded shadow">
             <h1 class="display-4 fw-bold mb-2">
                 Bienvenido a 
                 <span style="color: #060b26;">Viaj</span><span style="color: #ff6600;">A</span><span style="color: #060b26;">ir</span>
@@ -21,10 +21,10 @@ require 'includes/header.php';
                 <img src="/tpi/assets/img/slide1.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Avión volando">
             </div>
             <div class="carousel-item">
-                <img src="/tpi/assets/img/slide2.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Pasajeros en el aeropuerto">
+                <img src="/tpi/assets/img/slide2.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Pasajeros en la terminal del aeropuerto">
             </div>
             <div class="carousel-item">
-                <img src="/tpi/assets/img/slide3.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Vista desde la ventanilla de un avión">
+                <img src="/tpi/assets/img/slide3.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Vista del cielo desde la ventanilla de un avión">
             </div>
         </div>
         
@@ -39,15 +39,15 @@ require 'includes/header.php';
     </div>
     
     <div class="card shadow-sm bg-secondary border-0 text-center mb-5 px-3 py-3">
-        <p class="fs-5 text-muted">
+        <p class="fs-5 mb-0">
             Somos la plataforma líder en comercialización y gestión de pasajes de avión de Rosario. 
-            Con <strong>ViajAir</strong> podés buscar destinos, aprovechar promociones exclusivas y gestionar tus reservas de forma rápida, accesible y segura.
+            Con <strong class="fw-bold">ViajAir</strong> podés buscar destinos, aprovechar promociones exclusivas y gestionar tus reservas de forma rápida, accesible y segura.
         </p>
     </div>
 
     <div class="card shadow-sm mx-auto border-0 bg-secondary" style="max-width: 900px;">
         <div class="card-body p-4">
-            <h4 class="card-title mb-4 text-center text-primary fw-bold">Búsqueda rápida</h4>
+            <h2 class="h4 card-title mb-4 text-center text-primary fw-bold">Búsqueda rápida</h2>
             <form action="/tpi/public/buscar_vuelos.php" method="GET" class="row g-3">
                 
                 <div class="col-md-3">
@@ -74,6 +74,5 @@ require 'includes/header.php';
     </div>
 
 </div>
-
 
 <?php require 'includes/footer.php'; ?>
