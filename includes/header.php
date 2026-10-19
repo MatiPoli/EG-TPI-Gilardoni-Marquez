@@ -19,12 +19,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto text-center text-lg-start">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul class="navbar-nav mb-2 mb-lg-0 text-center text-lg-start">
                         <li class="nav-item"><a class="nav-link" href="/tpi/public/buscar_vuelos.php">Buscar Vuelos</a></li>
                         <li class="nav-item"><a class="nav-link" href="/tpi/public/novedades.php">Novedades</a></li>
                     </ul>
-                    <ul class="navbar-nav align-items-center">
+                    <ul class="navbar-nav align-items-center mb-2 mb-lg-0">
                         <?php 
                         if (isLoggedIn()) { 
                             $roleLogin = $_SESSION['tipoUsuario'];
@@ -43,10 +43,10 @@
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/reservas.php">Mis Reservas</a></li>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/pasajero/perfil.php">Mi Perfil</a></li>
                             <?php endif; ?>
-                            <li class="nav-item"><a class="btn btn-sm btn-outline-light text-white ms-2" href="/tpi/auth/logout.php">Salir</a></li>
+                            <li class="nav-item"><a class="btn btn-sm btn-outline-light text-white ms-lg-2 mt-2 mt-lg-0" href="/tpi/auth/logout.php">Salir</a></li>
                         <?php } else { ?>
-                            <li class="nav-item"><a class="btn btn-secondary" href="/tpi/auth/login.php">Iniciar Sesión</a></li>
-                            <li class="nav-item"><a class="btn btn-secondary ms-2" href="/tpi/auth/registro.php">Registrarse</a></li>
+                            <li class="nav-item"><a class="btn btn-secondary w-100 w-lg-auto mb-2 mb-lg-0" href="/tpi/auth/login.php">Iniciar Sesión</a></li>
+                            <li class="nav-item"><a class="btn btn-secondary w-100 w-lg-auto ms-lg-2" href="/tpi/auth/registro.php">Registrarse</a></li>
                         <?php } ?>
                     </ul>
                 </div>
