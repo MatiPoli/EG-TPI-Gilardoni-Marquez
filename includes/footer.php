@@ -2,7 +2,6 @@
     <footer class="bg-dark text-white text-center py-3 px-4 mt-auto">
         <div class="container-fluid">
             <div class="row align-items-center">
-                
                 <div class="col-md-8 text-md-start mb-2 mb-md-0">
                     <a href="/tpi/index.php" class="text-white text-decoration-none small me-3">Inicio</a>
                     <a href="/tpi/public/buscar_vuelos.php" class="text-white text-decoration-none small me-3">Buscar Vuelos</a>

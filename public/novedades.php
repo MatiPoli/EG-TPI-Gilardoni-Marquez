@@ -28,6 +28,7 @@ $sql = "SELECT tituloNovedad, textoNovedad, fechaPublicacionNovedad
 
 $result = $conexion->query($sql);
 
+$title = "Novedades | ViajAir";
 require '../includes/header.php';
 ?>
 
