@@ -34,7 +34,7 @@ require '../includes/header.php';
             </ol>
         </nav>
 
-        <div class="card shadow-sm">
+        <div class="card shadow-sm mb-5">
             <div class="card-body p-4 text-center">
                 <h4 class="card-title mb-4">Panel de Administración Central</h4>
                 <p class="lead">Supervisa toda la plataforma: aerolíneas, validaciones de CEOs y estadísticas globales.</p>

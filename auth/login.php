@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 } elseif ($user['tipoUsuario'] == 'ceo') {
                     header("Location: /tpi/ceo/dashboard.php");
                 } else {
-                    header("Location: /tpi/pasajero/reservas.php");
+                    header("Location: /tpi/pasajero/perfil.php");
                 }
                 exit();
             }

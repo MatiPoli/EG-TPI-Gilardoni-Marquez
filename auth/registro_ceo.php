@@ -1,6 +1,8 @@
 <?php
+require '../includes/sesiones.php';
 require '../includes/conexion.php';
 checkLoggedIn(true);
+$title = "Registro CEO | ViajAir";
 require '../includes/header.php'; 
 
 $message = '';

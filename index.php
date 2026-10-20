@@ -6,6 +6,13 @@ require 'includes/header.php';
 
 <div class="container mt-4 mb-5">
 
+    <?php if (isset($_GET['cuenta_eliminada']) && $_GET['cuenta_eliminada'] == '1'): ?>
+        <div class="alert alert-success alert-dismissible fade show text-center shadow-sm mb-4" role="alert">
+            <strong>Tu cuenta ha sido dada de baja correctamente.</strong> Esperamos volver a verte pronto en ViajAir.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+        </div>
+    <?php endif; ?>
+
     <div id="carruselInicio" class="carousel slide mb-4 shadow-sm rounded overflow-hidden position-relative" data-bs-ride="carousel">
         
         <div class="carrousel-text position-absolute top-50 start-50 translate-middle text-center p-4 bg-white bg-opacity-75 rounded shadow">
@@ -52,17 +59,17 @@ require 'includes/header.php';
                 
                 <div class="col-md-3">
                     <label for="origen" class="visually-hidden">Origen</label>
-                    <input type="text" id="origen" name="origen" class="form-control" placeholder="Ciudad de Origen" required>
+                    <input type="text" id="origen" name="origen" class="form-control" placeholder="Ciudad de Origen">
                 </div>
                 
                 <div class="col-md-3">
                     <label for="destino" class="visually-hidden">Destino</label>
-                    <input type="text" id="destino" name="destino" class="form-control" placeholder="Ciudad de Destino" required>
+                    <input type="text" id="destino" name="destino" class="form-control" placeholder="Ciudad de Destino">
                 </div>
                 
                 <div class="col-md-3">
                     <label for="fecha" class="visually-hidden">Fecha del vuelo</label>
-                    <input type="date" id="fecha" name="fecha" class="form-control" aria-label="Fecha del vuelo" required>
+                    <input type="date" id="fecha" name="fecha" class="form-control" aria-label="Fecha del vuelo">
                 </div>
                 
                 <div class="col-md-3">

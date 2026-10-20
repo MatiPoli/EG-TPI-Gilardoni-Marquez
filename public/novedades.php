@@ -65,23 +65,54 @@ require '../includes/header.php';
                 <?php if ($total_paginas > 1): ?>
                     <nav aria-label="Navegación de novedades">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item <?php echo ($pagina <= 1) ? 'disabled' : ''; ?>">
-                                <a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>" aria-label="Anterior">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
+                            <?php if ($pagina <= 1): ?>
+                                <li class="page-item disabled">
+                                    <span class="page-link" aria-disabled="true">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="visually-hidden">Página anterior (deshabilitada)</span>
+                                    </span>
+                                </li>
+                            <?php else: ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="visually-hidden">Ir a la página anterior</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
 
                             <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
-                                <li class="page-item <?php echo ($pagina == $i) ? 'active' : ''; ?>">
-                                    <a class="page-link" href="?pagina=<?php echo $i; ?>"><?php echo $i; ?></a>
-                                </li>
+                                <?php if ($pagina == $i): ?>
+                                    <li class="page-item active" aria-current="page">
+                                        <span class="page-link">
+                                            <?php echo $i; ?> 
+                                            <span class="visually-hidden">(página actual)</span>
+                                        </span>
+                                    </li>
+                                <?php else: ?>
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pagina=<?php echo $i; ?>">
+                                            <span class="visually-hidden">Ir a la página </span><?php echo $i; ?>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
                             <?php endfor; ?>
 
-                            <li class="page-item <?php echo ($pagina >= $total_paginas) ? 'disabled' : ''; ?>">
-                                <a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>" aria-label="Siguiente">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                            <?php if ($pagina >= $total_paginas): ?>
+                                <li class="page-item disabled">
+                                    <span class="page-link" aria-disabled="true">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="visually-hidden">Página siguiente (deshabilitada)</span>
+                                    </span>
+                                </li>
+                            <?php else: ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="visually-hidden">Ir a la página siguiente</span>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                         </ul>
                     </nav>
                 <?php endif; ?>

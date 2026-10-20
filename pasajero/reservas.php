@@ -35,9 +35,9 @@ require '../includes/header.php';
             </ol>
         </nav>
 
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-0 mb-4">
             <div class="card-header bg-primary text-white py-3">
-                <h5 class="mb-0">Reservas del Usuario</h5>
+                <h1 class="h5 mb-0 text-white">Reservas del Usuario</h1>
             </div>
             <div class="card-body p-4">
                 <div class="table-responsive">
