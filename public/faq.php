@@ -11,7 +11,7 @@ require '../includes/header.php';
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($pagina, ENT_QUOTES, 'UTF-8') ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Preguntas Frecuentes</li>
         </ol>
     </nav>
 
@@ -19,7 +19,7 @@ require '../includes/header.php';
         <div class="col-md-10 col-lg-8">
             <h1 class="mb-4 text-center text-black">Preguntas Frecuentes</h1>
             
-            <div class="accordion" id="faq">
+            <div class="accordion">
                 <h2 class="mb-2">Mi cuenta</h2>
                 <div class="accordion-item">
                     <h3 class="accordion-header">
@@ -59,7 +59,9 @@ require '../includes/header.php';
                             </div>
                         </div>
                 </div>
+            </div>
 
+            <div class="accordion">
                 <h2 class="mb-2 mt-3">Búsqueda y Reservas</h2>
                 <!-- TODO: en respuesta 4, añadir enlace a Buscar Vuelos  -->
                 <div class="accordion-item">
@@ -86,7 +88,8 @@ require '../includes/header.php';
                             </div>
                         </div>
                 </div>
-                
+            </div>
+            <div class="accordion">
                 <div class="accordion-item">
                     <h3 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta6" aria-expanded="false" aria-controls="rta6">
@@ -100,7 +103,8 @@ require '../includes/header.php';
                             </div>
                         </div>
                 </div>
-
+            </div>
+            <div class="accordion">
                 <h2 class="mb-2 mt-3">Pagos y Cancelaciones</h2>
                 <div class="accordion-item">
                     <h3 class="accordion-header">
@@ -114,7 +118,8 @@ require '../includes/header.php';
                             </div>
                         </div>
                 </div>
-
+            </div>
+            <div class="accordion">
                 <h2 class="mb-2 mt-3">Aerolíneas (CEO)</h2>
                 <div class="accordion-item">
                     <h3 class="accordion-header">
@@ -129,7 +134,7 @@ require '../includes/header.php';
                             </div>
                         </div>
                 </div>
-
+            </div>
             </div>
             <!-- TODO: Una vez creado el formulario de contacto, vincular el <a> -->
             <h2 class="mb-2 mt-3">No encontraste lo que buscabas?</h2>

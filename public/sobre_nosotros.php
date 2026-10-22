@@ -1,19 +1,17 @@
 <?php
 require '../includes/sesiones.php';
 require '../includes/conexion.php';
+
 $pagina = 'Sobre Nosotros';
 $title = $pagina . " | ViajAir";
 require '../includes/header.php';
 ?>
-<head>
-    <title>Sobre Nosotros | ViajAir</title>
-</head>
 
-<div class="container mt-4 mb-5">
+<div class="container mt-2 mb-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($pagina, ENT_QUOTES, 'UTF-8') ?></li>
+            <li class="breadcrumb-item active" aria-current="page">Sobre Nosotros</li>
         </ol>
     </nav>
 
