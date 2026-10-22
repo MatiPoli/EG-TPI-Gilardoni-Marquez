@@ -1,15 +1,19 @@
 <?php
 require '../includes/sesiones.php';
 require '../includes/conexion.php';
-
+$pagina = 'Sobre Nosotros';
+$title = $pagina . " | ViajAir";
 require '../includes/header.php';
 ?>
+<head>
+    <title>Sobre Nosotros | ViajAir</title>
+</head>
 
 <div class="container mt-4 mb-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Sobre Nosotros</li>
+            <li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($pagina, ENT_QUOTES, 'UTF-8') ?></li>
         </ol>
     </nav>
 
@@ -17,7 +21,7 @@ require '../includes/header.php';
         <div class="col-md-10 col-lg-8">
             <h1 class="mb-4 text-center text-black">Sobre Nosotros</h1>
             <div id="sobre_nosotros_contenido">
-                <img src="../assets/img/sobre_nosotros.jpg" alt="">
+                <img src="../assets/img/sobre_nosotros.jpg" alt="" title="Atardecer en el Aeropuerto">
                 <div>
                 <h2>¿Quiénes somos?</h2>
                 <p>ViajAir es una empresa rosarina dedicada a la comercialización y gestión de pasajes aéreos a través de una plataforma web. Desde Rosario, trabajamos para acercar a los pasajeros la oferta de múltiples aerolíneas en un único lugar, donde pueden buscar vuelos, comparar precios, aprovechar promociones y administrar sus reservas de manera simple y segura. Nuestra plataforma está pensada para todas las personas que necesitan viajar: quienes organizan una escapada con amigos, quienes se trasladan por trabajo y quienes planifican las vacaciones en familia.</p>
