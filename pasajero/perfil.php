@@ -73,8 +73,8 @@ require '../includes/header.php';
         
 
         <?php if (!empty($mensaje)): ?>
-            <div class="alert alert-<?php echo $tipoMensaje; ?> alert-dismissible fade show" role="alert">
-                <?php echo $mensaje; ?>
+            <div class="alert alert-<?= $tipoMensaje; ?> alert-dismissible fade show" role="alert">
+                <?= $mensaje; ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
             </div>
         <?php endif; ?>
@@ -95,7 +95,7 @@ require '../includes/header.php';
                                 Correo Electrónico
                             </label>
                             <input type="email" class="form-control bg-light text-dark" id="email" 
-                                value="<?php echo htmlspecialchars($user['emailUsuario']); ?>" 
+                                value="<?= htmlspecialchars($user['emailUsuario']); ?>" 
                                 readonly aria-readonly="true" aria-describedby="email-bloqueado-ayuda">
                             <div id="email-bloqueado-ayuda" class="form-text text-muted">
                                 El correo electrónico no puede ser modificado ya que identifica tu cuenta.
@@ -107,7 +107,7 @@ require '../includes/header.php';
                                 Nombre y Apellido <span class="text-danger" aria-hidden="true">*</span>
                             </label>
                             <input type="text" class="form-control" id="nombre" name="nombre" 
-                                   value="<?php echo htmlspecialchars($user['nombreUsuario']); ?>" 
+                                   value="<?= htmlspecialchars($user['nombreUsuario']); ?>" 
                                    required aria-required="true">
                         </div>
 
@@ -117,7 +117,7 @@ require '../includes/header.php';
                                 Teléfono de contacto <span class="text-danger" aria-hidden="true">*</span>
                             </label>
                             <input type="tel" class="form-control" id="telefono" name="telefono" 
-                                   value="<?php echo htmlspecialchars($user['telefonoUsuario']); ?>" 
+                                   value="<?= htmlspecialchars($user['telefonoUsuario']); ?>" 
                                    required aria-required="true">
                         </div>
                     </fieldset>

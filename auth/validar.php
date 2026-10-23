@@ -42,7 +42,7 @@ if (isset($_GET['id']) && isset($_GET['hash'])) {
         <div class="card shadow-sm">
             <div class="card-body p-5 text-center">
                 <h4 class="mb-4">Validación de Cuenta</h4>
-                <div class="alert alert-<?php echo $message_type; ?>"><?php echo $message; ?></div>
+                <div class="alert alert-<?= $message_type; ?>"><?= $message; ?></div>
                 <a href="/tpi/auth/login.php" class="btn btn-primary mt-3">Ir al Login</a>
             </div>
         </div>

@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
                 <h4 class="card-title text-center mb-4">Formulario de nueva contraseña</h4>
                 
                 <?php if($message): ?>
-                    <div class="alert alert-<?php echo $message_type; ?> p-2 text-center"><?php echo $message; ?></div>
+                    <div class="alert alert-<?= $message_type; ?> p-2 text-center"><?= $message; ?></div>
                     <?php if(!$is_valid_token && $message_type === 'success'): ?>
                         <div class="text-center mt-3">
                             <a href="/tpi/auth/login.php" class="btn btn-primary">Ir al Login</a>
@@ -77,8 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
                 <?php endif; ?>
 
                 <?php if ($is_valid_token): ?>
-                    <form action="restablecer.php?token=<?php echo $token; ?>" method="POST">
-                        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                    <form action="restablecer.php?token=<?= $token; ?>" method="POST">
+                        <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                         <div class="mb-3">
                             <input type="password" name="password" class="form-control" placeholder="Nueva Contraseña" required maxlength="8">
                         </div>

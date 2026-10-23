@@ -46,13 +46,13 @@ require '../../includes/header.php';
                             <?php if ($result->num_rows > 0): ?>
                                 <?php while ($row = $result->fetch_assoc()): ?>
                                     <tr>
-                                        <td><?php echo $row['codAerolinea']; ?></td>
-                                        <td><?php echo htmlspecialchars($row['nombreAerolinea']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['codigoIATA']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['codPais']); ?></td>
+                                        <td><?= $row['codAerolinea']; ?></td>
+                                        <td><?= htmlspecialchars($row['nombreAerolinea']); ?></td>
+                                        <td><?= htmlspecialchars($row['codigoIATA']); ?></td>
+                                        <td><?= htmlspecialchars($row['codPais']); ?></td>
                                         <td class="text-center">
-                                            <a href="form_aerolinea.php?id=<?php echo $row['codAerolinea']; ?>" class="btn btn-sm btn-warning">Editar</a>
-                                            <a href="eliminar_aerolinea.php?id=<?php echo $row['codAerolinea']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar esta aerolínea?');">Eliminar</a>
+                                            <a href="form_aerolinea.php?id=<?= $row['codAerolinea']; ?>" class="btn btn-sm btn-warning">Editar</a>
+                                            <a href="eliminar_aerolinea.php?id=<?= $row['codAerolinea']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar esta aerolínea?');">Eliminar</a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>

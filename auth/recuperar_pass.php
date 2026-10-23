@@ -83,8 +83,8 @@ require '../includes/header.php';
                 </p>
                 
                 <?php if (!empty($message)): ?>
-                    <div class="alert alert-<?php echo $message_type; ?> text-center p-3 mb-4" role="alert">
-                        <?php echo $message; ?>
+                    <div class="alert alert-<?= $message_type; ?> text-center p-3 mb-4" role="alert">
+                        <?= $message; ?>
                     </div>
                 <?php endif; ?>
 

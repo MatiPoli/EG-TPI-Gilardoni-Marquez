@@ -49,37 +49,37 @@ require '../../includes/header.php';
                 <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="/tpi/admin/dashboard.php">Sección Admin</a></li>
                 <li class="breadcrumb-item"><a href="abm_novedades.php">Novedades</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><?php echo $id ? 'Editar' : 'Nueva'; ?></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $id ? 'Editar' : 'Nueva'; ?></li>
             </ol>
         </nav>
 
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
-                <h5 class="mb-0"><?php echo $id ? 'Modificar Novedad' : 'Registrar Nueva Novedad'; ?></h5>
+                <h5 class="mb-0"><?= $id ? 'Modificar Novedad' : 'Registrar Nueva Novedad'; ?></h5>
                 <a href="abm_novedades.php" class="btn btn-outline-light btn-sm">Volver</a>
             </div>
             <div class="card-body p-4">
                 
                 <?php if($error_message): ?>
-                    <div class="alert alert-danger p-2 text-center"><?php echo $error_message; ?></div>
+                    <div class="alert alert-danger p-2 text-center"><?= $error_message; ?></div>
                 <?php endif; ?>
 
                 <form action="procesar_novedad.php" method="POST" class="row g-3">
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <input type="hidden" name="id" value="<?= $id; ?>">
                     
                     <div class="col-12">
                         <label class="form-label">Texto de la Novedad</label>
-                        <textarea name="text" class="form-control" rows="3" required maxlength="200"><?php echo htmlspecialchars($text); ?></textarea>
+                        <textarea name="text" class="form-control" rows="3" required maxlength="200"><?= htmlspecialchars($text); ?></textarea>
                     </div>
                     
                     <div class="col-md-6">
                         <label class="form-label">Fecha de Publicación</label>
-                        <input type="date" name="pub_date" class="form-control" value="<?php echo htmlspecialchars($pub_date); ?>" min="<?php echo empty($id) ? date('Y-m-d') : ''; ?>" required>
+                        <input type="date" name="pub_date" class="form-control" value="<?= htmlspecialchars($pub_date); ?>" min="<?= empty($id) ? date('Y-m-d') : ''; ?>" required>
                     </div>
                     
                     <div class="col-md-6">
                         <label class="form-label">Fecha de Expiración</label>
-                        <input type="date" name="exp_date" class="form-control" value="<?php echo htmlspecialchars($exp_date); ?>" min="<?php echo empty($id) ? date('Y-m-d', strtotime('+1 day')) : ''; ?>" required>
+                        <input type="date" name="exp_date" class="form-control" value="<?= htmlspecialchars($exp_date); ?>" min="<?= empty($id) ? date('Y-m-d', strtotime('+1 day')) : ''; ?>" required>
                     </div>
                     
                     <div class="col-12 mt-4 text-center">

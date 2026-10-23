@@ -71,7 +71,7 @@ require '../includes/header.php';
                 <h4 class="card-title text-center mb-4">Formulario de inicio de sesión</h4>
                 
                 <?php if($error): ?>
-                    <div class="alert alert-danger p-2 text-center"><?php echo $error; ?></div>
+                    <div class="alert alert-danger p-2 text-center"><?= $error; ?></div>
                 <?php endif; ?>
 
                 <form action="login.php" method="POST">

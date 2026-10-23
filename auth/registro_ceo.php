@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h4 class="card-title text-center mb-4">Formulario de registro CEO</h4>
                 
                 <?php if($message): ?>
-                    <div class="alert alert-<?php echo $message_type; ?> p-2 text-center"><?php echo $message; ?></div>
+                    <div class="alert alert-<?= $message_type; ?> p-2 text-center"><?= $message; ?></div>
                 <?php endif; ?>
 
                 <form action="registro_ceo.php" method="POST" class="row g-3">

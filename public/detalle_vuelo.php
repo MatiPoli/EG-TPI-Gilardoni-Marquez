@@ -42,7 +42,7 @@ require '../includes/header.php';
             <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
             <li class="breadcrumb-item"><a href="/tpi/public/buscar_vuelos.php">Buscar Vuelos</a></li>
             <li class="breadcrumb-item active" aria-current="page">
-                <?php echo $vuelo ? "Detalle de Vuelo #" . $vuelo['codVuelo'] : "Error"; ?>
+                <?= $vuelo ? "Detalle de Vuelo #" . $vuelo['codVuelo'] : "Error"; ?>
             </li>
         </ol>
     </nav>
@@ -62,18 +62,18 @@ require '../includes/header.php';
                     
                     <header class="border-bottom pb-3 mb-4">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="badge bg-secondary text-dark border"><?php echo htmlspecialchars($vuelo['nombreAerolinea']); ?> (<?php echo htmlspecialchars($vuelo['codigoIATA']); ?>)</span>
+                            <span class="badge bg-secondary text-dark border"><?= htmlspecialchars($vuelo['nombreAerolinea']); ?> (<?= htmlspecialchars($vuelo['codigoIATA']); ?>)</span>
                             <?php if ($tienePromo): ?>
-                                <span class="badge bg-success" aria-label="Promoción aprobada del <?php echo $descuento; ?> por ciento">
-                                    <?php echo $descuento; ?>% OFF
+                                <span class="badge bg-success" aria-label="Promoción aprobada del <?= $descuento; ?> por ciento">
+                                    <?= $descuento; ?>% OFF
                                 </span>
                             <?php endif; ?>
                         </div>
                         
                         <h1 id="titulo-detalle" class="h3 fw-bold text-dark mb-1">
-                            <?php echo htmlspecialchars($vuelo['origenVuelo']); ?> hacia <?php echo htmlspecialchars($vuelo['destinoVuelo']); ?>
+                            <?= htmlspecialchars($vuelo['origenVuelo']); ?> hacia <?= htmlspecialchars($vuelo['destinoVuelo']); ?>
                         </h1>
-                        <p class="text-muted mb-0">Vuelo Código Oficial #<?php echo $vuelo['codVuelo']; ?></p>
+                        <p class="text-muted mb-0">Vuelo Código Oficial #<?= $vuelo['codVuelo']; ?></p>
                     </header>
 
                     <h2 class="h5 fw-bold text-primary mb-3">Información del Itinerario</h2>
@@ -83,24 +83,24 @@ require '../includes/header.php';
                             <tbody>
                                 <tr>
                                     <th scope="row" class="bg-light w-35 text-dark fw-semibold">Ciudad de Origen</th>
-                                    <td><?php echo htmlspecialchars($vuelo['origenVuelo']); ?></td>
+                                    <td><?= htmlspecialchars($vuelo['origenVuelo']); ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="bg-light text-dark fw-semibold">Ciudad de Destino</th>
-                                    <td><?php echo htmlspecialchars($vuelo['destinoVuelo']); ?></td>
+                                    <td><?= htmlspecialchars($vuelo['destinoVuelo']); ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="bg-light text-dark fw-semibold">Fecha de Partida</th>
-                                    <td><?php echo date('d/m/Y', strtotime($vuelo['fechaSalidaVuelo'])); ?></td>
+                                    <td><?= date('d/m/Y', strtotime($vuelo['fechaSalidaVuelo'])); ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="bg-light text-dark fw-semibold">Hora de Salida</th>
-                                    <td><?php echo substr($vuelo['horaSalidaVuelo'], 0, 5); ?> hs (Hora local GMT-3)</td>
+                                    <td><?= substr($vuelo['horaSalidaVuelo'], 0, 5); ?> hs (Hora local GMT-3)</td>
                                 </tr>
                                 <tr>
                                     <th scope="row" class="bg-light text-dark fw-semibold">Disponibilidad Actual</th>
                                     <td>
-                                        <span class="badge bg-primary fs-6"><?php echo $vuelo['asientosDisponibles']; ?> asientos libres</span>
+                                        <span class="badge bg-primary fs-6"><?= $vuelo['asientosDisponibles']; ?> asientos libres</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -110,8 +110,8 @@ require '../includes/header.php';
                     <?php if ($tienePromo): ?>
                         <h2 class="h5 fw-bold text-primary mb-2">Promoción Aplicada</h2>
                         <p class="text-muted mb-4">
-                            <?php echo htmlspecialchars($vuelo['descripcionPromocion']); ?> 
-                            (<strong><?php echo $descuento; ?>% de descuento</strong> incluido en el precio final).
+                            <?= htmlspecialchars($vuelo['descripcionPromocion']); ?> 
+                            (<strong><?= $descuento; ?>% de descuento</strong> incluido en el precio final).
                         </p>
                     <?php endif; ?>
 
@@ -130,15 +130,15 @@ require '../includes/header.php';
 
                     <div class="d-flex justify-content-between mb-2">
                         <span class="text-dark">Tarifa por pasaje:</span>
-                        <span class="fw-semibold <?php echo $tienePromo ? 'text-decoration-line-through text-muted' : 'text-dark'; ?>">
-                            $ <?php echo number_format($precioOriginal, 2, ',', '.'); ?>
+                        <span class="fw-semibold <?= $tienePromo ? 'text-decoration-line-through text-muted' : 'text-dark'; ?>">
+                            $ <?= number_format($precioOriginal, 2, ',', '.'); ?>
                         </span>
                     </div>
 
                     <?php if ($tienePromo): ?>
                         <div class="d-flex justify-content-between text-success mb-2">
-                            <span>Descuento (<?php echo $descuento; ?>%):</span>
-                            <span>- $ <?php echo number_format($montoDescuento, 2, ',', '.'); ?></span>
+                            <span>Descuento (<?= $descuento; ?>%):</span>
+                            <span>- $ <?= number_format($montoDescuento, 2, ',', '.'); ?></span>
                         </div>
                     <?php endif; ?>
 
@@ -151,11 +151,11 @@ require '../includes/header.php';
 
                     <div class="d-flex justify-content-between align-items-baseline mb-4">
                         <span class="h6 fw-bold text-dark mb-0">Precio Unitario:</span>
-                        <span class="h3 fw-bold text-primary mb-0">$ <?php echo number_format($precioFinal, 2, ',', '.'); ?></span>
+                        <span class="h3 fw-bold text-primary mb-0">$ <?= number_format($precioFinal, 2, ',', '.'); ?></span>
                     </div>
 
                     <form action="/tpi/pasajero/procesar_reserva.php" method="POST" class="d-grid gap-3">
-                        <input type="hidden" name="id" value="<?php echo $vuelo['codVuelo']; ?>">
+                        <input type="hidden" name="id" value="<?= $vuelo['codVuelo']; ?>">
 
                         <div>
                             <label for="cantidad" class="form-label fw-semibold text-dark small mb-1">
@@ -167,9 +167,9 @@ require '../includes/header.php';
                                 class="form-control text-center" 
                                 value="1" 
                                 min="1" 
-                                max="<?php echo $maxPasajes; ?>" 
+                                max="<?= $maxPasajes; ?>" 
                                 required>
-                            <div class="form-text small text-muted text-center">Máximo <?php echo $maxPasajes; ?> asientos por operación.</div>
+                            <div class="form-text small text-muted text-center">Máximo <?= $maxPasajes; ?> asientos por operación.</div>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-lg fw-bold">

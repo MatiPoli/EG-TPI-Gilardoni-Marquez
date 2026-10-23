@@ -46,18 +46,18 @@ require '../../includes/header.php';
                             <?php if ($result->num_rows > 0): ?>
                                 <?php while ($row = $result->fetch_assoc()): ?>
                                     <tr>
-                                        <td><?php echo $row['codNovedad']; ?></td>
-                                        <td title="<?php echo htmlspecialchars($row['textoNovedad']); ?>">
+                                        <td><?= $row['codNovedad']; ?></td>
+                                        <td title="<?= htmlspecialchars($row['textoNovedad']); ?>">
                                             <?php 
                                             $text = $row['textoNovedad'];
                                             echo strlen($text) > 80 ? htmlspecialchars(substr($text, 0, 80)) . '...' : htmlspecialchars($text); 
                                             ?>
                                         </td>
-                                        <td><?php echo htmlspecialchars($row['fechaPublicacionNovedad']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['fechaExpiracionNovedad']); ?></td>
+                                        <td><?= htmlspecialchars($row['fechaPublicacionNovedad']); ?></td>
+                                        <td><?= htmlspecialchars($row['fechaExpiracionNovedad']); ?></td>
                                         <td class="text-center">
-                                            <a href="form_novedad.php?id=<?php echo $row['codNovedad']; ?>" class="btn btn-sm btn-warning">Editar</a>
-                                            <a href="eliminar_novedad.php?id=<?php echo $row['codNovedad']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar esta novedad?');">Eliminar</a>
+                                            <a href="form_novedad.php?id=<?= $row['codNovedad']; ?>" class="btn btn-sm btn-warning">Editar</a>
+                                            <a href="eliminar_novedad.php?id=<?= $row['codNovedad']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas eliminar esta novedad?');">Eliminar</a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>

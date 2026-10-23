@@ -34,7 +34,7 @@ require '../includes/header.php';
                 <form action="" method="POST">
                     <div class="mb-3">
                         <label for="emailContacto" class="form-label">Tu dirección de correo:</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailContacto" placeholder="nombre@ejemplo.com" required value="<?php echo $email ?? ''?>">
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailContacto" placeholder="nombre@ejemplo.com" required value="<?= $email ?? ''?>">
                     </div>
                     <div class="mb-3">
                         <label for="consulta" class="form-label">Tu consulta:</label>

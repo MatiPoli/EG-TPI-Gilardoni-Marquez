@@ -52,12 +52,12 @@ require '../includes/header.php';
                         ?>
                         <div class="list-group-item flex-column align-items-start p-4">
                             <div class="d-flex w-100 justify-content-between align-items-center mb-2">
-                                <h2 class="h5 mb-0 text-primary"><?php echo htmlspecialchars($titulo); ?></h2>
+                                <h2 class="h5 mb-0 text-primary"><?= htmlspecialchars($titulo); ?></h2>
                                 <span class="text-body-tertiary fw-bold small ms-2">
-                                    <?php echo date('d/m/Y', strtotime($row['fechaPublicacionNovedad'])); ?>
+                                    <?= date('d/m/Y', strtotime($row['fechaPublicacionNovedad'])); ?>
                                 </span>
                             </div>
-                            <p class="mb-1 fs-5 text-dark"><?php echo htmlspecialchars($row['textoNovedad']); ?></p>
+                            <p class="mb-1 fs-5 text-dark"><?= htmlspecialchars($row['textoNovedad']); ?></p>
                         </div>
                     <?php endwhile; ?>
                 </div>
@@ -74,7 +74,7 @@ require '../includes/header.php';
                                 </li>
                             <?php else: ?>
                                 <li class="page-item">
-                                    <a class="page-link" href="?pagina=<?php echo $pagina - 1; ?>">
+                                    <a class="page-link" href="?pagina=<?= $pagina - 1; ?>">
                                         <span aria-hidden="true">&laquo;</span>
                                         <span class="visually-hidden">Ir a la página anterior</span>
                                     </a>
@@ -85,14 +85,14 @@ require '../includes/header.php';
                                 <?php if ($pagina == $i): ?>
                                     <li class="page-item active" aria-current="page">
                                         <span class="page-link">
-                                            <?php echo $i; ?> 
+                                            <?= $i; ?> 
                                             <span class="visually-hidden">(página actual)</span>
                                         </span>
                                     </li>
                                 <?php else: ?>
                                     <li class="page-item">
-                                        <a class="page-link" href="?pagina=<?php echo $i; ?>">
-                                            <span class="visually-hidden">Ir a la página </span><?php echo $i; ?>
+                                        <a class="page-link" href="?pagina=<?= $i; ?>">
+                                            <span class="visually-hidden">Ir a la página </span><?= $i; ?>
                                         </a>
                                     </li>
                                 <?php endif; ?>
@@ -107,7 +107,7 @@ require '../includes/header.php';
                                 </li>
                             <?php else: ?>
                                 <li class="page-item">
-                                    <a class="page-link" href="?pagina=<?php echo $pagina + 1; ?>">
+                                    <a class="page-link" href="?pagina=<?= $pagina + 1; ?>">
                                         <span aria-hidden="true">&raquo;</span>
                                         <span class="visually-hidden">Ir a la página siguiente</span>
                                     </a>

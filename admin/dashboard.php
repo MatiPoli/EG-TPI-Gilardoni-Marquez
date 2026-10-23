@@ -42,19 +42,19 @@ require '../includes/header.php';
                     <div class="col-md-4 mb-3">
                         <div class="p-3 border rounded bg-light">
                             <h5>Aerolíneas</h5>
-                            <h2 class="text-primary"><?php echo $total_airlines; ?></h2>
+                            <h2 class="text-primary"><?= $total_airlines; ?></h2>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="p-3 border rounded bg-light">
                             <h5>Promos Pendientes</h5>
-                            <h2 class="text-warning"><?php echo $total_promos; ?></h2>
+                            <h2 class="text-warning"><?= $total_promos; ?></h2>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="p-3 border rounded bg-light">
                             <h5>Usuarios Totales</h5>
-                            <h2 class="text-success"><?php echo $total_users; ?></h2>
+                            <h2 class="text-success"><?= $total_users; ?></h2>
                         </div>
                     </div>
                 </div>

@@ -42,33 +42,33 @@ require '../../includes/header.php';
                 <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="/tpi/admin/dashboard.php">Administración</a></li>
                 <li class="breadcrumb-item"><a href="abm_aerolineas.php">Aerolíneas</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><?php echo $id ? 'Editar' : 'Nueva'; ?></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $id ? 'Editar' : 'Nueva'; ?></li>
             </ol>
         </nav>
 
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
-                <h5 class="mb-0"><?php echo $id ? 'Modificar Aerolínea' : 'Registrar Nueva Aerolínea'; ?></h5>
+                <h5 class="mb-0"><?= $id ? 'Modificar Aerolínea' : 'Registrar Nueva Aerolínea'; ?></h5>
                 <a href="abm_aerolineas.php" class="btn btn-outline-light btn-sm">Volver</a>
             </div>
             <div class="card-body p-4">
                 <form action="procesar_aerolinea.php" method="POST" class="row g-3">
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                    <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="col-md-8">
                         <label class="form-label">Nombre de la Aerolínea</label>
-                        <input type="text" name="name" class="form-control" value="<?php echo htmlspecialchars($name); ?>" required>
+                        <input type="text" name="name" class="form-control" value="<?= htmlspecialchars($name); ?>" required>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Código IATA</label>
-                        <input type="text" name="iata" class="form-control" value="<?php echo htmlspecialchars($iata); ?>" required maxlength="3">
+                        <input type="text" name="iata" class="form-control" value="<?= htmlspecialchars($iata); ?>" required maxlength="3">
                     </div>
                     <div class="col-12">
                         <label class="form-label">Código del País</label>
-                        <input type="text" name="country" class="form-control" value="<?php echo htmlspecialchars($country); ?>" required maxlength="3">
+                        <input type="text" name="country" class="form-control" value="<?= htmlspecialchars($country); ?>" required maxlength="3">
                     </div>
                     <div class="col-12">
                         <label class="form-label">Descripción</label>
-                        <textarea name="desc" class="form-control" rows="3" required><?php echo htmlspecialchars($desc); ?></textarea>
+                        <textarea name="desc" class="form-control" rows="3" required><?= htmlspecialchars($desc); ?></textarea>
                     </div>
                     <div class="col-12 mt-4 text-center">
                         <button type="submit" class="btn btn-primary px-5">Guardar</button>

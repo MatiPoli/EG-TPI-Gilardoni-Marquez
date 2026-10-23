@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?? 'ViajAir'; ?></title>
+    <title><?= $title ?? 'ViajAir'; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css" rel="stylesheet">
     <link href="/tpi/assets/css/styles.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/tpi/assets/img/favicon.png">
@@ -31,7 +31,7 @@
                             $nameLogin = $_SESSION['nombreUsuario'];
                         ?>
                             <li class="nav-item me-3 text-white-50 d-none d-lg-block">
-                                <?php echo explode(' ', trim($nameLogin))[0]; ?>
+                                <?= explode(' ', trim($nameLogin))[0]; ?>
                             </li>
                             <?php if ($roleLogin == 'administrador'): ?>
                                 <li class="nav-item"><a class="nav-link text-white fw-bold" href="/tpi/admin/dashboard.php">Administración</a></li>
