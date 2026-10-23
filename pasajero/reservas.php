@@ -11,7 +11,9 @@ $query = "SELECT r.codReserva, r.cantidadPasajes, r.precioTotal, r.estadoReserva
           FROM RESERVAS r 
           JOIN VUELOS v ON r.codVuelo = v.codVuelo 
           WHERE r.codUsuario = ? 
-          ORDER BY v.fechaSalidaVuelo ASC";
+            AND r.estadoReserva IN ('pendiente de pago', 'confirmada')
+            AND CONCAT(v.fechaSalidaVuelo, ' ', v.horaSalidaVuelo) >= NOW()
+          ORDER BY v.fechaSalidaVuelo ASC, v.horaSalidaVuelo ASC";
 
 $stmt = $conexion->prepare($query);
 $stmt->bind_param("i", $user_id);
@@ -113,11 +115,17 @@ require '../includes/header.php';
                                         </td>
                                         <td class="text-center">
                                             <?php if ($row['estadoReserva'] == 'pendiente de pago'): ?>
-                                                <a href="pagar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-success fw-bold">Pagar</a>
+                                                <button type="button" class="btn btn-sm btn-success fw-bold"
+                                                    data-bs-toggle="modal" data-bs-target="#modalPagarReserva<?php echo $row['codReserva']; ?>">
+                                                    Pagar
+                                                </button>
                                             <?php endif; ?>
                                             
                                             <?php if ($row['estadoReserva'] != 'cancelada' && (int)$row['horas_restantes'] >= 72): ?>
-                                                <a href="cancelar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">Cancelar</a>
+                                                <button type="button" class="btn btn-sm btn-outline-danger"
+                                                    data-bs-toggle="modal" data-bs-target="#modalCancelarReserva<?php echo $row['codReserva']; ?>">
+                                                    Cancelar
+                                                </button>
                                             <?php endif; ?>
 
                                             <?php if ($row['estadoReserva'] == 'confirmada'): ?>
@@ -125,6 +133,54 @@ require '../includes/header.php';
                                             <?php endif; ?>
                                         </td>
                                     </tr>
+
+                                    <?php if ($row['estadoReserva'] == 'pendiente de pago'): ?>
+                                        <div class="modal fade" id="modalPagarReserva<?php echo $row['codReserva']; ?>" tabindex="-1"
+                                            role="dialog" aria-modal="true" aria-labelledby="modalPagarReservaLabel<?php echo $row['codReserva']; ?>"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content border-0 shadow">
+                                                    <div class="modal-header bg-success text-white">
+                                                        <h2 class="modal-title h5 mb-0" id="modalPagarReservaLabel<?php echo $row['codReserva']; ?>">
+                                                            Confirmar pago de reserva
+                                                        </h2>
+                                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
+                                                    </div>
+                                                    <div class="modal-body p-4">
+                                                        <p>¿Estás seguro de que deseás pagar la reserva #<?php echo $row['codReserva']; ?>?</p>
+                                                    </div>
+                                                    <div class="modal-footer bg-light">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <a href="pagar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-success fw-bold">Sí, Pagar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($row['estadoReserva'] != 'cancelada' && (int)$row['horas_restantes'] >= 72): ?>
+                                        <div class="modal fade" id="modalCancelarReserva<?php echo $row['codReserva']; ?>" tabindex="-1"
+                                            role="dialog" aria-modal="true" aria-labelledby="modalCancelarReservaLabel<?php echo $row['codReserva']; ?>"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content border-0 shadow">
+                                                    <div class="modal-header bg-danger text-white">
+                                                        <h2 class="modal-title h5 mb-0" id="modalCancelarReservaLabel<?php echo $row['codReserva']; ?>">
+                                                            Confirmar cancelación de reserva
+                                                        </h2>
+                                                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar modal"></button>
+                                                    </div>
+                                                    <div class="modal-body p-4">
+                                                        <p>¿Estás seguro de que deseás cancelar la reserva #<?php echo $row['codReserva']; ?>?</p>
+                                                    </div>
+                                                    <div class="modal-footer bg-light">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <a href="cancelar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-danger fw-bold">Sí, Cancelar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <tr>
