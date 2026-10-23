@@ -2,7 +2,16 @@
 session_start();
 
 function checkRole($allowedRole) {
-    if (!isset($_SESSION['codUsuario']) || $_SESSION['tipoUsuario'] !== $allowedRole) {
+    if (!isset($_SESSION['codUsuario'])) {
+        header("Location: /tpi/auth/login.php");
+        exit();
+    }
+
+    if ($allowedRole === 'usuario') {
+        return;
+    }
+
+    if ($_SESSION['tipoUsuario'] !== $allowedRole) {
         header("Location: /tpi/index.php");
         exit();
     }
