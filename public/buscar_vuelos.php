@@ -83,7 +83,12 @@ require '../includes/header.php';
     </nav>
 
     <h1 class="mb-4 text-center text-black">Catálogo de Vuelos</h1>
-
+    <?php if (isset($_GET['error_reserva']) && $_GET['error_reserva'] === 'transaccion'): ?>
+        <div class="alert alert-danger alert-dismissible fade show text-center mb-4" role="alert">
+            <strong>Ocurrió un error inesperado:</strong> No se pudo procesar la solicitud con el servidor. Por favor, intentá nuevamente en unos instantes.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+        </div>
+    <?php endif; ?>
     <div class="card shadow-sm border-0 bg-secondary mb-4">
         <div class="card-body p-4">
             <h2 class="h5 card-title mb-3 text-center text-primary fw-bold">Parámetros de búsqueda</h2>
@@ -92,21 +97,21 @@ require '../includes/header.php';
                 <div class="col-md-3">
                     <label for="origen" class="form-label fw-semibold text-dark">Origen</label>
                     <input type="text" id="origen" name="origen" class="form-control" 
-                           value="<?php echo htmlspecialchars($origen); ?>" 
+                           value="<?= htmlspecialchars($origen); ?>" 
                            placeholder="Ciudad de Origen">
                 </div>
 
                 <div class="col-md-3">
                     <label for="destino" class="form-label fw-semibold text-dark">Destino</label>
                     <input type="text" id="destino" name="destino" class="form-control" 
-                           value="<?php echo htmlspecialchars($destino); ?>" 
+                           value="<?= htmlspecialchars($destino); ?>" 
                            placeholder="Ciudad de Destino">
                 </div>
 
                 <div class="col-md-2">
                     <label for="fecha" class="form-label fw-semibold text-dark">Fecha de salida</label>
                     <input type="date" id="fecha" name="fecha" class="form-control" 
-                           value="<?php echo htmlspecialchars($fecha); ?>">
+                           value="<?= htmlspecialchars($fecha); ?>">
                 </div>
 
                 <div class="col-md-2">
@@ -115,8 +120,8 @@ require '../includes/header.php';
                         <option value="0">Todas</option>
                         <?php if ($res_aerolineas && $res_aerolineas->num_rows > 0): ?>
                             <?php while ($a = $res_aerolineas->fetch_assoc()): ?>
-                                <option value="<?php echo $a['codAerolinea']; ?>" <?php echo ($aerolinea == $a['codAerolinea']) ? 'selected' : ''; ?>>
-                                    <?php echo htmlspecialchars($a['nombreAerolinea']); ?>
+                                <option value="<?= $a['codAerolinea']; ?>" <?= ($aerolinea == $a['codAerolinea']) ? 'selected' : ''; ?>>
+                                    <?= htmlspecialchars($a['nombreAerolinea']); ?>
                                 </option>
                             <?php endwhile; ?>
                         <?php endif; ?>
@@ -132,7 +137,7 @@ require '../includes/header.php';
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="h6 mb-0 text-muted">
-            Vuelos encontrados: <strong><?php echo $total_registros; ?></strong>
+            Vuelos encontrados: <strong><?= $total_registros; ?></strong>
         </h2>
         <small class="text-muted">Precios en Pesos Argentinos ($)</small>
     </div>
@@ -151,29 +156,29 @@ require '../includes/header.php';
                         
                         <div class="col-12 col-md-6">
                             <div class="d-flex align-items-center gap-2 mb-2">
-                                <span class="badge bg-light text-dark border"><?php echo htmlspecialchars($vuelo['nombreAerolinea']); ?></span>
+                                <span class="badge bg-light text-dark border"><?= htmlspecialchars($vuelo['nombreAerolinea']); ?></span>
                                 <?php if ($tienePromo): ?>
-                                    <span class="badge bg-success" aria-label="Descuento aplicado: <?php echo $descuento; ?> por ciento">
-                                        <?php echo $descuento; ?>% OFF
+                                    <span class="badge bg-success" aria-label="Descuento aplicado: <?= $descuento; ?> por ciento">
+                                        <?= $descuento; ?>% OFF
                                     </span>
                                 <?php endif; ?>
                             </div>
 
                             <h3 class="h4 mb-2 fw-bold text-dark">
-                                <span><?php echo htmlspecialchars($vuelo['origenVuelo']); ?></span>
+                                <span><?= htmlspecialchars($vuelo['origenVuelo']); ?></span>
                                 <span aria-hidden="true"> &rarr; </span>
                                 <span class="visually-hidden"> hacia </span>
-                                <span><?php echo htmlspecialchars($vuelo['destinoVuelo']); ?></span>
+                                <span><?= htmlspecialchars($vuelo['destinoVuelo']); ?></span>
                             </h3>
 
                             <p class="text-muted mb-2">
-                                <strong>Fecha de salida:</strong> <?php echo date('d/m/Y', strtotime($vuelo['fechaSalidaVuelo'])); ?> 
-                                a las <strong><?php echo substr($vuelo['horaSalidaVuelo'], 0, 5); ?> hs (GMT-3)</strong>
+                                <strong>Fecha de salida:</strong> <?= date('d/m/Y', strtotime($vuelo['fechaSalidaVuelo'])); ?> 
+                                a las <strong><?= substr($vuelo['horaSalidaVuelo'], 0, 5); ?> hs (GMT-3)</strong>
                             </p>
 
                             <p class="mb-0">
                                 <span class="badge bg-light text-dark border">
-                                    Asientos disponibles: <strong><?php echo $vuelo['asientosDisponibles']; ?></strong>
+                                    Asientos disponibles: <strong><?= $vuelo['asientosDisponibles']; ?></strong>
                                 </span>
                             </p>
                         </div>
@@ -182,42 +187,42 @@ require '../includes/header.php';
                             <?php if ($tienePromo): ?>
                                 <span class="d-block text-muted small">
                                     <span class="visually-hidden">Precio anterior sin descuento: </span>
-                                    <del>$ <?php echo number_format($precioOriginal, 2, ',', '.'); ?></del>
+                                    <del>$ <?= number_format($precioOriginal, 2, ',', '.'); ?></del>
                                 </span>
                             <?php endif; ?>
                             <span class="h3 fw-bold text-primary mb-0 d-block">
                                 <span class="visually-hidden">Precio actual: </span>
-                                $ <?php echo number_format($precioFinal, 2, ',', '.'); ?>
+                                $ <?= number_format($precioFinal, 2, ',', '.'); ?>
                             </span>
                             <small class="text-muted d-block">por pasajero</small>
                         </div>
 
                         <div class="col-12 col-md-3">
                             <div class="d-grid mb-2">
-                                <a href="/tpi/public/detalle_vuelo.php?id=<?php echo $vuelo['codVuelo']; ?>" class="btn btn-outline-primary btn-sm fw-semibold">
-                                    Ver detalles <span class="visually-hidden">del vuelo de <?php echo htmlspecialchars($vuelo['origenVuelo']); ?> a <?php echo htmlspecialchars($vuelo['destinoVuelo']); ?></span>
+                                <a href="/tpi/public/detalle_vuelo.php?id=<?= $vuelo['codVuelo']; ?>" class="btn btn-outline-primary btn-sm fw-semibold">
+                                    Ver detalles <span class="visually-hidden">del vuelo de <?= htmlspecialchars($vuelo['origenVuelo']); ?> a <?= htmlspecialchars($vuelo['destinoVuelo']); ?></span>
                                 </a>
                             </div>
 
-                            <form action="/tpi/pasajero/reservar.php" method="GET" class="d-grid gap-2">
-                                <input type="hidden" name="id" value="<?php echo $vuelo['codVuelo']; ?>">
+                            <form action="/tpi/pasajero/procesar_reserva.php" method="POST" class="d-grid gap-2">
+                                <input type="hidden" name="id" value="<?= $vuelo['codVuelo']; ?>">
 
                                 <div>
-                                    <label for="cantidad-<?php echo $vuelo['codVuelo']; ?>" class="form-label small fw-semibold text-muted mb-1">
+                                    <label for="cantidad-<?= $vuelo['codVuelo']; ?>" class="form-label small fw-semibold text-muted mb-1">
                                         Cantidad de pasajes:
                                     </label>
                                     <input type="number" 
-                                            id="cantidad-<?php echo $vuelo['codVuelo']; ?>" 
-                                            name="cantidad" 
-                                            class="form-control form-control-sm text-center" 
-                                            value="1" 
-                                            min="1" 
-                                            max="<?php echo $maxPasajes; ?>" 
-                                            required>
+                                        id="cantidad-<?= $vuelo['codVuelo']; ?>" 
+                                        name="cantidad" 
+                                        class="form-control form-control-sm text-center" 
+                                        value="1" 
+                                        min="1" 
+                                        max="<?= $maxPasajes; ?>" 
+                                        required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-sm fw-bold">
-                                    Reservar <span class="visually-hidden">vuelo de <?php echo htmlspecialchars($vuelo['origenVuelo']); ?> a <?php echo htmlspecialchars($vuelo['destinoVuelo']); ?></span>
+                                    Reservar <span class="visually-hidden">vuelo de <?= htmlspecialchars($vuelo['origenVuelo']); ?> a <?= htmlspecialchars($vuelo['destinoVuelo']); ?></span>
                                 </button>
                             </form>
                         </div>
@@ -243,7 +248,7 @@ require '../includes/header.php';
                         </li>
                     <?php else: ?>
                         <li class="page-item">
-                            <a class="page-link" href="?pagina=<?php echo ($pagina - 1) . $url_filtros; ?>">
+                            <a class="page-link" href="?pagina=<?= ($pagina - 1) . $url_filtros; ?>">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="visually-hidden">Ir a la página anterior</span>
                             </a>
@@ -254,14 +259,14 @@ require '../includes/header.php';
                         <?php if ($pagina == $i): ?>
                             <li class="page-item active" aria-current="page">
                                 <span class="page-link">
-                                    <?php echo $i; ?> 
+                                    <?= $i; ?> 
                                     <span class="visually-hidden">(página actual)</span>
                                 </span>
                             </li>
                         <?php else: ?>
                             <li class="page-item">
-                                <a class="page-link" href="?pagina=<?php echo $i . $url_filtros; ?>">
-                                    <span class="visually-hidden">Ir a la página </span><?php echo $i; ?>
+                                <a class="page-link" href="?pagina=<?= $i . $url_filtros; ?>">
+                                    <span class="visually-hidden">Ir a la página </span><?= $i; ?>
                                 </a>
                             </li>
                         <?php endif; ?>
@@ -276,7 +281,7 @@ require '../includes/header.php';
                         </li>
                     <?php else: ?>
                         <li class="page-item">
-                            <a class="page-link" href="?pagina=<?php echo ($pagina + 1) . $url_filtros; ?>">
+                            <a class="page-link" href="?pagina=<?= ($pagina + 1) . $url_filtros; ?>">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="visually-hidden">Ir a la página siguiente</span>
                             </a>

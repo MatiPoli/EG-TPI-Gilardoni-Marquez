@@ -47,6 +47,13 @@ require '../includes/header.php';
         </ol>
     </nav>
 
+    <?php if (isset($_GET['error_reserva']) && $_GET['error_reserva'] === 'sin_stock'): ?>
+        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+            <strong>No se pudo realizar la reserva:</strong> No hay suficientes asientos disponibles para la cantidad solicitada.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+        </div>
+    <?php endif; ?>
+
     <?php if ($vuelo): ?>
         <div class="row g-4">
             
@@ -147,7 +154,7 @@ require '../includes/header.php';
                         <span class="h3 fw-bold text-primary mb-0">$ <?php echo number_format($precioFinal, 2, ',', '.'); ?></span>
                     </div>
 
-                    <form action="/tpi/pasajero/reservar.php" method="GET" class="d-grid gap-3">
+                    <form action="/tpi/pasajero/procesar_reserva.php" method="POST" class="d-grid gap-3">
                         <input type="hidden" name="id" value="<?php echo $vuelo['codVuelo']; ?>">
 
                         <div>
@@ -155,13 +162,13 @@ require '../includes/header.php';
                                 Seleccionar cantidad de pasajes:
                             </label>
                             <input type="number" 
-                                   id="cantidad" 
-                                   name="cantidad" 
-                                   class="form-control text-center" 
-                                   value="1" 
-                                   min="1" 
-                                   max="<?php echo $maxPasajes; ?>" 
-                                   required>
+                                id="cantidad" 
+                                name="cantidad" 
+                                class="form-control text-center" 
+                                value="1" 
+                                min="1" 
+                                max="<?php echo $maxPasajes; ?>" 
+                                required>
                             <div class="form-text small text-muted text-center">Máximo <?php echo $maxPasajes; ?> asientos por operación.</div>
                         </div>
 
