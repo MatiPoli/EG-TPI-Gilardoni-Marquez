@@ -32,7 +32,7 @@ $title = "Novedades | ViajAir";
 require '../includes/header.php';
 ?>
 
-<div class="container mt-4 mb-5">
+<div class="container mb-5">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
