@@ -5,7 +5,9 @@ require '../includes/conexion.php';
 
 $user_id = $_SESSION['codUsuario'];
 
-$query = "SELECT r.codReserva, r.estadoReserva, v.origenVuelo, v.destinoVuelo, v.fechaSalidaVuelo, v.precioVuelo 
+$query = "SELECT r.codReserva, r.cantidadPasajes, r.precioTotal, r.estadoReserva, 
+                 v.origenVuelo, v.destinoVuelo, v.fechaSalidaVuelo, v.horaSalidaVuelo,
+                 TIMESTAMPDIFF(HOUR, NOW(), CONCAT(v.fechaSalidaVuelo, ' ', v.horaSalidaVuelo)) AS horas_restantes
           FROM RESERVAS r 
           JOIN VUELOS v ON r.codVuelo = v.codVuelo 
           WHERE r.codUsuario = ? 
@@ -16,6 +18,7 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
+$title = "Mis Reservas | ViajAir";
 require '../includes/header.php';
 ?>
 
@@ -35,6 +38,38 @@ require '../includes/header.php';
             </ol>
         </nav>
 
+        <?php if (isset($_GET['reserva_creada'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>¡Reserva registrada con éxito!</strong> Tenés tu cupo asegurado en estado pendiente de pago.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+            </div>
+        <?php elseif (isset($_GET['pago_exitoso'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>¡Pago completado!</strong> Tu reserva pasó a estado confirmada.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+            </div>
+        <?php elseif (isset($_GET['error_pago'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error al procesar el pago:</strong> La reserva no se encuentra pendiente o no pertenece a tu cuenta.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+            </div>
+        <?php elseif (isset($_GET['cancelada'])): ?>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Reserva cancelada.</strong> Los asientos fueron liberados nuevamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+            </div>
+        <?php elseif (isset($_GET['error_cancelacion']) && $_GET['error_cancelacion'] === 'plazo'): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>No es posible cancelar:</strong> Faltan menos de 72 horas para la salida del vuelo según las políticas del servicio.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+            </div>
+        <?php elseif (isset($_GET['error_cancelacion']) && $_GET['error_cancelacion'] === 'transaccion'): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error del sistema:</strong> No se pudo actualizar el estado de la reserva. Por favor, intentá de nuevo.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
+            </div>
+        <?php endif; ?>
+
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-header bg-primary text-white py-3">
                 <h1 class="h5 mb-0 text-white">Reservas del Usuario</h1>
@@ -47,7 +82,8 @@ require '../includes/header.php';
                                 <th>Reserva</th>
                                 <th>Vuelo (Origen - Destino)</th>
                                 <th>Fecha de Salida</th>
-                                <th>Precio</th>
+                                <th>Pasajes</th>
+                                <th>Precio Total</th>
                                 <th>Estado</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -56,11 +92,17 @@ require '../includes/header.php';
                             <?php if ($result->num_rows > 0): ?>
                                 <?php while ($row = $result->fetch_assoc()): ?>
                                     <tr>
-                                        <td><?php echo $row['codReserva']; ?></td>
-                                        <td><?php echo htmlspecialchars($row['origenVuelo'] . ' - ' . $row['destinoVuelo']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['fechaSalidaVuelo']); ?></td>
-                                        <td>$<?php echo number_format($row['precioVuelo'], 2); ?></td>
+                                        <td>#<?php echo $row['codReserva']; ?></td>
                                         <td>
+                                            <span><?php echo htmlspecialchars($row['origenVuelo']); ?></span>
+                                            <span aria-hidden="true"> &rarr; </span>
+                                            <span class="visually-hidden"> hacia </span>
+                                            <span><?php echo htmlspecialchars($row['destinoVuelo']); ?></span>
+                                        </td>
+                                        <td><?php echo date('d/m/Y', strtotime($row['fechaSalidaVuelo'])) . ' ' . substr($row['horaSalidaVuelo'], 0, 5) . ' hs'; ?></td>
+                                        <td class="text-center"><?php echo $row['cantidadPasajes']; ?></td>
+                                        <td class="fw-bold text-primary">$<?php echo number_format($row['precioTotal'], 2, ',', '.'); ?></td>
+                                        <td class="text-center align-middle">
                                             <?php if ($row['estadoReserva'] == 'confirmada'): ?>
                                                 <span class="badge bg-success">Confirmada</span>
                                             <?php elseif ($row['estadoReserva'] == 'cancelada'): ?>
@@ -71,11 +113,11 @@ require '../includes/header.php';
                                         </td>
                                         <td class="text-center">
                                             <?php if ($row['estadoReserva'] == 'pendiente de pago'): ?>
-                                                <a href="pagar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-success">Pagar</a>
+                                                <a href="pagar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-success fw-bold">Pagar</a>
                                             <?php endif; ?>
                                             
-                                            <?php if ($row['estadoReserva'] != 'cancelada'): ?>
-                                                <a href="cancelar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">Cancelar</a>
+                                            <?php if ($row['estadoReserva'] != 'cancelada' && (int)$row['horas_restantes'] >= 72): ?>
+                                                <a href="cancelar_reserva.php?id=<?php echo $row['codReserva']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Seguro que deseas cancelar esta reserva?');">Cancelar</a>
                                             <?php endif; ?>
 
                                             <?php if ($row['estadoReserva'] == 'confirmada'): ?>
@@ -86,7 +128,7 @@ require '../includes/header.php';
                                 <?php endwhile; ?>
                             <?php else: ?>
                                 <tr>
-                                    <td colspan="6" class="text-center text-muted py-4">No tienes reservas registradas.</td>
+                                    <td colspan="7" class="text-center text-muted py-4">No tienes reservas registradas.</td>
                                 </tr>
                             <?php endif; ?>
                         </tbody>

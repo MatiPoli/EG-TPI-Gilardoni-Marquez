@@ -42,3 +42,7 @@ html {
     height: auto;
     margin: 0 auto 3%;
 }
+
+.badge {
+    line-height: normal;
+}
