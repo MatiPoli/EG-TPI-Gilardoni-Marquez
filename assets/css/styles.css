@@ -26,6 +26,16 @@ html {
     border: 2px solid #0d6efd;
 }
 
+:is(a, button, input, select, textarea, .btn, .page-link, .accordion-button):focus-visible {
+    outline: 3px solid #060b26;
+    outline-offset: 2px;
+}
+
+:is(footer, .navbar) :is(a, button, select, .btn, .page-link):focus-visible {
+    outline: 3px solid #f8f9fa;
+    outline-offset: 2px;
+}
+
 .carrousel-text {
     z-index: 10;
     min-width: 80%;
@@ -36,13 +46,7 @@ html {
     flex-direction: column;
 }
 
-#sobre_nosotros_contenido img {
-    display: block;
-    width: 90%;
-    height: auto;
-    margin: 0 auto 3%;
-}
-
 .badge {
     line-height: normal;
 }
+

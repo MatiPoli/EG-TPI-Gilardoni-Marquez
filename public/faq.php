@@ -21,11 +21,11 @@ require '../includes/header.php';
             <div class="accordion">
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta1" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta1" aria-expanded="false" aria-controls="rta1">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta1" aria-expanded="false" aria-controls="rta1">
                             ¿Cómo me registro y cómo valido mi cuenta?
                         </button>
                     </h3>
-                    <div id="rta1" class="accordion-collapse collapse" aria-labelledby="btn-rta1" data-bs-parent="#faq">
+                    <div id="rta1" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body">
                             Ingresá a <a href="/tpi/auth/registro.php">Registrarse</a>, completá tus datos (nombre, teléfono, correo y contraseña) y enviá el formulario. Te llegará un correo con un enlace de validación. Hasta que hagas clic en ese enlace tu cuenta queda pendiente y no vas a poder iniciar sesión. Si el correo no aparece, revisá la carpeta de spam.
                         </div>
@@ -34,11 +34,11 @@ require '../includes/header.php';
 
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta2" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta2" aria-expanded="false" aria-controls="rta2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta2" aria-expanded="false" aria-controls="rta2">
                             ¿Qué hago si olvidé mi contraseña?
                         </button>
                     </h3>
-                    <div id="rta2" class="accordion-collapse collapse" aria-labelledby="btn-rta2" data-bs-parent="#faq">
+                    <div id="rta2" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body">
                             Accedé a <a href="/tpi/auth/recuperar_pass.php">Recuperar Contraseña</a>  e ingresá el correo con el que te registraste. Si existe una cuenta asociada, vas a recibir un enlace para definir una contraseña nueva.
                         </div>
@@ -47,11 +47,11 @@ require '../includes/header.php';
 
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta3" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta3" aria-expanded="false" aria-controls="rta3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta3" aria-expanded="false" aria-controls="rta3">
                             ¿Puedo buscar vuelos sin tener una cuenta?
                         </button>
                     </h3>
-                    <div id="rta3" class="accordion-collapse collapse" aria-labelledby="btn-rta3" data-bs-parent="#faq">
+                    <div id="rta3" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body">
                             <strong>Sí.</strong> Cualquier persona puede buscar vuelos y ver precios, promociones y asientos disponibles, además de leer las novedades. Para reservar necesitás tener una cuenta registrada y validada.
                         </div>
@@ -63,11 +63,11 @@ require '../includes/header.php';
             <div class="accordion">    
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta4" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta4" aria-expanded="false" aria-controls="rta4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta4" aria-expanded="false" aria-controls="rta4">
                             ¿Cómo busco un vuelo?
                         </button>
                     </h3>
-                    <div id="rta4" class="accordion-collapse collapse" aria-labelledby="btn-rta4" data-bs-parent="#faq">
+                    <div id="rta4" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body"> 
                             Podés usar la búsqueda rápida de la portada o la sección <a href="/tpi/public/buscar_vuelos.php">Buscar Vuelos</a>. Indicá ciudad de origen, ciudad de destino y fecha. Los resultados se expresan en hora local argentina y los precios en pesos.
                         </div>
@@ -75,11 +75,11 @@ require '../includes/header.php';
                 </div>
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta5" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta5" aria-expanded="false" aria-controls="rta5">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta5" aria-expanded="false" aria-controls="rta5">
                             ¿Cómo reservo un vuelo y qué significa “Pendiente de Pago”? 
                         </button>
                     </h3>
-                    <div id="rta5" class="accordion-collapse collapse" aria-labelledby="btn-rta5" data-bs-parent="#faq">
+                    <div id="rta5" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body"> 
                             Desde el detalle del vuelo elegí la cantidad de pasajes y realizá la reserva. Al hacerlo, la reserva queda en estado “Pendiente de Pago” y ya te aseguraste tus asientos. Una vez que realizás el pago, pasa a “Confirmada” y se considera una compra.
                         </div>
@@ -87,12 +87,12 @@ require '../includes/header.php';
                 </div>
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta6" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta6" aria-expanded="false" aria-controls="rta6">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta6" aria-expanded="false" aria-controls="rta6">
                             ¿Dónde veo mis reservas y mis compras anteriores?
                         </button>
                     </h3>
                     <!-- TODO: Una vez creado el Historial de Compras, vincular el <a> -->
-                    <div id="rta6" class="accordion-collapse collapse" aria-labelledby="btn-rta6" data-bs-parent="#faq">
+                    <div id="rta6" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body"> 
                             En la sección <a href="/tpi/pasajero/reservas.php">Mis Reservas</a> encontrás tus reservas activas y en <a href="">Historial de Compras</a>, el detalle de las compras anteriores. En ambas podés consultar los datos de cada vuelo.
                         </div>
@@ -104,11 +104,11 @@ require '../includes/header.php';
             <div class="accordion"> 
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta7" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta7" aria-expanded="false" aria-controls="rta7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta7" aria-expanded="false" aria-controls="rta7">
                             ¿Hasta cuándo puedo cancelar una reserva?
                         </button>
                     </h3>
-                    <div id="rta7" class="accordion-collapse collapse" aria-labelledby="btn-rta7" data-bs-parent="#faq">
+                    <div id="rta7" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body"> 
                             Podés cancelarla hasta <strong>72 horas</strong> antes de la salida del vuelo. Pasado ese plazo, el sistema ya no permite la cancelación.
                         </div>
@@ -120,13 +120,13 @@ require '../includes/header.php';
             <div class="accordion">
                 <div class="accordion-item">
                     <h3 class="accordion-header">
-                        <button id="btn-rta8" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta8" aria-expanded="false" aria-controls="rta8">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rta8" aria-expanded="false" aria-controls="rta8">
                             ¿Cómo registro mi aerolínea como CEO?
                         </button>
                     </h3>
-                    <div id="rta8" class="accordion-collapse collapse" aria-labelledby="btn-rta8" data-bs-parent="#faq">
+                    <div id="rta8" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body"> 
-                            Usá la opción <a href="/tpi/auth/registro_ceo.php">Registro para CEO</a> dentro de la pagina de Registro e ingresá tus datos. A diferencia de un pasajero, tu cuenta debe ser autorizada por el administrador antes de poder usarse. Una vez aprobada, vas a poder gestionar los vuelos y promociones de tu aerolínea y consultar los reportes de ventas y ocupación. Recomendamos <a href="/tpi/public/contacto.php">contactarte con el administrador</a> previamente.
+                            Usá la opción <a href="/tpi/auth/registro_ceo.php">Registro para CEO</a> dentro de la página de Registro e ingresá tus datos. A diferencia de un pasajero, tu cuenta debe ser autorizada por el administrador antes de poder usarse. Una vez aprobada, vas a poder gestionar los vuelos y promociones de tu aerolínea y consultar los reportes de ventas y ocupación. Recomendamos <a href="/tpi/public/contacto.php">contactarte con el administrador</a> previamente.
                         </div>
                     </div>
                 </div>
