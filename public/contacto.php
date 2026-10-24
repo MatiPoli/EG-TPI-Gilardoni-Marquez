@@ -11,47 +11,13 @@ if (isLoggedIn()){
     $stmt->close();
 }
 
-
-
 $pagina = 'Contacto';
 $title = $pagina . " | ViajAir";
 require '../includes/header.php';
-?>
 
-<div class="container mt-2 mb-5">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Contacto</li>
-        </ol>
-    </nav>
+$alerta = null;
 
-    <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">
-            <h1 class="mb-4 text-center text-black">Contacto</h1>
-
-            <div >
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="emailContacto" class="form-label">Tu dirección de correo:</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailContacto" placeholder="nombre@ejemplo.com" required value="<?= $email ?? ''?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="consulta" class="form-label">Tu consulta:</label>
-                        <textarea class="form-control" id="consulta" name="consulta" rows="5" required></textarea>
-                    </div>
-                    <div class="center-content">
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php 
-if(!isset($_SERVER['REQUEST_METHOD'])){
+if (!isset($_SERVER['REQUEST_METHOD'])){
     exit('El formulario no fue enviado.');
 } elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
@@ -114,12 +80,67 @@ if(!isset($_SERVER['REQUEST_METHOD'])){
     </html>
     ";
     
-    //TODO: Reemplazar por modal
     if (mail($emailAdmin, $asunto, $cuerpomail, $headersmail)) {
-        echo "El correo se envió correctamente.";
+        $alerta = [
+            'tipo' => 'success',
+            'mensaje' => 'El correo se envió correctamente.'
+        ];
     } else {
-        echo "Error al enviar el correo.";
+        $alerta = [
+            'tipo' => 'danger',
+            'mensaje' => 'No se pudo enviar el correo. Intentá nuevamente.'
+        ];
     }
 }
+?>
+
+<div class="container mt-2 mb-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contacto</li>
+        </ol>
+    </nav>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            <h1 class="mb-4 text-center text-black">Contacto</h1>
+
+            <div >
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="emailContacto" class="form-label">Tu dirección de correo:</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailContacto" placeholder="nombre@ejemplo.com" required value="<?= $email ?? ''?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="consulta" class="form-label">Tu consulta:</label>
+                        <textarea class="form-control" id="consulta" name="consulta" rows="5" required></textarea>
+                    </div>
+                    <div class="center-content">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                    
+                </form>
+                <?php if ($alerta !== null): ?>
+                    <div class="alert mt-4 alert-<?= htmlspecialchars($alerta['tipo']) ?>" role="alert">
+                        <?= htmlspecialchars($alerta['mensaje']) ?>
+                    </div>
+                <?php endif; ?>
+                <h2 class="my-4">
+                    Antes de contactarnos...
+                </h2>
+                <p>
+                    Te recomendamos que leas las <a href="/tpi/public/faq.php">Preguntas Frecuentes</a>, donde vas a encontrar a respuestas a consultas que otros usuarios también tuvieron.
+                </p>
+                <p>
+                    Si no encontraste la respuesta que buscabas, escribinos y te responderemos a la brevedad.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php 
+
 require '../includes/footer.php'; 
 ?>
