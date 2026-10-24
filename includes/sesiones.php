@@ -27,4 +27,7 @@ function checkLoggedIn($redirect = false) {
 function isLoggedIn() {
     return isset($_SESSION['codUsuario']);
 }
+
+$env = parse_ini_file(__DIR__ . '/../.env');
+$app_url = rtrim($env['APP_URL'], '/');
 ?>

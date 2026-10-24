@@ -6,14 +6,14 @@
     <title><?= $title ?? 'ViajAir'; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css" rel="stylesheet">
     <link href="<?= $app_url ?>/tpi/assets/css/styles.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="<?= $app_url ?>/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="<?= $app_url ?>/tpi/assets/img/favicon.png">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
     <a href="#contenido-principal" class="saltar-contenido">Saltar al contenido principal</a>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-2">
             <div class="container-fluid px-4">
-                <a class="navbar-brand" href="/tpi/index.php">
+                <a class="navbar-brand" href="<?= $app_url ?>/tpi/index.php">
                     <img src="<?= $app_url ?>/tpi/assets/img/logo.png" alt="ViajAir" height="46">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
