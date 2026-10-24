@@ -11,87 +11,86 @@ if (isLoggedIn()){
     $stmt->close();
 }
 
+
+$alerta = null;
+$errores = [];
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    $email = isset($_POST['email']) && is_string($_POST['email'])
+    ? trim($_POST['email'])
+    : '';
+    $consulta = isset($_POST['consulta']) && is_string($_POST['consulta'])
+    ? trim($_POST['consulta'])
+    : '';
+
+    if ($email === ''){
+        $errores['email']= 'La dirección de correo es obligatoria.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errores['email'] = 'El formato del email no es válido.';
+    }
+
+    if ($consulta === '') {
+        $errores['consulta'] = 'La consulta es obligatoria.';
+    }
+
+    
+    if(empty($errores)){
+        $stmt = $conexion->prepare("SELECT emailUsuario FROM usuarios where tipoUsuario = 'administrador';");
+        $stmt->execute();
+        $stmt->bind_result($emailAdmin);
+        $stmt->fetch();
+        $stmt->close();    
+        
+        $asunto = "Nueva Consulta";
+
+        $headersmail = "MIME-Version: 1.0\r\n";
+        $headersmail .= "Content-type: text/html; charset=utf-8\r\n";
+        $headersmail .= "From: Contacto ViajAir <contacto@viajair.com>\r\n";
+
+        $cuerpomail = "
+        <html>
+        <head>
+            <link href='https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css' rel='stylesheet'>
+            <title>Nueva Consulta de Usuario</title>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+            <meta charset='UTF-8'>
+        </head>
+        <body style='margin: 0;'>
+            <div style='background-color: #3459e6;'>
+                <img src='/tpi/assets/img/logo.png' height='46'>
+            </div>
+            <div class='container mt-2 mb-5 row justify-content-center'>
+                <div class='col-md-10 col-lg-8'>
+                    <h1 class='mb-4 text-center text-black'>Hola! Tenes una nueva consulta</h1>
+                    <div>
+                        <h2 class='mb-2'>". $email . " pregunta:</h2>
+                    </div>
+                    <div>
+                        <p>". $consulta."</p>        
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        ";
+        
+        if (mail($emailAdmin, $asunto, $cuerpomail, $headersmail)) {
+            $alerta = [
+                'tipo' => 'success',
+                'mensaje' => 'El correo se envió correctamente.'
+            ];
+        } else {
+            $alerta = [
+                'tipo' => 'danger',
+                'mensaje' => 'No se pudo enviar el correo. Intentá nuevamente.'
+            ];
+        }
+    }
+}
+
 $pagina = 'Contacto';
 $title = $pagina . " | ViajAir";
 require '../includes/header.php';
-
-$alerta = null;
-
-if (!isset($_SERVER['REQUEST_METHOD'])){
-    exit('El formulario no fue enviado.');
-} elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
-    $campos = ['email', 'consulta'];
-    $faltantes = [];
-    foreach($campos as $campo){
-        if(!isset($_POST[$campo]) || !is_string($_POST[$campo]) || trim($_POST[$campo]) ===''){
-            $faltantes[] = $campo;
-        }
-    }
-    
-    if ($faltantes){
-        exit('Faltan datos o son inválidos: '. implode(', ', $faltantes));
-    }
-
-    $email = trim($_POST['email']);
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    exit('El formato del email no es válido.');
-    }
-
-    $consulta = trim($_POST['consulta']);
-    
-
-    $stmt = $conexion->prepare("SELECT emailUsuario FROM usuarios where tipoUsuario = 'administrador';");
-    $stmt->execute();
-    $stmt->bind_result($emailAdmin);
-    $stmt->fetch();
-    $stmt->close();    
-    
-    $asunto = "Nueva Consulta";
-
-    $headersmail = "MIME-Version: 1.0\r\n";
-    $headersmail .= "Content-type: text/html; charset=utf-8\r\n";
-    $headersmail .= "From: Contacto ViajAir <contacto@viajair.com>\r\n";
-
-    $cuerpomail = "
-    <html>
-    <head>
-        <link href='https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css' rel='stylesheet'>
-        <title>Nueva Consulta de Usuario</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <meta charset='UTF-8'>
-    </head>
-    <body style='margin: 0;'>
-        <div style='background-color: #3459e6;'>
-            <img src='/tpi/assets/img/logo.png' height='46'>
-        </div>
-        <div class='container mt-2 mb-5 row justify-content-center'>
-            <div class='col-md-10 col-lg-8'>
-                <h1 class='mb-4 text-center text-black'>Hola! Tenes una nueva consulta</h1>
-                <div>
-                    <h2 class='mb-2'>". $email . " pregunta:</h2>
-                </div>
-                <div>
-                    <p>". $consulta."</p>        
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    ";
-    
-    if (mail($emailAdmin, $asunto, $cuerpomail, $headersmail)) {
-        $alerta = [
-            'tipo' => 'success',
-            'mensaje' => 'El correo se envió correctamente.'
-        ];
-    } else {
-        $alerta = [
-            'tipo' => 'danger',
-            'mensaje' => 'No se pudo enviar el correo. Intentá nuevamente.'
-        ];
-    }
-}
 ?>
 
 <div class="container mt-2 mb-5">
@@ -107,14 +106,24 @@ if (!isset($_SERVER['REQUEST_METHOD'])){
             <h1 class="mb-4 text-center text-black">Contacto</h1>
 
             <div >
-                <form action="" method="POST">
+                <form action="/tpi/public/contacto.php" method="POST">
                     <div class="mb-3">
-                        <label for="emailContacto" class="form-label">Tu dirección de correo:</label>
-                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailContacto" placeholder="nombre@ejemplo.com" required value="<?= $email ?? ''?>">
+                        <label for="email" class="form-label">Tu dirección de correo:</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailContacto" placeholder="nombre@ejemplo.com" required value="<?= htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                        <?php if(isset($errores['email'])): ?>
+                            <div class="text-danger">
+                                <?= htmlspecialchars($errores['email']) ?>
+                            </div>
+                        <?php endif;?>
                     </div>
                     <div class="mb-3">
                         <label for="consulta" class="form-label">Tu consulta:</label>
-                        <textarea class="form-control" id="consulta" name="consulta" rows="5" required></textarea>
+                        <textarea class="form-control" id="consulta" name="consulta" rows="5" required><?= htmlspecialchars($consulta ?? '', ENT_QUOTES, 'UTF-8') ?></textarea>
+                        <?php if(isset($errores['consulta'])): ?>
+                            <div class="text-danger">
+                                <?= htmlspecialchars($errores['consulta']) ?>
+                            </div>
+                        <?php endif;?>
                     </div>
                     <div class="center-content">
                         <button type="submit" class="btn btn-primary">Enviar</button>
