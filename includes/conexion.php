@@ -8,4 +8,5 @@ if ($conexion->connect_error) {
 }
 
 $conexion->set_charset("utf8mb4");
+$app_url = rtrim($env['APP_URL'], '/');
 ?>

@@ -1,4 +1,5 @@
 <?php
+require '../includes/sesiones.php';
 require '../includes/conexion.php';
 require '../includes/header.php'; 
 

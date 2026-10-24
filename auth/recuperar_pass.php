@@ -1,7 +1,7 @@
 <?php
 require '../includes/sesiones.php';
 require '../includes/conexion.php'; 
-
+require '../includes/mailer.php';
 $message = '';
 $message_type = '';
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_update->bind_param("si", $token, $id);
         $stmt_update->execute();
         
-        $recovery_link = "http://localhost/tpi/auth/restablecer.php?token=" . urlencode($token); 
+        $recovery_link = "$app_url/auth/restablecer.php?token=" . urlencode($token);
 
         $subject = "Recuperación de Contraseña - ViajAir";
         $body = "
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
         $headers .= "From: Soporte ViajAir <soporte@viajair.com>\r\n"; 
 
-        @mail($email, $subject, $body, $headers); 
+        enviarCorreo($email, $user['nombreUsuario'], $subject, $body);
 
         $message = "Si el correo ingresado se encuentra registrado, recibirás un enlace con las instrucciones para restablecer tu clave.";
         $message_type = "success";

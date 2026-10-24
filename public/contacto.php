@@ -1,6 +1,7 @@
 <?php
 require '../includes/sesiones.php';
 require '../includes/conexion.php';
+require_once '../includes/mailer.php';
 
 if (isLoggedIn()){
     $stmt = $conexion->prepare("SELECT emailUsuario FROM USUARIOS where codUsuario = ?;");
@@ -90,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         </html>
         ";
         
-        if (mail($emailAdmin, $asunto, $cuerpomail, $headersmail)) {
+        if (enviarCorreo($emailAdmin, 'Administrador', $asunto, $cuerpomail)) {
             header('Location: /tpi/public/contacto.php?consulta_enviada=1');
             exit;
         } else {

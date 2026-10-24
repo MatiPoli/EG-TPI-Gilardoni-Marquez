@@ -1,52 +1,94 @@
 # Proyecto ViajAir - Reserva de Vuelos
+
 Trabajo Práctico Integrador - Entornos Gráficos (UTN FRRO)
 
-## Guía de instalación y configuración local
+### Guía de instalación y configuración local
 
 Sigue estos pasos para configurar el entorno y levantar el proyecto en tu computadora.
 
-### 1. Requisitos previos e Instalación
-1. Instalar XAMPP (versión con PHP 8.x). Se recomienda instalarlo directamente en la raíz de un disco, por ejemplo: C:\xampp o D:\xampp para evitar problemas de permisos de Windows.
-2. Durante la instalación de XAMPP, asegúrate de marcar los componentes: Apache, MySQL, phpMyAdmin y Fake Sendmail.
-3. Instalar Git.
+### 1. Requisitos previos e instalación
 
-### 2. Clonar el repositorio
-1. Abre tu terminal o consola.
-2. Navega hasta la carpeta htdocs de XAMPP. (Ejemplo: cd C:\xampp\htdocs).
-3. Clona el repositorio ejecutando:
+1. Instalar XAMPP con PHP 8.x. Se recomienda instalarlo directamente en la raíz de un disco, por ejemplo `C:\xampp` o `D:\xampp`, para evitar problemas de permisos de Windows.
+2. Durante la instalación de XAMPP, asegurarse de incluir Apache, MySQL y phpMyAdmin.
+3. Instalar [Git](https://git-scm.com/) y [Composer](https://getcomposer.org/download/).
+4. Para enviar correos mediante Gmail SMTP, contar con una cuenta de Google con la verificación en dos pasos activada y una contraseña de aplicación.
+
+### 2. Clonar el repositorio e instalar dependencias
+
+1. Abrir una terminal.
+2. Navegar hasta la carpeta `htdocs` de XAMPP. Por ejemplo:
+
+   ```bat
+   cd /d D:\xampp\htdocs
+   ```
+
+3. Clonar el repositorio:
+
+   ```bash
    git clone https://github.com/usuario/tpi.git
-   (Asegúrate de que la carpeta del proyecto se llame "tpi", ya que las rutas internas del código dependen de ese nombre).
+   ```
 
-### 3. Configurar la Base de Datos
-1. Abre el panel de control de XAMPP e inicia los módulos de Apache y MySQL.
-2. Entra en tu navegador a: http://localhost/phpmyadmin
-3. Ve a la pestaña "SQL", copia todo el código que se encuentra en nuestro archivo database.sql y pégalo en el cuadro de texto.
-4. Presiona "Continuar". Esto creará automáticamente la base de datos aerolinea_bd con todas sus tablas y relaciones.
+   Reemplazar la URL de ejemplo por la URL real del repositorio. La carpeta del proyecto debe llamarse `tpi`, ya que las rutas internas dependen de ese nombre.
 
-### 4. Configurar variables de entorno
-1. En la carpeta raíz del proyecto (/tpi), crea un archivo llamado exactamente .env
-2. Pega las siguientes cuatro líneas en su interior:
+4. Entrar en la carpeta del proyecto e instalar las dependencias de PHP:
 
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASS=
-DB_NAME=aerolinea_bd
-```
+   ```bat
+   cd tpi
+   composer install
+   ```
 
-### 5. Configurar PHP (php.ini)
-Para que el sistema se conecte a la base de datos y pueda atrapar los correos locales, debemos hacer unos ajustes en XAMPP:
-1. En el panel de XAMPP, en la fila de Apache, haz clic en Config y luego en PHP (php.ini).
-2. Presiona Ctrl+B (o Ctrl+F) para buscar y modificar las siguientes tres líneas:
-   - Activar MySQL: Busca extension=mysqli. Si tiene un punto y coma (;) al principio, bórraselo.
-   - Ruta de extensiones: Busca extension_dir. Asegúrate de que la ruta activa (sin punto y coma) sea exactamente: extension_dir="ext"
-   - Correos locales: Busca sendmail_path. Bórrale el punto y coma si lo tiene, y cambia la ruta para que apunte al ejecutable mailtodisk de tu XAMPP. Debe quedar así (ajusta la letra del disco si es necesario): sendmail_path = "C:\xampp\mailtodisk\mailtodisk.exe"
-3. Guarda el archivo php.ini, ciérralo y reinicia Apache desde el panel de XAMPP (Stop y Start).
-4. A partir de ahora, todos los correos de validación o recuperación que envíe el sistema se guardarán como archivos de texto en la carpeta C:\xampp\mailoutput\. Ábrelos con un editor de texto para ver su contenido y copiar los enlaces.
+   Composer instalará PHPMailer y generará la carpeta `vendor/`. Si se agrega una dependencia nueva, se debe ejecutar `composer require nombre/paquete`.
+
+### 3. Configurar PHP (`php.ini`)
+
+Es necesario habilitar la extensión `mysqli` para que PHP pueda conectarse a MySQL y phpMyAdmin funcione correctamente.
+
+1. En el panel de XAMPP, en la fila de Apache, hacer clic en **Config → PHP (php.ini)**.
+2. Buscar las siguientes opciones y revisar su configuración:
+
+   - **Extensión MySQLi:** buscar `extension=mysqli`. Si la línea tiene un punto y coma (`;`) al principio, quitarlo.
+   - **Directorio de extensiones:** verificar que la línea `extension_dir` apunte al directorio `ext` de PHP. En esta instalación de XAMPP, la configuración es `extension_dir="D:\xampp\php\ext"`. Si la ruta es diferente en tu instalación, ajustarla según corresponda.
+3. Guardar `php.ini` y reiniciar Apache con **Stop** y **Start**.
+
+### 4. Configurar la base de datos
+
+1. En el panel de XAMPP, iniciar los módulos **Apache** y **MySQL**.
+2. Abrir [http://localhost/phpmyadmin](http://localhost/phpmyadmin).
+3. Entrar en la pestaña **SQL**, copiar el contenido del archivo `database.sql` y pegarlo en el cuadro de consulta.
+4. Ejecutar la consulta. Esto creará la base de datos `aerolinea_bd` con sus tablas y relaciones.
+
+### 5. Configurar variables de entorno (`.env`)
+
+1. En la raíz del proyecto (`/tpi`), crear un archivo llamado exactamente `.env`.
+2. Agregar la configuración de la base de datos y Gmail SMTP:
+
+   ```dotenv
+      DB_HOST=localhost
+      DB_USER=root
+      DB_PASS=
+      DB_NAME=aerolinea_bd
+
+      APP_URL=http://localhost/tpi
+
+      MAIL_HOST=smtp.gmail.com
+      MAIL_PORT=587
+      MAIL_USER=tu_cuenta@gmail.com
+      MAIL_PASS=tu_contrasena_de_aplicacion
+      MAIL_FROM=tu_cuenta@gmail.com
+      MAIL_FROM_NAME="ViajAir"
+   ```
+
+3. Reemplazar `tu_cuenta@gmail.com` por la cuenta de Gmail que se utilizará para enviar mensajes y `tu_contrasena_de_aplicacion` por la contraseña de aplicación generada desde la cuenta de Google. No utilizar la contraseña habitual de Gmail.
+4. Para generar una contraseña de aplicación, activar primero la verificación en dos pasos y visitar [Contraseñas de aplicaciones de Google](https://myaccount.google.com/apppasswords).
+5. Guardar el archivo `.env`.
+
+El código utiliza PHPMailer para conectarse a `smtp.gmail.com` por el puerto `587` con STARTTLS. El envío real depende de que el equipo o hosting permita conexiones SMTP salientes.
 
 ### 6. Ejecución
-Para visualizar el sitio, abre tu navegador y entra a:
-http://localhost/tpi/index.php
+
+Abrir el navegador y entrar a:
+
+[http://localhost/tpi/index.php](http://localhost/tpi/index.php)
 
 ---
 

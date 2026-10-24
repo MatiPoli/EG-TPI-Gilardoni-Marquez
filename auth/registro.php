@@ -1,6 +1,7 @@
 <?php
 require '../includes/sesiones.php';
 require '../includes/conexion.php';
+require '../includes/mailer.php';
 checkLoggedIn(true);
 $title = "Registro | ViajAir";
 require '../includes/header.php'; 
@@ -36,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt_insert->execute()) {
                 $new_id = $conexion->insert_id;
                 $hash = md5($email . $new_id);
-                $validation_link = "http://localhost/tpi/auth/validar.php?id=$new_id&hash=$hash"; 
+                $validation_link = "$app_url/auth/validar.php?id=$new_id&hash=$hash"; 
 
                 $subject = "Valida tu cuenta en ViajAir";
                 $body = "
@@ -53,10 +54,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
                 $headers .= "From: ViajAir <no-reply@viajair.com>\r\n"; 
 
-                @mail($email, $subject, $body, $headers); 
+                $correo_enviado = enviarCorreo($email, $name, $subject, $body);
 
-                $message = "Registro exitoso. Revisa tu correo.";
-                $message_type = "success";
+                if ($correo_enviado) {
+                    $message = "Registro exitoso. Revisá tu correo para activar tu cuenta.";
+                    $message_type = "success";
+                } else {
+                    $message = "Te registraste correctamente, pero no se pudo enviar el correo de activación.";
+                    $message_type = "warning";
+                }
             } else {
                 $message = "Error al registrar. Intenta nuevamente.";
                 $message_type = "danger";
