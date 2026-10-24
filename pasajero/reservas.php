@@ -107,8 +107,6 @@ require '../includes/header.php';
                                         <td class="text-center align-middle">
                                             <?php if ($row['estadoReserva'] == 'confirmada'): ?>
                                                 <span class="badge bg-success">Confirmada</span>
-                                            <?php elseif ($row['estadoReserva'] == 'cancelada'): ?>
-                                                <span class="badge bg-danger">Cancelada</span>
                                             <?php else: ?>
                                                 <span class="badge bg-warning text-dark">Pendiente</span>
                                             <?php endif; ?>
