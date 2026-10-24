@@ -25,13 +25,13 @@ require 'includes/header.php';
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/tpi/assets/img/slide1.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Avión volando">
+                <img src="<?= $app_url ?>/tpi/assets/img/slide1.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Avión volando">
             </div>
             <div class="carousel-item">
-                <img src="/tpi/assets/img/slide2.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Pasajeros en la terminal del aeropuerto">
+                <img src="<?= $app_url ?>/tpi/assets/img/slide2.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Pasajeros en la terminal del aeropuerto">
             </div>
             <div class="carousel-item">
-                <img src="/tpi/assets/img/slide3.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Vista del cielo desde la ventanilla de un avión">
+                <img src="<?= $app_url ?>/tpi/assets/img/slide3.jpg" class="d-block w-100" style="height: 400px; object-fit: cover;" alt="Vista del cielo desde la ventanilla de un avión">
             </div>
         </div>
         

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_update->bind_param("si", $token, $id);
         $stmt_update->execute();
         
-        $recovery_link = "$app_url/auth/restablecer.php?token=" . urlencode($token);
+        $recovery_link = "$app_url/tpi/auth/restablecer.php?token=" . urlencode($token);
 
         $subject = "Recuperación de Contraseña - ViajAir";
         $body = "

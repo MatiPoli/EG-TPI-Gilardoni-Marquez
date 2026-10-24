@@ -68,7 +68,7 @@ Es necesario habilitar la extensión `mysqli` para que PHP pueda conectarse a My
       DB_PASS=
       DB_NAME=aerolinea_bd
 
-      APP_URL=http://localhost/tpi
+      APP_URL=http://localhost
 
       MAIL_HOST=smtp.gmail.com
       MAIL_PORT=587

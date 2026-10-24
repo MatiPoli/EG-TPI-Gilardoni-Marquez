@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt_insert->execute()) {
                 $new_id = $conexion->insert_id;
                 $hash = md5($email . $new_id);
-                $validation_link = "$app_url/auth/validar.php?id=$new_id&hash=$hash"; 
+                $validation_link = "$app_url/tpi//auth/validar.php?id=$new_id&hash=$hash"; 
 
                 $subject = "Valida tu cuenta en ViajAir";
                 $body = "
