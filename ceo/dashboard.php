@@ -23,6 +23,7 @@ $stmt_sales->bind_param("i", $airline_id);
 $stmt_sales->execute();
 $total_sales = $stmt_sales->get_result()->fetch_assoc()['total'];
 
+$title = "Panel CEO | ViajAir";
 require '../includes/header.php';
 ?>
 
@@ -37,35 +38,65 @@ require '../includes/header.php';
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="/tpi/ceo/dashboard.php">Panel CEO</a></li>
-                <li class="breadcrumb-item active" aria-current="page">General</li>
+                <li class="breadcrumb-item active" aria-current="page">Panel CEO</li>
             </ol>
         </nav>
 
-        <div class="card shadow-sm">
+        <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4 text-center">
-                <h4 class="card-title mb-4">Bienvenido al Panel de Aerolínea</h4>
-                <p class="lead">Gestión exclusiva de vuelos y métricas de tu empresa.</p>
-                <div class="row mt-5">
-                    <div class="col-md-4 mb-3">
-                        <div class="p-3 border rounded bg-light">
-                            <h5>Vuelos Activos</h5>
-                            <h2 class="text-primary"><?= $total_flights; ?></h2>
+                <h1 class="h3 fw-bold mb-2 text-dark">Bienvenido al Panel de Aerolínea</h1>
+                <p class="lead text-muted">Gestión exclusiva de vuelos, promociones y reportes comerciales de tu empresa.</p>
+                
+                <div class="row mt-4 g-3">
+                    <div class="col-12 col-md-4">
+                        <div class="p-4 border rounded bg-light h-100">
+                            <h2 class="h6 text-muted text-uppercase fw-bold">Vuelos Totales</h2>
+                            <span class="display-6 fw-bold text-primary"><?= $total_flights; ?></span>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="p-3 border rounded bg-light">
-                            <h5>Promociones</h5>
-                            <h2 class="text-warning"><?= $total_promos; ?></h2>
+                    <div class="col-12 col-md-4">
+                        <div class="p-4 border rounded bg-light h-100">
+                            <h2 class="h6 text-muted text-uppercase fw-bold">Promociones</h2>
+                            <span class="display-6 fw-bold text-warning"><?= $total_promos; ?></span>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <div class="p-3 border rounded bg-light">
-                            <h5>Reservas Confirmadas</h5>
-                            <h2 class="text-success"><?= $total_sales; ?></h2>
+                    <div class="col-12 col-md-4">
+                        <div class="p-4 border rounded bg-light h-100">
+                            <h2 class="h6 text-muted text-uppercase fw-bold">Ventas Confirmadas</h2>
+                            <span class="display-6 fw-bold text-success"><?= $total_sales; ?></span>
                         </div>
                     </div>
                 </div>
+
+                <hr class="my-5">
+
+                <div class="text-start">
+                    <h2 class="h5 fw-bold text-dark mb-3">Informes y Reportes Estadísticos</h2>
+                    <p class="text-muted small mb-4">Accedé a los reportes consolidados para la toma de decisiones estratégicas de la aerolínea.</p>
+
+                    <div class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <div class="card border p-3 h-100">
+                                <h3 class="h6 fw-bold text-primary mb-2">Reporte de Flujo Monetario y Ventas</h3>
+                                <p class="text-muted small mb-3">Auditoría de ingresos totales facturados, reservas abonadas y rendimiento comercial.</p>
+                                <a href="/tpi/ceo/reporte_ventas.php" class="btn btn-outline-primary fw-bold mt-auto">
+                                    Ver Reporte de Ventas
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <div class="card border p-3 h-100">
+                                <h3 class="h6 fw-bold text-primary mb-2">Reporte de Ocupación de Vuelos</h3>
+                                <p class="text-muted small mb-3">Métricas de porcentaje de asientos vendidos vs. cupos libres por ruta y fecha.</p>
+                                <a href="/tpi/ceo/reporte_ocupacion.php" class="btn btn-outline-primary fw-bold mt-auto">
+                                    Ver Reporte de Ocupación
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

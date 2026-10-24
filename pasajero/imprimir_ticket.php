@@ -69,8 +69,8 @@ require '../includes/header.php';
                     <small class="text-uppercase text-muted">Comprobante Oficial de Pasaje Aéreo</small>
                 </div>
                 <div class="col-6 text-end">
-                    <p class="mb-0 fw-bold fs-5 text-black">RESERVA #<?php echo $ticket['codReserva']; ?></p>
-                    <small class="text-muted">Fecha de emisión: <?php echo date('d/m/Y', strtotime($ticket['fechaReserva'])); ?></small>
+                    <p class="mb-0 fw-bold fs-5 text-black">RESERVA #<?= $ticket['codReserva']; ?></p>
+                    <small class="text-muted">Fecha de emisión: <?= date('d/m/Y', strtotime($ticket['fechaReserva'])); ?></small>
                 </div>
             </div>
 
@@ -79,11 +79,11 @@ require '../includes/header.php';
                     <h2 class="h6 fw-bold text-uppercase border-bottom border-dark pb-1 text-black">Datos del Pasajero Titular</h2>
                     <div class="row pt-2">
                         <div class="col-6">
-                            <p class="mb-1"><strong>Nombre y Apellido:</strong> <?php echo htmlspecialchars($ticket['nombreUsuario']); ?></p>
-                            <p class="mb-1"><strong>Correo Electrónico:</strong> <?php echo htmlspecialchars($ticket['emailUsuario']); ?></p>
+                            <p class="mb-1"><strong>Nombre y Apellido:</strong> <?= htmlspecialchars($ticket['nombreUsuario']); ?></p>
+                            <p class="mb-1"><strong>Correo Electrónico:</strong> <?= htmlspecialchars($ticket['emailUsuario']); ?></p>
                         </div>
                         <div class="col-6">
-                            <p class="mb-1"><strong>Teléfono:</strong> <?php echo htmlspecialchars($ticket['telefonoUsuario']); ?></p>
+                            <p class="mb-1"><strong>Teléfono:</strong> <?= htmlspecialchars($ticket['telefonoUsuario']); ?></p>
                             <p class="mb-1"><strong>Estado del Pasaje:</strong> CONFIRMADO / PAGADO</p>
                         </div>
                     </div>
@@ -98,27 +98,27 @@ require '../includes/header.php';
                         <tbody>
                             <tr>
                                 <th scope="row" class="w-30 bg-light text-black">Aerolínea</th>
-                                <td><?php echo htmlspecialchars($ticket['nombreAerolinea']); ?> (<?php echo htmlspecialchars($ticket['codigoIATA']); ?>)</td>
+                                <td><?= htmlspecialchars($ticket['nombreAerolinea']); ?> (<?= htmlspecialchars($ticket['codigoIATA']); ?>)</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="bg-light text-black">Código de Vuelo</th>
-                                <td>#<?php echo $ticket['codVuelo']; ?></td>
+                                <td>#<?= $ticket['codVuelo']; ?></td>
                             </tr>
                             <tr>
                                 <th scope="row" class="bg-light text-black">Itinerario</th>
-                                <td><?php echo htmlspecialchars($ticket['origenVuelo']); ?> &rarr; <?php echo htmlspecialchars($ticket['destinoVuelo']); ?></td>
+                                <td><?= htmlspecialchars($ticket['origenVuelo']); ?> &rarr; <?= htmlspecialchars($ticket['destinoVuelo']); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row" class="bg-light text-black">Fecha de Salida</th>
-                                <td><?php echo date('d/m/Y', strtotime($ticket['fechaSalidaVuelo'])); ?></td>
+                                <td><?= date('d/m/Y', strtotime($ticket['fechaSalidaVuelo'])); ?></td>
                             </tr>
                             <tr>
                                 <th scope="row" class="bg-light text-black">Hora de Salida</th>
-                                <td><?php echo substr($ticket['horaSalidaVuelo'], 0, 5); ?> hs (Hora local GMT-3)</td>
+                                <td><?= substr($ticket['horaSalidaVuelo'], 0, 5); ?> hs (Hora local GMT-3)</td>
                             </tr>
                             <tr>
                                 <th scope="row" class="bg-light text-black">Cantidad de Asientos</th>
-                                <td><strong><?php echo $ticket['cantidadPasajes']; ?></strong> pasaje(s)</td>
+                                <td><strong><?= $ticket['cantidadPasajes']; ?></strong> pasaje(s)</td>
                             </tr>
                         </tbody>
                     </table>
@@ -132,7 +132,7 @@ require '../includes/header.php';
                 </div>
                 <div class="col-6 text-end">
                     <small class="text-uppercase text-muted d-block">Total Abonado</small>
-                    <span class="h3 fw-bold text-black mb-0 d-block">$ <?php echo number_format($ticket['precioTotal'], 2, ',', '.'); ?></span>
+                    <span class="h3 fw-bold text-black mb-0 d-block">$ <?= number_format($ticket['precioTotal'], 2, ',', '.'); ?></span>
                     <small class="text-muted">Pesos Argentinos (Tasas e impuestos incluidos)</small>
                 </div>
             </div>

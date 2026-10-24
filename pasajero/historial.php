@@ -66,22 +66,22 @@ require '../includes/header.php';
                             <?php if ($result && $result->num_rows > 0): ?>
                                 <?php while ($row = $result->fetch_assoc()): ?>
                                     <tr>
-                                        <td>#<?php echo $row['codReserva']; ?></td>
-                                        <td><?php echo date('d/m/Y', strtotime($row['fechaReserva'])); ?></td>
+                                        <td>#<?= $row['codReserva']; ?></td>
+                                        <td><?= date('d/m/Y', strtotime($row['fechaReserva'])); ?></td>
                                         <td>
                                             <span class="badge bg-secondary text-dark border">
-                                                <?php echo htmlspecialchars($row['nombreAerolinea']); ?> (<?php echo htmlspecialchars($row['codigoIATA']); ?>)
+                                                <?= htmlspecialchars($row['nombreAerolinea']); ?> (<?= htmlspecialchars($row['codigoIATA']); ?>)
                                             </span>
                                         </td>
                                         <td>
-                                            <span><?php echo htmlspecialchars($row['origenVuelo']); ?></span>
+                                            <span><?= htmlspecialchars($row['origenVuelo']); ?></span>
                                             <span aria-hidden="true"> &rarr; </span>
                                             <span class="visually-hidden"> hacia </span>
-                                            <span><?php echo htmlspecialchars($row['destinoVuelo']); ?></span>
+                                            <span><?= htmlspecialchars($row['destinoVuelo']); ?></span>
                                         </td>
-                                        <td><?php echo date('d/m/Y', strtotime($row['fechaSalidaVuelo'])) . ' ' . substr($row['horaSalidaVuelo'], 0, 5) . ' hs'; ?></td>
-                                        <td class="text-center"><?php echo $row['cantidadPasajes']; ?></td>
-                                        <td class="fw-bold text-dark">$<?php echo number_format($row['precioTotal'], 2, ',', '.'); ?></td>
+                                        <td><?= date('d/m/Y', strtotime($row['fechaSalidaVuelo'])) . ' ' . substr($row['horaSalidaVuelo'], 0, 5) . ' hs'; ?></td>
+                                        <td class="text-center"><?= $row['cantidadPasajes']; ?></td>
+                                        <td class="fw-bold text-dark">$<?= number_format($row['precioTotal'], 2, ',', '.'); ?></td>
                                         <td class="text-center align-middle">
                                             <?php if ($row['estadoReserva'] === 'confirmada'): ?>
                                                 <span class="badge bg-success">Confirmada</span>
@@ -93,9 +93,9 @@ require '../includes/header.php';
                                         </td>
                                         <td class="text-center">
                                             <?php if ($row['estadoReserva'] === 'confirmada'): ?>
-                                                <a href="/tpi/pasajero/imprimir_ticket.php?id=<?php echo $row['codReserva']; ?>" 
+                                                <a href="/tpi/pasajero/imprimir_ticket.php?id=<?= $row['codReserva']; ?>" 
                                                    class="btn btn-sm btn-outline-dark" 
-                                                   title="Imprimir comprobante oficial de la compra #<?php echo $row['codReserva']; ?>">
+                                                   title="Imprimir comprobante oficial de la compra #<?= $row['codReserva']; ?>">
                                                     Imprimir
                                                 </a>
                                             <?php else: ?>
