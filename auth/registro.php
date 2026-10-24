@@ -40,14 +40,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $validation_link = "$app_url/tpi//auth/validar.php?id=$new_id&hash=$hash"; 
 
                 $subject = "Valida tu cuenta en ViajAir";
+
                 $body = "
-                <html>
-                <body>
-                    <h2>ViajAir</h2>
-                    <p>Para activar tu cuenta, haz clic en el siguiente enlace:</p>
-                    <p><a href='$validation_link'>Validar mi cuenta</a></p>
-                </body>
-                </html>
+                    <html>
+                    <head>
+                        <link href='https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css' rel='stylesheet'>
+                        <title>Activación de cuenta - ViajAir</title>
+                        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                        <meta charset='UTF-8'>
+                    </head>
+                    <body style='margin: 0; font-family: Arial, sans-serif;'>
+                        <div style='background-color: #3459e6; padding: 10px 20px;'>
+                            <img src='https://i.imgur.com/d7TXzck.png' height='46' alt='ViajAir'>
+                        </div>
+
+                        <div style='max-width: 600px; margin: 30px auto; padding: 0 20px;'>
+                            <h1 style='margin-bottom: 24px; text-align: center; color: #212529;'>
+                                ¡Bienvenido a ViajAir!
+                            </h1>
+
+                            <p style='font-size: 16px; color: #212529;'>
+                                Gracias por registrarte. Para activar tu cuenta, haz clic en el siguiente enlace:
+                            </p>
+
+                            <div style='text-align: center; margin: 30px 0;'>
+                                <a href='$validation_link'
+                                style='display: inline-block; padding: 12px 24px; background-color: #3459e6; color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold;'>
+                                    Validar mi cuenta
+                                </a>
+                            </div>
+
+                            <p style='font-size: 14px; color: #6c757d;'>
+                                Si no creaste una cuenta en ViajAir, puedes ignorar este correo.
+                            </p>
+                        </div>
+                    </body>
+                    </html>
                 ";
                 
                 $headers  = "MIME-Version: 1.0\r\n"; 
