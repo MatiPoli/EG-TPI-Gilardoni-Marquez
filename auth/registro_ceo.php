@@ -9,19 +9,24 @@ $message = '';
 $message_type = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['nombre'];
-    $email = $_POST['email'];
-    $phone = $_POST['telefono'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
+    $name = filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW);
+    $email = filter_input(INPUT_POST, 'email', FILTER_UNSAFE_RAW);
+    $phone = filter_input(INPUT_POST, 'telefono', FILTER_UNSAFE_RAW);
+    $password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
+    $password_confirm = filter_input(INPUT_POST, 'password_confirm', FILTER_UNSAFE_RAW);
+    $name = is_string($name) ? trim($name) : '';
+    $email = is_string($email) ? trim($email) : '';
+    $phone = is_string($phone) ? trim($phone) : '';
+    $password = is_string($password) ? $password : '';
+    $password_confirm = is_string($password_confirm) ? $password_confirm : '';
     $account_type = 'ceo';
 
     if ($password !== $password_confirm) {
         $message = "Las contraseñas no coinciden.";
         $message_type = "danger";
     } else {
-        $stmt_check = $conexion->prepare("SELECT codUsuario FROM USUARIOS WHERE emailUsuario = ?");
-        $stmt_check->bind_param("s", $email);
+        $stmt_check = $conexion->prepare("SELECT codUsuario FROM USUARIOS WHERE emailUsuario = ? OR telefonoUsuario = ?");
+        $stmt_check->bind_param("ss", $email, $phone);
         $stmt_check->execute();
         
         if ($stmt_check->get_result()->num_rows > 0) {
@@ -30,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $hashed_password = md5($password);
             
-            $stmt_insert = $conexion->prepare("INSERT INTO USUARIOS (nombreUsuario, claveUsuario, tipoUsuario, emailUsuario, telefonoUsuario) VALUES (?, ?, ?, ?, ?)");
+            $stmt_insert = $conexion->prepare("INSERT INTO USUARIOS (nombreUsuario, claveUsuario, tipoUsuario, estadoUsuario, codAerolinea, emailUsuario, telefonoUsuario) VALUES (?, ?, ?, 'pendiente', NULL, ?, ?)");
             $stmt_insert->bind_param("sssss", $name, $hashed_password, $account_type, $email, $phone);
             
             if ($stmt_insert->execute()) {
@@ -56,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="col-md-8 col-lg-6">
         <div class="card shadow-sm mt-3">
             <div class="card-body p-4">
-                <h4 class="card-title text-center mb-4">Formulario de registro CEO</h4>
+                <h1 class="h4 card-title text-center mb-4">Formulario de registro CEO</h1>
                 
                 <?php if($message): ?>
                     <div class="alert alert-<?= $message_type; ?> p-2 text-center"><?= $message; ?></div>
@@ -64,19 +69,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <form action="registro_ceo.php" method="POST" class="row g-3">
                     <div class="col-12">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre del Representante" required>
+                        <label for="nombre" class="form-label">Nombre y apellido <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required aria-required="true">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="telefono" class="form-control" placeholder="Teléfono Corporativo" required>
+                        <label for="telefono" class="form-label">Teléfono corporativo <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="text" id="telefono" name="telefono" class="form-control" required aria-required="true">
                     </div>
                     <div class="col-md-6">
-                        <input type="email" name="email" class="form-control" placeholder="Correo Electrónico" required>
+                        <label for="email" class="form-label">Correo electrónico <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="email" id="email" name="email" class="form-control" required aria-required="true">
                     </div>
                     <div class="col-md-6">
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required maxlength="8">
+                        <label for="password" class="form-label">Contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="password" id="password" name="password" class="form-control" required aria-required="true" maxlength="8">
                     </div>
                     <div class="col-md-6">
-                        <input type="password" name="password_confirm" class="form-control" placeholder="Repetir contraseña" required maxlength="8">
+                        <label for="password_confirm" class="form-label">Repetir contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" required aria-required="true" maxlength="8">
                     </div>
                     <div class="col-12 mt-4 text-center">
                         <button type="submit" class="btn btn-primary px-5">Enviar Solicitud</button>

@@ -53,4 +53,4 @@
             </div>
         </nav>
     </header>
-    <main id="contenido-principal" class="px-4 mt-4">
+    <main id="contenido-principal" class="px-4 mt-4 mb-4">
