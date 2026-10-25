@@ -1,10 +1,10 @@
-[ ] ABM Promociones
-[ ] Baja Vuelos
+[X] ABM Promociones
+[X] Baja Vuelos
 [ ] Paginación ABM Aerolíneas
 [ ] Solicitudes CEO
 [ ] Auditar Promociones
-[ ] Reportes CEO
-    [ ] Verificar link en footer
+[X] Reportes CEO
+    [X] Verificar link en footer
 [ ] Terminar checklist de README.md
 [ ] Eliminar este archivo
 

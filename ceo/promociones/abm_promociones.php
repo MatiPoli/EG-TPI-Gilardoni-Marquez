@@ -72,7 +72,7 @@ require '../../includes/header.php';
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover align-middle"
                            aria-labelledby="titulo-tabla-promociones">
-                        <caption id="titulo-tabla-promociones class="caption-top text-center" hidden>Listado de promociones</caption>
+                        <caption id="titulo-tabla-promociones" class="visually-hidden">Listado de promociones</caption>
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
@@ -103,11 +103,13 @@ require '../../includes/header.php';
                                             </span>
                                         </td>
                                         <td class="text-center text-nowrap">
-                                            <a class="btn btn-sm btn-warning"
-                                               href="form_promocion.php?id=<?= $idPromocion; ?>">
-                                                Editar
-                                                <span class="visually-hidden"> promoción número <?= $idPromocion; ?></span>
-                                            </a>
+                                            <?php if ($promocion['estadoPromocion'] === 'pendiente'): ?>
+                                                <a class="btn btn-sm btn-warning"
+                                                   href="form_promocion.php?id=<?= $idPromocion; ?>">
+                                                    Editar
+                                                    <span class="visually-hidden"> promoción número <?= $idPromocion; ?></span>
+                                                </a>
+                                            <?php endif; ?>
                                             <button type="button" class="btn btn-sm btn-danger"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#modalEliminarPromocion<?= $idPromocion; ?>">

@@ -11,7 +11,7 @@ $valores = ['descripcionPromocion' => '', 'descuentoPromocion' => ''];
 
 if ($id > 0) {
     $stmt = $conexion->prepare(
-        'SELECT descripcionPromocion, descuentoPromocion
+        'SELECT descripcionPromocion, descuentoPromocion, estadoPromocion
          FROM PROMOCIONES WHERE codPromocion = ? AND codAerolinea = ?'
     );
     if (!$stmt) {
@@ -20,7 +20,7 @@ if ($id > 0) {
     $stmt->bind_param('ii', $id, $codAerolinea);
     $stmt->execute();
     $promocion = $stmt->get_result()->fetch_assoc();
-    if (!$promocion) {
+    if (!$promocion || $promocion['estadoPromocion'] !== 'pendiente') {
         header('Location: abm_promociones.php');
         exit();
     }

@@ -23,6 +23,24 @@ if ($descripcion === '' || mb_strlen($descripcion, 'UTF-8') > 200
     exit();
 }
 
+if ($id > 0) {
+    $stmtEstado = $conexion->prepare(
+        'SELECT estadoPromocion FROM PROMOCIONES WHERE codPromocion = ? AND codAerolinea = ?'
+    );
+    if (!$stmtEstado) {
+        die('No se pudo verificar el estado de la promoción.');
+    }
+    $stmtEstado->bind_param('ii', $id, $codAerolinea);
+    if (!$stmtEstado->execute()) {
+        die('No se pudo verificar el estado de la promoción.');
+    }
+    $promocion = $stmtEstado->get_result()->fetch_assoc();
+    if (!$promocion || $promocion['estadoPromocion'] !== 'pendiente') {
+        header('Location: abm_promociones.php');
+        exit();
+    }
+}
+
 if ($id === 0) {
     $stmt = $conexion->prepare(
         "INSERT INTO PROMOCIONES (descripcionPromocion, descuentoPromocion, codAerolinea, estadoPromocion)
@@ -36,7 +54,7 @@ if ($id === 0) {
     $stmt = $conexion->prepare(
         "UPDATE PROMOCIONES
          SET descripcionPromocion = ?, descuentoPromocion = ?, estadoPromocion = 'pendiente'
-         WHERE codPromocion = ? AND codAerolinea = ?"
+         WHERE codPromocion = ? AND codAerolinea = ? AND estadoPromocion = 'pendiente'"
     );
     if (!$stmt) {
         die('No se pudo preparar la modificación de la promoción.');
