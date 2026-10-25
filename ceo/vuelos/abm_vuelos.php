@@ -3,8 +3,6 @@ require '../../includes/sesiones.php';
 checkRole('ceo');
 require '../../includes/conexion.php';
 
-//TODO: Verificar paginación
-
 $por_pagina = 5;
 $codAerolinea = (int) $_SESSION['codAerolinea'];
 $pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);

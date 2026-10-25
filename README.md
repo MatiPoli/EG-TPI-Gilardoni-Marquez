@@ -179,7 +179,7 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 - [x] Nada se superpone, se corta ni requiere scroll horizontal.
 - [x] Estilo consistente entre pantallas (colores, tipografías, botones).
 - [x] Las imágenes tienen tamaño razonable y `alt`.
-- [ ] Las imágenes tiene título visible al pasar mouse sobre las mismas.
+- [x] Las imágenes tiene título visible al pasar mouse sobre las mismas.
 - [ ] Contraste suficiente para leer los textos.
 
 ## 10. Última pasada antes de entregar
