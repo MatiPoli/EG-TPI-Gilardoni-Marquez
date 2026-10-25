@@ -110,8 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($valores['horaSalidaVuelo'] === '' || !$horaValida || $horaValida->format('H:i') !== $valores['horaSalidaVuelo']) {
         $errores['horaSalidaVuelo'] = 'Ingresá una hora válida.';
     }
-    if (!preg_match('/^\d{1,8}(?:\.\d{1,2})?$/', $valores['precioVuelo'])) {
-        $errores['precioVuelo'] = 'Ingresá un precio válido con hasta dos decimales.';
+    if (!preg_match('/^(?:\d{1,3}|\d{4,8}|\d{1,2}(?:\.\d{3}){1,2})(?:,\d{1,2})?$/', $valores['precioVuelo'])) {
+        $errores['precioVuelo'] = 'Ingresá un precio válido en formato argentino, con hasta dos decimales.';
     }
     if (!preg_match('/^\d{1,3}(?:\.\d{1,2})?$/', $valores['descuentoPromocion'])
         || (float) $valores['descuentoPromocion'] > 100) {
@@ -275,15 +275,16 @@ require '../../includes/header.php';
                         <div class="mb-3">
                             <label for="precioVuelo" class="form-label">Precio del vuelo <span aria-hidden="true">*</span></label>
                             <input
-                                type="number"
+                                type="text"
+                                inputmode="decimal"
                                 class="form-control<?= isset($errores['precioVuelo']) ? ' is-invalid' : ''; ?>"
                                 id="precioVuelo"
                                 name="precioVuelo"
                                    value="<?= htmlspecialchars($valores['precioVuelo'], ENT_QUOTES, 'UTF-8'); ?>"
-                                   min="0" max="99999999.99" step="0.01" required
+                                   maxlength="13" pattern="(?:\d{1,3}|\d{4,8}|\d{1,2}(?:\.\d{3}){1,2})(?:,\d{1,2})?" required
                                    aria-describedby="precio-ayuda<?= isset($errores['precioVuelo']) ? ' precio-error' : ''; ?>"
                                    <?= isset($errores['precioVuelo']) ? 'aria-invalid="true"' : ''; ?>>
-                            <div id="precio-ayuda" class="form-text">Acepta hasta dos decimales, por ejemplo 1250.50.</div>
+                            <div id="precio-ayuda" class="form-text">Usá punto para miles y coma para decimales; ejemplo: 1.250,50.</div>
                             <?php if (isset($errores['precioVuelo'])): ?>
                                 <div id="precio-error" class="invalid-feedback d-block">
                                     Error: <?= htmlspecialchars($errores['precioVuelo'], ENT_QUOTES, 'UTF-8'); ?>

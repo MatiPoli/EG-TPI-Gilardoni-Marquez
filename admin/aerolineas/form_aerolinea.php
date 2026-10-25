@@ -26,6 +26,7 @@ if ($id) {
     }
 }
 
+$title = ($id ? 'Editar vuelo' : 'Nuevo vuelo') . ' | ViajAir';
 require '../../includes/header.php';
 ?>
 

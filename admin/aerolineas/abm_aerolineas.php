@@ -7,6 +7,7 @@ $query = "SELECT * FROM AEROLINEAS";
 $result = $conexion->query($query);
 
 require '../../includes/header.php';
+//TODO: paginación
 ?>
 
 <div class="row">
