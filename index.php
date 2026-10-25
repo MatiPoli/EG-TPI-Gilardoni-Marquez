@@ -1,6 +1,7 @@
 <?php 
 require 'includes/sesiones.php';
 require 'includes/conexion.php'; 
+$title = 'Inicio | ViajAir';
 require 'includes/header.php'; 
 ?>
 
@@ -13,7 +14,8 @@ require 'includes/header.php';
         </div>
     <?php endif; ?>
 
-    <div id="carruselInicio" class="carousel slide mb-4 shadow-sm rounded overflow-hidden position-relative" data-bs-ride="carousel">
+    <div id="carruselInicio" class="carousel slide mb-4 shadow-sm rounded overflow-hidden position-relative"
+        role="region" aria-label="Destinos destacados" aria-roledescription="carrusel">
         
         <div class="carrousel-text position-absolute top-50 start-50 translate-middle text-center p-4 bg-white bg-opacity-75 rounded shadow">
             <h1 class="display-4 fw-bold mb-2">
@@ -52,7 +54,7 @@ require 'includes/header.php';
         </p>
     </div>
 
-    <div class="card shadow-sm mx-auto border-0 bg-secondary" style="max-width: 900px;">
+    <div class="card busqueda-inicio shadow-sm mx-auto border-0 bg-secondary">
         <div class="card-body p-4">
             <h2 class="h4 card-title mb-4 text-center text-primary fw-bold">Búsqueda rápida</h2>
             <form action="/tpi/public/buscar_vuelos.php" method="GET" class="row g-3">
@@ -69,7 +71,7 @@ require 'includes/header.php';
                 
                 <div class="col-md-3">
                     <label for="fecha" class="visually-hidden">Fecha del vuelo</label>
-                    <input type="date" id="fecha" name="fecha" class="form-control" aria-label="Fecha del vuelo">
+                    <input type="date" id="fecha" name="fecha" class="form-control">
                 </div>
                 
                 <div class="col-md-3">

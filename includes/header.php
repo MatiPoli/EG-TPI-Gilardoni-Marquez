@@ -16,7 +16,8 @@
                 <a class="navbar-brand" href="<?= $app_url ?>/tpi/index.php">
                     <img src="<?= $app_url ?>/tpi/assets/img/logo.png" alt="ViajAir" height="46">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">

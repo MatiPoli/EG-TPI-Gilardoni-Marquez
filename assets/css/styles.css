@@ -8,29 +8,26 @@ html, body {
 }
 
 .saltar-contenido {
-    position: absolute;
-    left: -9999px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-}
-
-.saltar-contenido:focus {
     position: fixed;
     top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
+    left: 1rem;
+    transform: translateY(-150%);
+    z-index: 9999;
     background-color: #ffffff;
     color: #000000;
     padding: 15px;
-    z-index: 9999;
     text-decoration: none;
     font-weight: bold;
     border: 2px solid #0d6efd;
 }
 
+.saltar-contenido:focus {
+    transform: translateY(0);
+}
+
+.busqueda-inicio {
+    max-width: 56.25rem;
+}
 :is(a, button, input, select, textarea, .btn, .page-link, .accordion-button):focus-visible {
     outline: 3px solid #060b26;
     outline-offset: 2px;
