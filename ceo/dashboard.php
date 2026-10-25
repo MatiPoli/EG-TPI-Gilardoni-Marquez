@@ -52,35 +52,35 @@ require '../includes/header.php';
             <div class="card-body p-4 text-center">
                 
                 <h1 class="h3 fw-bold mb-1 text-dark">Bienvenido al Panel de Aerolínea</h1>
-                <p class="text-muted mb-4">Gestión comercial y operativa de tu empresa.</p>
+                <p class="text-dark mb-4">Gestión comercial y operativa de tu empresa.</p>
 
                 <?php if ($airline_info): ?>
                     <div class="card bg-light border-0 shadow-sm p-3 mb-4 text-start">
-                        <div class="align-items-center justify-content-between border-bottom pb-2 mb-2">
+                        <div class="d-flex align-items-center border-bottom pb-2 mb-2">
                             <span class="h5 fw-bold text-primary mb-0 me-2"><?= htmlspecialchars($airline_info['nombreAerolinea']); ?></span>
                             <span class="badge bg-secondary text-dark border">IATA: <?= htmlspecialchars($airline_info['codigoIATA']); ?></span>
                             <span class="badge bg-secondary text-dark border">País: <?= htmlspecialchars($airline_info['codPais']); ?></span>
                         </div>
-                        <p class="small text-muted mb-0"><?= htmlspecialchars($airline_info['descripcionAerolinea']); ?></p>
+                        <p class="small text-dark mb-0"><?= htmlspecialchars($airline_info['descripcionAerolinea']); ?></p>
                     </div>
                 <?php endif; ?>
 
                 <div class="row g-3">
                     <div class="col-12 col-md-4">
                         <div class="p-3 border rounded bg-light h-100">
-                            <h2 class="h6 text-muted text-uppercase fw-bold mb-1">Vuelos Totales</h2>
+                            <h2 class="h6 text-dark text-uppercase fw-bold mb-1">Vuelos Totales</h2>
                             <span class="display-6 fw-bold text-primary"><?= $total_flights; ?></span>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="p-3 border rounded bg-light h-100">
-                            <h2 class="h6 text-muted text-uppercase fw-bold mb-1">Promociones</h2>
+                            <h2 class="h6 text-dark text-uppercase fw-bold mb-1">Promociones</h2>
                             <span class="display-6 fw-bold text-warning"><?= $total_promos; ?></span>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="p-3 border rounded bg-light h-100">
-                            <h2 class="h6 text-muted text-uppercase fw-bold mb-1">Ventas Confirmadas</h2>
+                            <h2 class="h6 text-dark text-uppercase fw-bold mb-1">Ventas Confirmadas</h2>
                             <span class="display-6 fw-bold text-success"><?= $total_sales; ?></span>
                         </div>
                     </div>
@@ -90,13 +90,13 @@ require '../includes/header.php';
 
                 <div class="text-start">
                     <h2 class="h5 fw-bold text-dark mb-2">Informes y Reportes Estadísticos</h2>
-                    <p class="text-muted small mb-3">Métricas consolidadas para la toma de decisiones.</p>
+                    <p class="text-dark small mb-3">Métricas consolidadas para la toma de decisiones.</p>
 
                     <div class="row g-3">
                         <div class="col-12 col-md-6">
                             <div class="card border p-3 h-100">
                                 <h3 class="h6 fw-bold text-primary mb-2">Reporte de Flujo Monetario y Ventas</h3>
-                                <p class="text-muted small mb-3">Auditoría de ingresos totales facturados, reservas abonadas y rendimiento comercial.</p>
+                                <p class="text-dark small mb-3">Auditoría de ingresos totales facturados, reservas abonadas y rendimiento comercial.</p>
                                 <a href="/tpi/ceo/reporte_ventas.php" class="btn btn-outline-primary fw-bold mt-auto">
                                     Ver Reporte de Ventas
                                 </a>
@@ -106,7 +106,7 @@ require '../includes/header.php';
                         <div class="col-12 col-md-6">
                             <div class="card border p-3 h-100">
                                 <h3 class="h6 fw-bold text-primary mb-2">Reporte de Ocupación de Vuelos</h3>
-                                <p class="text-muted small mb-3">Métricas de porcentaje de asientos vendidos vs. cupos libres por ruta y fecha.</p>
+                                <p class="text-dark small mb-3">Métricas de porcentaje de asientos vendidos vs. cupos libres por ruta y fecha.</p>
                                 <a href="/tpi/ceo/reporte_ocupacion.php" class="btn btn-outline-primary fw-bold mt-auto">
                                     Ver Reporte de Ocupación
                                 </a>

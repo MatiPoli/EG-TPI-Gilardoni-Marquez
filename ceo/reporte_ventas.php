@@ -97,10 +97,11 @@ require '../includes/header.php';
 
         <h1 class="h3 fw-bold text-dark mb-4 text-center text-md-start">Reporte de Ventas y Flujo Monetario</h1>
 
-        <div class="card shadow-sm border-0 bg-secondary mb-4 d-print-none">
+        <div class="card shadow-sm border-0 bg-light mb-4 d-print-none">
             <div class="card-body p-4">
-                <h2 class="h6 fw-bold text-primary mb-3">Filtros de Período</h2>
                 <form action="/tpi/ceo/reporte_ventas.php" method="GET" class="row g-3 align-items-end">
+                    <fieldset class="row g-3 align-items-end border-0 p-0 m-0">
+                        <legend class="h6 fw-bold text-dark mb-3">Filtros de período</legend>
                     <div class="col-12 col-md-4">
                         <label for="fecha_inicio" class="form-label small fw-semibold text-dark">Fecha Inicio</label>
                         <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" value="<?= htmlspecialchars($fecha_inicio); ?>">
@@ -112,9 +113,10 @@ require '../includes/header.php';
                     </div>
 
                     <div class="col-12 col-md-4 d-flex gap-2">
-                        <button type="submit" class="btn btn-primary fw-bold w-100">Aplicar</button>
-                        <a href="/tpi/ceo/reporte_ventas.php" class="btn btn-outline-dark w-100">Limpiar</a>
+                        <button type="submit" class="btn btn-primary fw-bold w-100">Aplicar filtros</button>
+                        <a href="/tpi/ceo/reporte_ventas.php" class="btn btn-outline-dark w-100">Limpiar filtros</a>
                     </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -125,7 +127,7 @@ require '../includes/header.php';
                 <div class="row g-3 mb-4">
                     <div class="col-12 col-md-4">
                         <div class="p-3 bg-light border rounded text-center">
-                            <span class="text-muted small text-uppercase d-block fw-bold mb-1">Facturación Total</span>
+                            <span class="text-dark small text-uppercase d-block fw-bold mb-1">Facturación Total</span>
                             <span class="fs-5 fw-bold text-success text-nowrap d-block">
                                 $ <?= number_format($resumen['facturacion_total'], 2, ',', '.'); ?>
                             </span>
@@ -133,7 +135,7 @@ require '../includes/header.php';
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="p-3 bg-light border rounded text-center">
-                            <span class="text-muted small text-uppercase d-block fw-bold mb-1">Pasajes Facturados</span>
+                            <span class="text-dark small text-uppercase d-block fw-bold mb-1">Pasajes Facturados</span>
                             <span class="fs-5 fw-bold text-primary text-nowrap d-block">
                                 <?= $resumen['total_pasajes_vendidos']; ?>
                             </span>
@@ -141,7 +143,7 @@ require '../includes/header.php';
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="p-3 bg-light border rounded text-center">
-                            <span class="text-muted small text-uppercase d-block fw-bold mb-1">Ticket Promedio</span>
+                            <span class="text-dark small text-uppercase d-block fw-bold mb-1">Ticket Promedio</span>
                             <span class="fs-5 fw-bold text-dark text-nowrap d-block">
                                 $ <?= number_format($resumen['ticket_promedio'], 2, ',', '.'); ?>
                             </span>
@@ -153,31 +155,31 @@ require '../includes/header.php';
                     <div class="col-12 col-lg-6">
                         <div class="p-3 border rounded text-center h-100 bg-white">
                             <div style="position: relative; height: 230px;">
-                                <canvas id="graficoEvolucion"></canvas>
+                                <canvas id="graficoEvolucion" role="img" aria-labelledby="titulo-grafico-evolucion"></canvas>
                             </div>
-                            <h3 class="h6 fw-bold text-muted mt-3 mb-0">Evolución de Facturación Diaria</h3>
+                            <h3 id="titulo-grafico-evolucion" class="h6 fw-bold text-dark mt-3 mb-0">Evolución de Facturación Diaria</h3>
                         </div>
                     </div>
 
                     <div class="col-12 col-lg-6">
                         <div class="p-3 border rounded text-center h-100 bg-white">
                             <div style="position: relative; height: 230px;">
-                                <canvas id="graficoDestinos"></canvas>
+                                <canvas id="graficoDestinos" role="img" aria-labelledby="titulo-grafico-destinos"></canvas>
                             </div>
-                            <h3 class="h6 fw-bold text-muted mt-3 mb-0">Distribución de Ingresos por Destino</h3>
+                            <h3 id="titulo-grafico-destinos" class="h6 fw-bold text-dark mt-3 mb-0">Distribución de Ingresos por Destino</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center mt-4 mb-2 d-print-none">
                     <button type="button" class="btn btn-dark fw-bold px-4" onclick="window.print();">
-                        Imprimir
+                        Imprimir reporte de ventas
                     </button>
                 </div>
 
             </div>
         <?php else: ?>
-            <div class="alert alert-info text-center p-4 shadow-sm border-0">
+            <div class="alert alert-info text-center p-4 shadow-sm border-0" role="alert" aria-live="assertive">
                 <h3 class="h5 mb-0">No se encontraron suficientes datos</h3>
                 <p class="mt-2 mb-0">No existen ventas confirmadas registradas en el período seleccionado para tu aerolínea.</p>
             </div>

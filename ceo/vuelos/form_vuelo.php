@@ -101,7 +101,7 @@ require '../../includes/header.php';
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/tpi/index.php">Inicio</a></li>
                 <li class="breadcrumb-item"><a href="/tpi/ceo/dashboard.php">Panel CEO</a></li>
-                <li class="breadcrumb-item"><a href="abm_vuelos.php">Vuelos</a></li>
+                <li class="breadcrumb-item"><a href="abm_vuelos.php">Gestión de Vuelos</a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?= $id ? 'Editar' : 'Nuevo'; ?></li>
             </ol>
         </nav>

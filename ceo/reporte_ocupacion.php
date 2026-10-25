@@ -89,10 +89,11 @@ require '../includes/header.php';
 
         <h1 class="h3 fw-bold text-dark mb-4 text-center text-md-start">Reporte de Ocupación de Vuelos</h1>
 
-        <div class="card shadow-sm border-0 bg-secondary mb-4 d-print-none">
+        <div class="card shadow-sm border-0 bg-light mb-4 d-print-none">
             <div class="card-body p-4">
-                <h2 class="h6 fw-bold text-primary mb-3">Filtros de Período de Vuelo</h2>
                 <form action="/tpi/ceo/reporte_ocupacion.php" method="GET" class="row g-3 align-items-end">
+                    <fieldset class="row g-3 align-items-end border-0 p-0 m-0">
+                        <legend class="h6 fw-bold text-dark mb-3">Filtros de período de vuelo</legend>
                     <div class="col-12 col-md-4">
                         <label for="fecha_inicio" class="form-label small fw-semibold text-dark">Fecha Inicio</label>
                         <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control" value="<?= htmlspecialchars($fecha_inicio); ?>">
@@ -104,9 +105,10 @@ require '../includes/header.php';
                     </div>
 
                     <div class="col-12 col-md-4 d-flex gap-2">
-                        <button type="submit" class="btn btn-primary fw-bold w-100">Aplicar</button>
-                        <a href="/tpi/ceo/reporte_ocupacion.php" class="btn btn-outline-dark w-100">Limpiar</a>
+                        <button type="submit" class="btn btn-primary fw-bold w-100">Aplicar filtros</button>
+                        <a href="/tpi/ceo/reporte_ocupacion.php" class="btn btn-outline-dark w-100">Limpiar filtros</a>
                     </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
@@ -117,19 +119,19 @@ require '../includes/header.php';
                 <div class="row g-3 mb-4">
                     <div class="col-12 col-md-4">
                         <div class="p-3 bg-light border rounded text-center">
-                            <span class="text-muted small text-uppercase d-block fw-bold mb-1">Ocupación Promedio</span>
+                            <span class="text-dark small text-uppercase d-block fw-bold mb-1">Ocupación Promedio</span>
                             <span class="fs-5 fw-bold text-primary text-nowrap d-block"><?= $ocupacion_global; ?>%</span>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="p-3 bg-light border rounded text-center">
-                            <span class="text-muted small text-uppercase d-block fw-bold mb-1">Asientos Ocupados</span>
+                            <span class="text-dark small text-uppercase d-block fw-bold mb-1">Asientos Ocupados</span>
                             <span class="fs-5 fw-bold text-success text-nowrap d-block"><?= $total_ocupados; ?></span>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <div class="p-3 bg-light border rounded text-center">
-                            <span class="text-muted small text-uppercase d-block fw-bold mb-1">Capacidad Total Ofertada</span>
+                            <span class="text-dark small text-uppercase d-block fw-bold mb-1">Capacidad Total Ofertada</span>
                             <span class="fs-5 fw-bold text-dark text-nowrap d-block"><?= $total_capacidad; ?></span>
                         </div>
                     </div>
@@ -139,34 +141,35 @@ require '../includes/header.php';
                     <div class="col-12 col-md-7">
                         <div class="p-3 border rounded text-center h-100 bg-white">
                             <div style="position: relative; height: 210px;">
-                                <canvas id="graficoBarrasOcupacion"></canvas>
+                                <canvas id="graficoBarrasOcupacion" role="img" aria-labelledby="titulo-grafico-barras"></canvas>
                             </div>
-                            <h3 class="h6 fw-bold text-muted mt-2 mb-0">Porcentaje de Ocupación por Vuelo</h3>
+                            <h3 id="titulo-grafico-barras" class="h6 fw-bold text-dark mt-2 mb-0">Porcentaje de Ocupación por Vuelo</h3>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-5">
                         <div class="p-3 border rounded text-center h-100 bg-white">
                             <div style="position: relative; height: 210px;">
-                                <canvas id="graficoTortaGlobal"></canvas>
+                                <canvas id="graficoTortaGlobal" role="img" aria-labelledby="titulo-grafico-torta"></canvas>
                             </div>
-                            <h3 class="h6 fw-bold text-muted mt-2 mb-0">Asientos Vendidos vs Libres</h3>
+                            <h3 id="titulo-grafico-torta" class="h6 fw-bold text-dark mt-2 mb-0">Asientos Vendidos vs Libres</h3>
                         </div>
                     </div>
                 </div>
 
                 <div class="bloque-tabla-imprimir mt-4">
-                    <h3 class="h6 fw-bold text-muted mb-3">Detalle de Cupos por Vuelo</h3>
+                    <h3 class="h6 fw-bold text-dark mb-3">Detalle de Cupos por Vuelo</h3>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover align-middle mb-0">
+                            <caption class="caption-top">Detalle de ocupación y disponibilidad de asientos por vuelo</caption>
                             <thead class="table-light">
                                 <tr>
-                                    <th>Vuelo</th>
-                                    <th>Ruta</th>
-                                    <th>Fecha de Salida</th>
-                                    <th class="text-center">Ocupados</th>
-                                    <th class="text-center">Disponibles</th>
-                                    <th style="min-width: 140px;">% Ocupación</th>
+                                    <th scope="col">Vuelo</th>
+                                    <th scope="col">Ruta</th>
+                                    <th scope="col">Fecha de Salida</th>
+                                    <th scope="col" class="text-center">Ocupados</th>
+                                    <th scope="col" class="text-center">Disponibles</th>
+                                    <th scope="col" style="min-width: 140px;">% Ocupación</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -178,7 +181,7 @@ require '../includes/header.php';
                                         <td class="text-center fw-bold text-success"><?= $v['asientos_ocupados']; ?></td>
                                         <td class="text-center"><?= $v['asientosDisponibles']; ?></td>
                                         <td>
-                                            <div class="progress" style="height: 18px;">
+                                            <div class="progress" style="height: 18px;" aria-label="Ocupación del vuelo: <?= $v['porcentaje']; ?> por ciento">
                                                 <div class="progress-bar bg-primary fw-bold" role="progressbar" 
                                                      style="width: <?= $v['porcentaje']; ?>%;" 
                                                      aria-valuenow="<?= $v['porcentaje']; ?>" 
@@ -197,13 +200,13 @@ require '../includes/header.php';
 
                 <div class="text-center mt-4 mb-2 d-print-none">
                     <button type="button" class="btn btn-dark fw-bold px-4" onclick="window.print();">
-                        Imprimir
+                        Imprimir reporte de ocupación
                     </button>
                 </div>
 
             </div>
         <?php else: ?>
-            <div class="alert alert-info text-center p-4 shadow-sm border-0">
+            <div class="alert alert-info text-center p-4 shadow-sm border-0" role="alert" aria-live="assertive">
                 <h3 class="h5 mb-0">No se encontraron suficientes datos</h3>
                 <p class="mt-2 mb-0">No existen vuelos programados para tu aerolínea en el rango de fechas seleccionado.</p>
             </div>

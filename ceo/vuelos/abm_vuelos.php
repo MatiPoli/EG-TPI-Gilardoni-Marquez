@@ -51,7 +51,7 @@ require '../../includes/header.php';
 
 <div class="row">
     <?php 
-    $active_page = 'aerolineas';
+    $active_page = 'vuelos';
     require '../sidebar_ceo.php'; 
     ?>
     
