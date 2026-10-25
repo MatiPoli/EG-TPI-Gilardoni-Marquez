@@ -1,7 +1,7 @@
 <?php
 
 require '../../includes/sesiones.php';
-// checkRole('administrador');
+checkRole('asset');
 require '../../includes/conexion.php';
 
 $title = 'Tabla genérica | ViajAir';
