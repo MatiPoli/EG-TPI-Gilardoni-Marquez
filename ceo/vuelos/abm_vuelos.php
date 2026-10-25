@@ -3,6 +3,7 @@ require '../../includes/sesiones.php';
 checkRole('ceo');
 require '../../includes/conexion.php';
 
+
 $por_pagina = 5;
 $codAerolinea = (int) $_SESSION['codAerolinea'];
 $pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
@@ -65,7 +66,7 @@ require '../../includes/header.php';
 
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
-                <h1 class="mb-0">Listado de Vuelos</h1>
+                <h1 class="h5 mb-0">Listado de Vuelos</h1>
                 <a href="form_vuelo.php" class="btn btn-light btn-sm fw-bold">Nuevo Vuelo</a>
             </div>
             <div class="card-body p-4">
@@ -92,9 +93,9 @@ require '../../includes/header.php';
                                         <td><?= (int) $vuelo['codVuelo']; ?></td>
                                         <td><?= htmlspecialchars($vuelo['origenVuelo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
                                         <td><?= htmlspecialchars($vuelo['destinoVuelo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
-                                        <td><?= htmlspecialchars($vuelo['fechaSalidaVuelo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
-                                        <td><?= htmlspecialchars($vuelo['horaSalidaVuelo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
-                                        <td>$<?= htmlspecialchars($vuelo['precioVuelo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
+                                        <td><?= date('d/m/Y', strtotime($vuelo['fechaSalidaVuelo'])); ?></td>
+                                        <td><?= substr($vuelo['horaSalidaVuelo'], 0, 5) . ' hs' ?></td>
+                                        <td>$<?= number_format($vuelo['precioVuelo'], 2, ',', '.'); ?></td>
                                         <td><?= htmlspecialchars($vuelo['asientosDisponibles'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
                                         <td class="text-center">
                                             <?php
@@ -193,8 +194,8 @@ require '../../includes/header.php';
 
                 <?php for ($i = 1; $i <= $total_paginas; $i++): ?>
                     <?php if ($pagina === $i): ?>
-                        <li class="page-item active" aria-current="page">
-                            <span class="page-link">
+                        <li class="page-item active">
+                            <span class="page-link" aria-current="page">
                                 <?= $i; ?>
                                 <span class="visually-hidden">(página actual)</span>
                             </span>
