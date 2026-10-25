@@ -181,8 +181,8 @@ require '../includes/header.php';
                                         <td class="text-center fw-bold text-success"><?= $v['asientos_ocupados']; ?></td>
                                         <td class="text-center"><?= $v['asientosDisponibles']; ?></td>
                                         <td>
-                                            <div class="progress" style="height: 18px;" aria-label="Ocupación del vuelo: <?= $v['porcentaje']; ?> por ciento">
-                                                <div class="progress-bar bg-primary fw-bold" role="progressbar" 
+                                            <div class="progress" style="height: 18px;">
+                                                <div class="progress-bar bg-primary fw-bold" role="progressbar" aria-label="Ocupación del vuelo: <?= $v['porcentaje']; ?> por ciento"
                                                      style="width: <?= $v['porcentaje']; ?>%;" 
                                                      aria-valuenow="<?= $v['porcentaje']; ?>" 
                                                      aria-valuemin="0" 

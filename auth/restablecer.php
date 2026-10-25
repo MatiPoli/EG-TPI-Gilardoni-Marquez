@@ -88,12 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
                         <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                         <div class="mb-3">
                             <label for="password" class="form-label">Nueva contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" aria-describedby="password-ayuda">
+                            <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required minlength="8" maxlength="8" aria-describedby="password-ayuda">
                             <div id="password-ayuda" class="form-text">La contraseña debe tener exactamente 8 caracteres.</div>
                         </div>
                         <div class="mb-4">
                             <label for="password_confirm" class="form-label">Repetir contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" aria-describedby="password-confirm-ayuda">
+                            <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required minlength="8" maxlength="8" aria-describedby="password-confirm-ayuda">
                             <div id="password-confirm-ayuda" class="form-text">Repetí la contraseña ingresada.</div>
                         </div>
                         <div class="d-grid mb-3">

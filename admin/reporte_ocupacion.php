@@ -140,7 +140,7 @@ require '../includes/header.php';
                                         <td><?= date('d/m/Y', strtotime($v['fechaSalidaVuelo'])); ?></td>
                                         <td><?= (int) $v['ocupados']; ?></td>
                                         <td><?= (int) $v['asientosDisponibles']; ?></td>
-                                        <td><div class="progress" style="height: 18px;" aria-label="Ocupación: <?= $v['porcentaje']; ?> por ciento"><div class="progress-bar" role="progressbar" style="width: <?= $v['porcentaje']; ?>%;" aria-valuenow="<?= $v['porcentaje']; ?>" aria-valuemin="0" aria-valuemax="100"><?= $v['porcentaje']; ?>%</div></div></td>
+                                        <td><div class="progress" style="height: 18px;"><div class="progress-bar" role="progressbar" aria-label="Ocupación: <?= $v['porcentaje']; ?> por ciento" style="width: <?= $v['porcentaje']; ?>%;" aria-valuenow="<?= $v['porcentaje']; ?>" aria-valuemin="0" aria-valuemax="100"><?= $v['porcentaje']; ?>%</div></div></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

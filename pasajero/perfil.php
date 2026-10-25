@@ -110,7 +110,7 @@ require '../includes/header.php';
                             </label>
                             <input type="email" class="form-control bg-light text-dark" id="email" 
                                 value="<?= htmlspecialchars($user['emailUsuario']); ?>" 
-                                readonly aria-readonly="true" aria-describedby="email-bloqueado-ayuda">
+                                readonly aria-describedby="email-bloqueado-ayuda">
                             <div id="email-bloqueado-ayuda" class="form-text text-muted">
                                 El correo electrónico no puede ser modificado ya que identifica tu cuenta.
                             </div>
@@ -122,7 +122,7 @@ require '../includes/header.php';
                             </label>
                             <input type="text" class="form-control" id="nombre" name="nombre" 
                                    value="<?= htmlspecialchars($nombreFormulario, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
-                                   maxlength="100" autocomplete="name" required aria-required="true" <?= $mensaje ? 'aria-describedby="perfil-mensaje"' : ''; ?>>
+                                   maxlength="100" autocomplete="name" required <?= $mensaje ? 'aria-describedby="perfil-mensaje"' : ''; ?>>
                         </div>
 
 
@@ -132,7 +132,7 @@ require '../includes/header.php';
                             </label>
                             <input type="tel" class="form-control" id="telefono" name="telefono" 
                                    value="<?= htmlspecialchars($telefonoFormulario, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
-                                   maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" required aria-required="true" <?= $mensaje ? 'aria-describedby="perfil-mensaje"' : ''; ?>>
+                                   maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" required <?= $mensaje ? 'aria-describedby="perfil-mensaje"' : ''; ?>>
                         </div>
                     </fieldset>
 

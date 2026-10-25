@@ -135,23 +135,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <form action="registro.php" method="POST" class="row g-3">
                     <div class="col-12">
                         <label for="nombre" class="form-label">Nombre completo <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" maxlength="100" autocomplete="name" value="<?= htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
+                        <input type="text" id="nombre" name="nombre" class="form-control" maxlength="100" autocomplete="name" value="<?= htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="telefono" class="form-label">Teléfono <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="tel" id="telefono" name="telefono" class="form-control" maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" value="<?= htmlspecialchars($phone, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
+                        <input type="tel" id="telefono" name="telefono" class="form-control" maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" value="<?= htmlspecialchars($phone, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="email" class="form-label">Correo electrónico <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="email" id="email" name="email" class="form-control" maxlength="100" autocomplete="email" value="<?= htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
+                        <input type="email" id="email" name="email" class="form-control" maxlength="100" autocomplete="email" value="<?= htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="password" class="form-label">Contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
+                        <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="password_confirm" class="form-label">Repetir contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
+                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-12 mt-4 text-center">
                         <button type="submit" class="btn btn-primary px-5">Registrarme</button>

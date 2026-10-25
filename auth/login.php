@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = is_string($_POST['password'] ?? null) ? $_POST['password'] : '';
 
     if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'Ingresá un correo electrónico válido.';
+        $error = 'Ingresa un correo electrónico válido.';
     } elseif ($password === '' || strlen($password) > 8) {
-        $error = 'Ingresá una contraseña válida de hasta 8 caracteres.';
+        $error = 'Ingresa una contraseña válida de hasta 8 caracteres.';
     } else {
         $stmt = $conexion->prepare("SELECT codUsuario, nombreUsuario, tipoUsuario, claveUsuario, estadoUsuario, codAerolinea FROM USUARIOS WHERE emailUsuario = ?");
         $stmt->bind_param("s", $email);
@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
         } else {
-            $error = "Contraseña incorrecta.";
+            $error = "ContraseÃ±a incorrecta.";
         }
     } else {
-        $error = "El correo no está registrado.";
+        $error = "El correo no estÃ¡ registrado.";
     }
 }
 
@@ -84,11 +84,11 @@ require '../includes/header.php';
                 <form action="login.php" method="POST">
                     <div class="mb-3">
                         <label for="email" class="form-label">Correo electrónico <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="email" id="email" class="form-control" name="email" maxlength="100" autocomplete="email" value="<?= htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $error ? 'aria-describedby="login-error"' : ''; ?>>
+                        <input type="email" id="email" class="form-control" name="email" maxlength="100" autocomplete="email" value="<?= htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required <?= $error ? 'aria-describedby="login-error"' : ''; ?>>
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="password" id="password" class="form-control" name="password" autocomplete="current-password" required aria-required="true" maxlength="8" <?= $error ? 'aria-describedby="login-error"' : ''; ?>>
+                        <input type="password" id="password" class="form-control" name="password" autocomplete="current-password" required maxlength="8" <?= $error ? 'aria-describedby="login-error"' : ''; ?>>
                     </div>
                     <div class="d-grid mb-3">
                         <button type="submit" class="btn btn-primary">Ingresar</button>

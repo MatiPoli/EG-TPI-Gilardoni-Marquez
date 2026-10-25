@@ -6,10 +6,10 @@
                     <a href="/tpi/index.php" class="text-white text-decoration-none small me-3 text-nowrap">Inicio</a>
                     <a href="/tpi/public/buscar_vuelos.php" class="text-white text-decoration-none small me-3 text-nowrap">Buscar Vuelos</a>
                     <a href="/tpi/public/novedades.php" class="text-white text-decoration-none small me-3 text-nowrap">Novedades</a>
-                    <a href="/tpi/pasajero/perfil.php" class="text-white text-decoration-none small me-3 text-nowrap">Mi Perfil</a>
-                    <a href="/tpi/pasajero/reservas.php" class="text-white text-decoration-none small me-3 text-nowrap">Mis Reservas</a>
-                    <a href="/tpi/pasajero/historial.php" class="text-white text-decoration-none small me-3 text-nowrap">Historial de Compras</a>
-                    <?php if (function_exists('isLoggedIn') && isLoggedIn()): ?>
+                    <?php if (isLoggedIn()): ?>
+                        <a href="/tpi/pasajero/perfil.php" class="text-white text-decoration-none small me-3 text-nowrap">Mi Perfil</a>
+                        <a href="/tpi/pasajero/reservas.php" class="text-white text-decoration-none small me-3 text-nowrap">Mis Reservas</a>
+                        <a href="/tpi/pasajero/historial.php" class="text-white text-decoration-none small me-3 text-nowrap">Historial de Compras</a>
                         <?php if ($_SESSION['tipoUsuario'] == 'administrador'): ?>
                             <a href="/tpi/admin/dashboard.php" class="text-white text-decoration-none small me-3 text-nowrap">Panel de Administración</a>
                             <a href="/tpi/admin/aerolineas/abm_aerolineas.php" class="text-white text-decoration-none small me-3 text-nowrap">Gestión de Aerolíneas</a>

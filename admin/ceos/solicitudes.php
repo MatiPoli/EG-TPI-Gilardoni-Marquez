@@ -112,8 +112,7 @@ require '../../includes/header.php';
                                         <td><?= htmlspecialchars($solicitud['emailUsuario'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
                                         <td><?= htmlspecialchars($solicitud['telefonoUsuario'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
                                         <td>
-                                            <span class="badge bg-warning text-dark"
-                                                  aria-label="Estado: Pendiente">Pendiente</span>
+                                            <span class="badge bg-warning text-dark">Pendiente</span>
                                         </td>
                                         <td>
                                             <label for="aerolinea-<?= $idUsuario; ?>" class="visually-hidden">

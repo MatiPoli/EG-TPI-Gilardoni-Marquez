@@ -131,7 +131,6 @@ require '../includes/header.php';
                                 maxlength="100"
                                 autocomplete="email"
                                 required 
-                                aria-required="true"
                                 aria-describedby="email-ayuda">
                         <div id="email-ayuda" class="form-text small">
                             Debe ser la misma casilla de correo con la que te diste de alta.
