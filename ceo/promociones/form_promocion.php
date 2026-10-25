@@ -4,12 +4,14 @@ checkRole('ceo');
 require '../../includes/conexion.php';
 
 $codAerolinea = (int) $_SESSION['codAerolinea'];
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$id = $_SERVER['REQUEST_METHOD'] === 'POST'
+    ? filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT)
+    : filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $id = ($id && $id > 0) ? $id : 0;
 $errores = [];
 $valores = ['descripcionPromocion' => '', 'descuentoPromocion' => ''];
 
-if ($id > 0) {
+if ($id > 0 && $_SERVER['REQUEST_METHOD'] !== 'POST') {
     $stmt = $conexion->prepare(
         'SELECT descripcionPromocion, descuentoPromocion, estadoPromocion
          FROM PROMOCIONES WHERE codPromocion = ? AND codAerolinea = ?'
@@ -45,6 +47,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($descuento === '' || !is_numeric($descuento) || (float) $descuento < 1 || (float) $descuento > 100) {
         $errores['descuentoPromocion'] = 'Ingresá un descuento numérico entre 1 y 100.';
     }
+
+    if ($id > 0) {
+        $stmtEstado = $conexion->prepare('SELECT estadoPromocion FROM PROMOCIONES WHERE codPromocion = ? AND codAerolinea = ?');
+        if (!$stmtEstado) {
+            die('No se pudo verificar el estado de la promoción.');
+        }
+        $stmtEstado->bind_param('ii', $id, $codAerolinea);
+        $stmtEstado->execute();
+        $promocion = $stmtEstado->get_result()->fetch_assoc();
+        if (!$promocion || $promocion['estadoPromocion'] !== 'pendiente') {
+            header('Location: abm_promociones.php');
+            exit();
+        }
+    }
+
+    if (!$errores) {
+        $descripcionGuardada = $descripcion;
+        $descuentoGuardado = (float) $descuento;
+        if ($id === 0) {
+            $stmt = $conexion->prepare("INSERT INTO PROMOCIONES (descripcionPromocion, descuentoPromocion, codAerolinea, estadoPromocion) VALUES (?, ?, ?, 'pendiente')");
+            if (!$stmt) {
+                die('No se pudo preparar el alta de la promoción.');
+            }
+            $stmt->bind_param('sdi', $descripcionGuardada, $descuentoGuardado, $codAerolinea);
+        } else {
+            $stmt = $conexion->prepare("UPDATE PROMOCIONES SET descripcionPromocion = ?, descuentoPromocion = ?, estadoPromocion = 'pendiente' WHERE codPromocion = ? AND codAerolinea = ? AND estadoPromocion = 'pendiente'");
+            if (!$stmt) {
+                die('No se pudo preparar la modificación de la promoción.');
+            }
+            $stmt->bind_param('sdii', $descripcionGuardada, $descuentoGuardado, $id, $codAerolinea);
+        }
+        if (!$stmt->execute()) {
+            die('No se pudo guardar la promoción.');
+        }
+        header('Location: abm_promociones.php');
+        exit();
+    }
 }
 
 $title = ($id > 0 ? 'Editar promoción' : 'Nueva promoción') . ' | ViajAir';
@@ -77,7 +116,7 @@ require '../../includes/header.php';
                         Revisá los campos marcados y volvé a intentar.
                     </div>
                 <?php endif; ?>
-                <form action="procesar_promocion.php" method="POST" class="row g-3">
+                <form action="form_promocion.php<?= $id ? '?id=' . $id : ''; ?>" method="POST" class="row g-3">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <fieldset class="row g-3 border-0 p-0 m-0">
                         <legend class="visually-hidden">Datos de la promoción</legend>

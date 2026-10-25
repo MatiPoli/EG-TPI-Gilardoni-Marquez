@@ -10,7 +10,7 @@ $mensajes = [
     'error' => ['clase' => 'danger', 'texto' => 'Para aprobar una solicitud debés seleccionar una aerolínea.'],
 ];
 
-$porPagina = 10;
+$porPagina = 5;
 $pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
 if ($pagina === false || $pagina === null || $pagina < 1) {
     $pagina = 1;

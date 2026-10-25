@@ -4,7 +4,7 @@ checkRole('ceo');
 require '../../includes/conexion.php';
 
 
-$por_pagina = 5;
+$porPagina = 5;
 $codAerolinea = (int) $_SESSION['codAerolinea'];
 $origen = isset($_GET['origen']) && is_string($_GET['origen']) ? trim($_GET['origen']) : '';
 $destino = isset($_GET['destino']) && is_string($_GET['destino']) ? trim($_GET['destino']) : '';
@@ -49,9 +49,9 @@ if (!$resultadoConteo) {
 }
 
 $total_registros = (int) $resultadoConteo->fetch_assoc()['total'];
-$total_paginas = max(1, (int) ceil($total_registros / $por_pagina));
+$total_paginas = max(1, (int) ceil($total_registros / $porPagina));
 $pagina = min($pagina, $total_paginas);
-$offset = ($pagina - 1) * $por_pagina;
+$offset = ($pagina - 1) * $porPagina;
 
 $filtros = [
     'origen' => $origen,
@@ -72,7 +72,7 @@ if (!$stmt) {
     die('No se pudo preparar la consulta de vuelos.');
 }
 $parametrosListado = $parametros;
-$parametrosListado[] = $por_pagina;
+$parametrosListado[] = $porPagina;
 $parametrosListado[] = $offset;
 $stmt->bind_param($tipos . 'ii', ...$parametrosListado);
 $stmt->execute();

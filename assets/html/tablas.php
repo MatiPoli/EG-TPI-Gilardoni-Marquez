@@ -12,7 +12,7 @@ $estados = [
     'cancelada' => ['clase' => 'bg-danger', 'texto' => 'Cancelada'],
 ];
 
-$por_pagina = 10;
+$porPagina = 5;
 $pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
 if ($pagina === false || $pagina === null || $pagina < 1) {
     $pagina = 1;
@@ -28,9 +28,9 @@ if ($resultadoConteo === false) {
     die('No se pudo obtener el total de reservas.');
 }
 $total_registros = (int) $resultadoConteo->fetch_assoc()['total'];
-$total_paginas = max(1, (int) ceil($total_registros / $por_pagina));
+$total_paginas = max(1, (int) ceil($total_registros / $porPagina));
 $pagina = min($pagina, $total_paginas);
-$offset = ($pagina - 1) * $por_pagina;
+$offset = ($pagina - 1) * $porPagina;
 
 // Adaptá esta consulta y los alias al contenido de la tabla que necesites mostrar.
 $query = "SELECT r.codReserva, v.codVuelo, u.nombreUsuario, r.estadoReserva
@@ -43,7 +43,7 @@ $stmt = $conexion->prepare($query);
 if (!$stmt) {
     die('No se pudo preparar la consulta de reservas.');
 }
-$stmt->bind_param('ii', $por_pagina, $offset);
+$stmt->bind_param('ii', $porPagina, $offset);
 $stmt->execute();
 $result = $stmt->get_result();
 if (!$result) {

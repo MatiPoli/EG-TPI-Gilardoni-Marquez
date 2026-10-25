@@ -3,9 +3,12 @@ require '../../includes/sesiones.php';
 checkRole('ceo');
 require '../../includes/conexion.php';
 
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+$id = $_SERVER['REQUEST_METHOD'] === 'POST'
+    ? filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT)
+    : filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$id = ($id && $id > 0) ? $id : 0;
 
-if ($id) {
+if ($id > 0 && $_SERVER['REQUEST_METHOD'] !== 'POST') {
     $stmt = $conexion->prepare("SELECT * FROM VUELOS WHERE codVuelo = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -83,6 +86,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $alerta = empty($errores)
         ? ['tipo' => 'success', 'mensaje' => 'El formulario se validó correctamente.']
         : ['tipo' => 'danger', 'mensaje' => 'Revisá los campos marcados y volvé a intentar.'];
+
+    if (!$errores) {
+        $codAerolinea = (int) $_SESSION['codAerolinea'];
+        $precioGuardado = str_replace(',', '.', str_replace('.', '', $valores['precioVuelo']));
+        $origenGuardado = $valores['origen'];
+        $destinoGuardado = $valores['destino'];
+        $fechaGuardada = $valores['fechaSalidaVuelo'];
+        $horaGuardada = $valores['horaSalidaVuelo'];
+        $asientosGuardados = (int) $valores['asientosDisponibles'];
+        if ($id === 0) {
+            $stmt = $conexion->prepare('INSERT INTO VUELOS (origenVuelo, destinoVuelo, fechaSalidaVuelo, horaSalidaVuelo, precioVuelo, asientosDisponibles, codAerolinea) VALUES (?, ?, ?, ?, ?, ?, ?)');
+            if (!$stmt) {
+                die('No se pudo preparar el alta del vuelo.');
+            }
+            $stmt->bind_param('sssssii', $origenGuardado, $destinoGuardado, $fechaGuardada, $horaGuardada, $precioGuardado, $asientosGuardados, $codAerolinea);
+        } else {
+            $stmt = $conexion->prepare('UPDATE VUELOS SET origenVuelo = ?, destinoVuelo = ?, fechaSalidaVuelo = ?, horaSalidaVuelo = ?, precioVuelo = ?, asientosDisponibles = ? WHERE codVuelo = ? AND codAerolinea = ?');
+            if (!$stmt) {
+                die('No se pudo preparar la modificación del vuelo.');
+            }
+            $stmt->bind_param('sssssiii', $origenGuardado, $destinoGuardado, $fechaGuardada, $horaGuardada, $precioGuardado, $asientosGuardados, $id, $codAerolinea);
+        }
+        if (!$stmt->execute()) {
+            die('No se pudo guardar el vuelo.');
+        }
+        header('Location: abm_vuelos.php');
+        exit();
+    }
 }
 
 $title = ($id ? 'Editar vuelo' : 'Nuevo vuelo') . ' | ViajAir';
@@ -118,7 +149,7 @@ require '../../includes/header.php';
                         <?= htmlspecialchars($alerta['mensaje'], ENT_QUOTES, 'UTF-8'); ?>
                     </div>
                 <?php endif; ?>
-                <form action="procesar_vuelo.php" method="POST" class="row g-3">
+                <form action="form_vuelo.php<?= $id ? '?id=' . $id : ''; ?>" method="POST" class="row g-3">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="col-12">
                             <label for="origen" class="form-label">Origen <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>

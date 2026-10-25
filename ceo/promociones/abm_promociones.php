@@ -4,7 +4,7 @@ checkRole('ceo');
 require '../../includes/conexion.php';
 
 $codAerolinea = (int) $_SESSION['codAerolinea'];
-$porPagina = 10;
+$porPagina = 5;
 $pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
 if ($pagina === false || $pagina === null || $pagina < 1) {
     $pagina = 1;
@@ -94,7 +94,11 @@ require '../../includes/header.php';
                                     ?>
                                     <tr>
                                         <th scope="row">#<?= $idPromocion; ?></th>
-                                        <td><?= htmlspecialchars($promocion['descripcionPromocion'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
+                                        <td>
+                                            <div class="text-break" style="max-width: 28rem;">
+                                                <?= htmlspecialchars($promocion['descripcionPromocion'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>
+                                            </div>
+                                        </td>
                                         <td><?= htmlspecialchars($promocion['descuentoPromocion'], ENT_QUOTES, 'UTF-8'); ?>%</td>
                                         <td>
                                             <span class="badge <?= $estado['clase']; ?>"
