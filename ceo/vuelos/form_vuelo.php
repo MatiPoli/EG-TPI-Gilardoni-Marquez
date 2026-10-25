@@ -108,18 +108,24 @@ require '../../includes/header.php';
 
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
-                <h5 class="mb-0"><?= $id ? 'Modificar Vuelo' : 'Crear Vuelo'; ?></h5>
+                <h1 class="h5 mb-0"><?= $id ? 'Modificar Vuelo' : 'Crear Vuelo'; ?></h1>
                 <a href="abm_vuelos.php" class="btn btn-outline-light btn-sm text-white">Volver</a>
             </div>
             <div class="card-body p-4">
+                <?php if ($alerta): ?>
+                    <div class="alert alert-<?= htmlspecialchars($alerta['tipo'], ENT_QUOTES, 'UTF-8'); ?>"
+                         role="alert" aria-live="assertive">
+                        <?= htmlspecialchars($alerta['mensaje'], ENT_QUOTES, 'UTF-8'); ?>
+                    </div>
+                <?php endif; ?>
                 <form action="procesar_vuelo.php" method="POST" class="row g-3">
                     <input type="hidden" name="id" value="<?= $id; ?>">
                     <div class="col-12">
-                            <label for="origen" class="form-label">Origen <span aria-hidden="true">*</span></label>
+                            <label for="origen" class="form-label">Origen <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
                             <input type="text" class="form-control<?= isset($errores['origen']) ? ' is-invalid' : ''; ?>" id="origen" name="origen"
                                    value="<?= htmlspecialchars($valores['origen'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
                                    maxlength="100"
-                                   required aria-describedby="origen-ayuda<?= isset($errores['origen']) ? 'origen-error' : ''; ?>"
+                                   required aria-required="true" aria-describedby="origen-ayuda<?= isset($errores['origen']) ? ' origen-error' : ''; ?>"
                                    <?= isset($errores['origen']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="origen-ayuda" class="form-text">Ingresá la ciudad de origen.</div>
                             <?php if (isset($errores['origen'])): ?>
@@ -129,11 +135,11 @@ require '../../includes/header.php';
                             <?php endif; ?>
                     </div>
                     <div class="col-12">
-                            <label for="destino" class="form-label">Destino <span aria-hidden="true">*</span></label>
+                            <label for="destino" class="form-label">Destino <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
                             <input type="text" class="form-control<?= isset($errores['destino']) ? ' is-invalid' : ''; ?>" id="destino" name="destino"
                                    value="<?= htmlspecialchars($valores['destino'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
                                    maxlength="100"
-                                   required aria-describedby="destino-ayuda<?= isset($errores['destino']) ? 'destino-error' : ''; ?>"
+                                   required aria-required="true" aria-describedby="destino-ayuda<?= isset($errores['destino']) ? ' destino-error' : ''; ?>"
                                    <?= isset($errores['destino']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="destino-ayuda" class="form-text">Ingresá la ciudad de destino.</div>
                             <?php if (isset($errores['destino'])): ?>
@@ -143,11 +149,11 @@ require '../../includes/header.php';
                             <?php endif; ?>
                     </div>
                     <div class="col-12 col-md-6">
-                            <label for="fechaSalidaVuelo" class="form-label">Fecha de Salida <span aria-hidden="true">*</span></label>
+                            <label for="fechaSalidaVuelo" class="form-label">Fecha de Salida <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
                             <input type="date" class="form-control<?= isset($errores['fechaSalidaVuelo']) ? ' is-invalid' : ''; ?>" id="fechaSalidaVuelo" name="fechaSalidaVuelo"
                                 value="<?= htmlspecialchars($valores['fechaSalidaVuelo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
                                 min="<?= htmlspecialchars($fechaMinima, ENT_QUOTES, 'UTF-8'); ?>"
-                                required
+                                required aria-required="true"
                                 aria-describedby="fechaSalidaVuelo-ayuda<?= isset($errores['fechaSalidaVuelo']) ? ' fechaSalidaVuelo-error' : ''; ?>"
                                 <?= isset($errores['fechaSalidaVuelo']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="fechaSalidaVuelo-ayuda" class="form-text">Seleccioná la fecha de salida del vuelo.</div>
@@ -158,14 +164,14 @@ require '../../includes/header.php';
                             <?php endif; ?>
                         </div>
                     <div class="col-12 col-md-6">
-                            <label for="horaSalidaVuelo" class="form-label">Horario de Salida <span aria-hidden="true">*</span></label>
+                            <label for="horaSalidaVuelo" class="form-label">Horario de Salida <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
                             <input
                                 type="time"
                                 class="form-control<?= isset($errores['horaSalidaVuelo']) ? ' is-invalid' : ''; ?>"
                                 id="horaSalidaVuelo"
                                 name="horaSalidaVuelo"
                                 value="<?= htmlspecialchars($valores['horaSalidaVuelo'], ENT_QUOTES, 'UTF-8'); ?>"
-                                required aria-describedby="hora-ayuda<?= isset($errores['horaSalidaVuelo']) ? ' hora-error' : ''; ?>"
+                                required aria-required="true" aria-describedby="hora-ayuda<?= isset($errores['horaSalidaVuelo']) ? ' hora-error' : ''; ?>"
                                 <?= isset($errores['horaSalidaVuelo']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="hora-ayuda" class="form-text">Ingresá el horario de salida del vuelo.</div>
                             <?php if (isset($errores['horaSalidaVuelo'])): ?>
@@ -175,7 +181,7 @@ require '../../includes/header.php';
                             <?php endif; ?>
                     </div>
                     <div class="col-12">
-                            <label for="precioVuelo" class="form-label">Precio del Vuelo <span aria-hidden="true">*</span></label>
+                            <label for="precioVuelo" class="form-label">Precio del Vuelo <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
                             <input
                                 type="text"
                                 inputmode="decimal"
@@ -183,7 +189,7 @@ require '../../includes/header.php';
                                 id="precioVuelo"
                                 name="precioVuelo"
                                    value="<?= htmlspecialchars($valores['precioVuelo'], ENT_QUOTES, 'UTF-8'); ?>"
-                                   maxlength="13" pattern="(?:\d{1,3}|\d{4,8}|\d{1,2}(?:\.\d{3}){1,2})(?:,\d{1,2})?" required
+                                   maxlength="13" pattern="(?:\d{1,3}|\d{4,8}|\d{1,2}(?:\.\d{3}){1,2})(?:,\d{1,2})?" required aria-required="true"
                                    aria-describedby="precioVuelo-ayuda<?= isset($errores['precioVuelo']) ? ' precioVuelo-error' : ''; ?>"
                                    <?= isset($errores['precioVuelo']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="precioVuelo-ayuda" class="form-text">Precio por pasaje en pesos. Usá punto para miles y coma para decimales; ejemplo: 1.250,50.</div>
@@ -194,14 +200,14 @@ require '../../includes/header.php';
                             <?php endif; ?>
                         </div>
                         <div class="col-12">
-                            <label for="asientosDisponibles" class="form-label">Cantidad de Asientos Disponibles<span aria-hidden="true">*</span></label>
+                            <label for="asientosDisponibles" class="form-label">Cantidad de Asientos Disponibles <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
                             <input
                                 type="number"
                                 class="form-control<?= isset($errores['asientosDisponibles']) ? ' is-invalid' : ''; ?>"
                                 id="asientosDisponibles"
                                 name="asientosDisponibles"
                                    value="<?= htmlspecialchars($valores['asientosDisponibles'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
-                                   min="19" max="853" step="1" required
+                                   min="19" max="853" step="1" required aria-required="true"
                                    aria-describedby="asientosDisponibles-ayuda<?= isset($errores['asientosDisponibles']) ? ' asientosDisponibles-error' : ''; ?>"
                                    <?= isset($errores['asientosDisponibles']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="asientosDisponibles-ayuda" class="form-text">Ingresá un número entero entre 19 y 853.</div>
@@ -212,7 +218,7 @@ require '../../includes/header.php';
                             <?php endif; ?>
                         </div>
                     <div class="col-12 mt-4 d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary px-5">Guardar</button>
+                        <button type="submit" class="btn btn-primary px-5"><?= $id ? 'Guardar modificaciones' : 'Guardar vuelo'; ?></button>
                         <a href="form_vuelo.php<?= $id ? '?id=' . rawurlencode((string) $id) : ''; ?>" class="btn btn-danger px-5">
                             <?= $id ? 'Descartar cambios' : 'Limpiar'; ?>
                         </a>

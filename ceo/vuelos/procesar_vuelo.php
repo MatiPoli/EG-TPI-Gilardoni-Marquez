@@ -5,8 +5,8 @@ require '../../includes/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = isset($_POST['id']) ? (int) $_POST['id'] : 0;
-    $origen = strtoupper($_POST['origen']);
-    $destino = strtoupper($_POST['destino']);
+    $origen = $_POST['origen'];
+    $destino =$_POST['destino'];
     $fecha = $_POST['fechaSalidaVuelo'];
     $hora = $_POST['horaSalidaVuelo'];
     $precio = str_replace(',', '.', str_replace('.', '', $_POST['precioVuelo']));
