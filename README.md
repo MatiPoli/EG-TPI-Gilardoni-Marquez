@@ -1,6 +1,12 @@
 # Proyecto ViajAir - Reserva de Vuelos
 
-Trabajo Práctico Integrador - Entornos Gráficos (UTN FRRO)
+## Trabajo Práctico Integrador - Entornos Gráficos (UTN FRRO)
+
+ViajAir es una plataforma web para buscar vuelos, consultar promociones y
+novedades, y gestionar reservas. Además, permite administrar aerolíneas,
+vuelos, usuarios y reportes según el rol de cada usuario.
+
+---
 
 ### Guía de instalación y configuración local
 
@@ -126,14 +132,14 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 - [x] El sistema está subido a un hosting y es accesible desde el navegador con una URL pública.
 - [x] La URL funciona desde cualquier red y dispositivo (probalo desde el celular con datos, no desde tu wifi).
 - [x] El sitio carga sin errores de certificado ni advertencias del navegador (HTTPS).
-- [ ] No quedan páginas rotas, links muertos ni rutas que devuelvan error 404 / 500.
-- [ ] Los archivos estáticos (imágenes, CSS, JS) cargan bien en producción, no solo en local.
+- [x] No quedan páginas rotas, links muertos ni rutas que devuelvan error 404 / 500.
+- [x] Los archivos estáticos (imágenes, CSS, JS) cargan bien en producción, no solo en local.
 - [x] El entorno de producción usa la base de datos de producción, no la de tu máquina.
 
 ## 2. Repositorio
 
 - [x] El repositorio es público y la URL está incluida en la entrega.
-- [ ] Tiene un `README.md` con: qué hace el sistema, URL de producción, tecnologías usadas, integrantes del grupo y usuarios de prueba.
+- [x] Tiene un `README.md` con: qué hace el sistema, URL de producción, tecnologías usadas, integrantes del grupo y usuarios de prueba.
 - [x] Historial de commits real y distribuido entre los integrantes (no un único commit "final").
 - [x] Mensajes de commit entendibles.
 - [x] Hay un `.gitignore` correcto: **no** están subidos `vendor/`, `node_modules/`, `.env`, ni archivos temporales.
@@ -142,9 +148,9 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 
 ## 3. Se puede testear sin instrucciones
 
-- [ ] Existe al menos un usuario de prueba con su contraseña documentado en el README y en el informe.
-- [ ] Si hay roles (admin, usuario, etc.), hay un usuario de prueba por cada rol lo cual debe contar en el informe en la sección de Puesta en Funcionamiento.
-- [ ] Hay datos de prueba cargados: el sistema no debe abrirse vacío.
+- [x] Existe al menos un usuario de prueba con su contraseña documentado en el README y en el informe.
+- [x] Si hay roles (admin, usuario, etc.), hay un usuario de prueba por cada rol lo cual debe contar en el informe en la sección de Puesta en Funcionamiento.
+- [x] Hay datos de prueba cargados: el sistema no debe abrirse vacío.
 - [x] El registro de un usuario nuevo funciona de punta a punta.
 - [x] Cualquier flujo importante se puede completar sin que nadie te explique nada.
 
@@ -175,7 +181,7 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 - [x] Las alertas y mensajes de error del framework están traducidos o interceptados.
 - [x] Los mensajes de error de la base de datos nunca se muestran crudos al usuario.
 - [x] Sin faltas de ortografía ni textos de prueba ("asdasd", "probando 123").
-- [ ] Fechas, números y moneda en formato local.
+- [x] Fechas, números y moneda en formato local.
 
 ## 7. Formularios y validaciones
 
@@ -190,7 +196,7 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 - [x] Las contraseñas están hasheadas en la base de datos, nunca en texto plano.
 - [x] Las páginas privadas no se pueden abrir sin estar logueado (probá pegando la URL directa en una ventana de incógnito).
 - [x] Un usuario no puede ver ni editar datos de otro usuario cambiando el ID en la URL.
-- [ ] Las consultas usan sentencias preparadas (nada de concatenar SQL).
+- [x] Las consultas usan sentencias preparadas (nada de concatenar SQL).
 - [x] El contenido cargado por usuarios se escapa al mostrarlo (sin XSS).
 - [x] El logout funciona y cierra realmente la sesión.
 
@@ -201,17 +207,17 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 - [x] Estilo consistente entre pantallas (colores, tipografías, botones).
 - [x] Las imágenes tienen tamaño razonable y `alt`.
 - [x] Las imágenes tiene título visible al pasar mouse sobre las mismas.
-- [ ] Contraste suficiente para leer los textos.
+- [x] Contraste suficiente para leer los textos.
 
 ## 10. Última pasada antes de entregar
 
-- [ ] La consola del navegador no muestra errores en rojo.
+- [x] La consola del navegador no muestra errores en rojo.
 - [x] No quedan `var_dump`, `console.log`, `dd()` ni mensajes de debug visibles.
 - [x] El modo debug está apagado en producción.
 - [x] Recorriste el sistema completo desde cero, en una ventana de incógnito, como si fueras un usuario nuevo.
 - [x] Se lo hiciste probar a alguien ajeno al grupo y pudo usarlo sin ayuda.
-- [ ] La entrega incluye: URL de producción, URL del repositorio, usuarios de prueba e integrantes e Informe completo.
-- [ ] Entregado en tiempo y forma según lo pedido en la consigna.
+- [x] La entrega incluye: URL de producción, URL del repositorio, usuarios de prueba e integrantes e Informe completo.
+- [x] Entregado en tiempo y forma según lo pedido en la consigna.
 
 ---
 ## Informe final
