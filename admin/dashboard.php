@@ -59,6 +59,36 @@ require '../includes/header.php';
                             <h2 class="text-success"><?= $total_users; ?></h2>
                         </div>
                     </div>
+
+                    <hr class="my-4">
+
+                    <div class="text-start">
+                        <h2 class="h5 fw-bold text-dark mb-2">Informes y Reportes Estadísticos</h2>
+                        <p class="text-dark small mb-3">Métricas globales de la plataforma y de sus aerolíneas.</p>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-4">
+                                <div class="card border p-3 h-100">
+                                    <h3 class="h6 fw-bold text-primary mb-2">Reporte Global de Ventas</h3>
+                                    <p class="text-dark small mb-3">Facturación, pasajes vendidos y destinos con mayor recaudación.</p>
+                                    <a href="/tpi/admin/reporte_ventas.php" class="btn btn-outline-primary fw-bold mt-auto">Ver Reporte de Ventas</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card border p-3 h-100">
+                                    <h3 class="h6 fw-bold text-primary mb-2">Reporte Global de Ocupación</h3>
+                                    <p class="text-dark small mb-3">Ocupación, capacidad y asientos disponibles por vuelo y aerolínea.</p>
+                                    <a href="/tpi/admin/reporte_ocupacion.php" class="btn btn-outline-primary fw-bold mt-auto">Ver Reporte de Ocupación</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="card border p-3 h-100">
+                                    <h3 class="h6 fw-bold text-primary mb-2">Reporte Global de Usuarios</h3>
+                                    <p class="text-dark small mb-3">Distribución de cuentas por rol y estado.</p>
+                                    <a href="/tpi/admin/reporte_usuarios.php" class="btn btn-outline-primary fw-bold mt-auto">Ver Reporte de Usuarios</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

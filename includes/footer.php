@@ -15,7 +15,9 @@
                             <a href="/tpi/admin/aerolineas/abm_aerolineas.php" class="text-white text-decoration-none small me-3 text-nowrap">Gestión de Aerolíneas</a>
                             <a href="/tpi/admin/promociones/auditoria.php" class="text-white text-decoration-none small me-3 text-nowrap">Auditar Promociones</a>
                             <a href="/tpi/admin/novedades/abm_novedades.php" class="text-white text-decoration-none small me-3 text-nowrap">Gestión de Novedades</a>
-                            <a href="/tpi/admin/reportes.php" class="text-white text-decoration-none small me-3 text-nowrap">Reportes</a>
+                            <a href="/tpi/admin/reporte_ventas.php" class="text-white text-decoration-none small me-3 text-nowrap">Reporte de Ventas</a>
+                            <a href="/tpi/admin/reporte_ocupacion.php" class="text-white text-decoration-none small me-3 text-nowrap">Reporte de Ocupación</a>
+                            <a href="/tpi/admin/reporte_usuarios.php" class="text-white text-decoration-none small me-3 text-nowrap">Reporte de Usuarios</a>
                         <?php elseif ($_SESSION['tipoUsuario'] == 'ceo'): ?>
                             <a href="/tpi/ceo/dashboard.php" class="text-white text-decoration-none small me-3 text-nowrap">Panel CEO</a>
                             <a href="/tpi/ceo/vuelos/abm_vuelos.php" class="text-white text-decoration-none small me-3 text-nowrap">Gestión de Vuelos</a>
