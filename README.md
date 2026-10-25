@@ -8,6 +8,16 @@ vuelos, usuarios y reportes según el rol de cada usuario.
 
 ---
 
+### Tecnologías utilizadas
+
+- **PHP:** lógica del sistema y generación de las páginas.
+- **MySQL:** almacenamiento de usuarios, aerolíneas, vuelos, reservas y reportes.
+- **PHPMailer:** envío de correos electrónicos de registro y recuperación de contraseña.
+- **Chart.js:** generación de gráficos estadísticos en los reportes.
+- **Bootstrap 5:** estilos y diseño responsive de la interfaz.
+
+---
+
 ### Guía de instalación y configuración local
 
 Sigue estos pasos para configurar el entorno y levantar el proyecto en tu computadora.
