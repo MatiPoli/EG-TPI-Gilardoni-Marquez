@@ -90,6 +90,27 @@ Abrir el navegador y entrar a:
 
 [http://localhost/tpi/index.php](http://localhost/tpi/index.php)
 
+### 7. Sitio publicado y usuarios de prueba
+
+El sistema también se encuentra publicado en:
+
+[http://viajair.infinityfree.io/tpi/](http://viajair.infinityfree.io/tpi/)
+
+Se pueden utilizar los siguientes usuarios de
+prueba. Todas las cuentas tienen contraseñas ficticias creadas exclusivamente
+para la demostración:
+
+| Rol | Correo | Contraseña | Estado | Aerolínea |
+|---|---|---|---|---|
+| Administrador | `admin@viajair.test` | `Admin123!` | Activa | — |
+| CEO | `ceo@viajair.test` | `Ceo123!` | Activa | Aerolíneas Argentinas |
+| Pasajero | `usuario@viajair.test` | `Usuario123!` | Activa | — |
+| CEO | `ceo.pendiente@viajair.test` | `Pendiente123!` | Pendiente de aprobación | Sin asignar |
+
+La cuenta CEO pendiente permite probar la bandeja de solicitudes del
+administrador. Para acceder a las funciones del CEO activo, debe utilizarse la
+cuenta `ceo@viajair.test`.
+
 ---
 
 ## Lista de Verificación (Checklist de la cátedra)
