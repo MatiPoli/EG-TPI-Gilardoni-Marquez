@@ -6,14 +6,19 @@ $message = '';
 $message_type = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
+    $email = is_string($_POST['email'] ?? null) ? trim($_POST['email']) : '';
 
-    $stmt = $conexion->prepare("SELECT codUsuario, nombreUsuario FROM USUARIOS WHERE emailUsuario = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    if ($email === '' || mb_strlen($email, 'UTF-8') > 100 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $message = 'Ingresá un correo electrónico válido.';
+        $message_type = 'danger';
+    } else {
+        $stmt = $conexion->prepare("SELECT codUsuario, nombreUsuario FROM USUARIOS WHERE emailUsuario = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    }
 
-    if ($result->num_rows === 1) {
+    if (isset($result) && $result->num_rows === 1) {
         $user = $result->fetch_assoc();
         
         $token = bin2hex(random_bytes(32));
@@ -116,13 +121,15 @@ require '../includes/header.php';
                     
                     <div class="mb-4">
                         <label for="email" class="form-label fw-semibold text-dark">
-                            Correo Electrónico <span class="text-danger" aria-hidden="true">*</span>
+                            Correo Electrónico <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span>
                         </label>
                         <input type="email" 
                                 class="form-control" 
                                 id="email" 
                                 name="email" 
                                 placeholder="nombre@ejemplo.com" 
+                                maxlength="100"
+                                autocomplete="email"
                                 required 
                                 aria-required="true"
                                 aria-describedby="email-ayuda">

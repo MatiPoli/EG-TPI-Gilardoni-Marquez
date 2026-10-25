@@ -8,16 +8,31 @@ require '../includes/header.php';
 
 $message = '';
 $message_type = '';
+$name = '';
+$email = '';
+$phone = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['nombre'];
-    $email = $_POST['email'];
-    $phone = $_POST['telefono'];
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
+    $name = is_string($_POST['nombre'] ?? null) ? trim($_POST['nombre']) : '';
+    $email = is_string($_POST['email'] ?? null) ? trim($_POST['email']) : '';
+    $phone = is_string($_POST['telefono'] ?? null) ? trim($_POST['telefono']) : '';
+    $password = is_string($_POST['password'] ?? null) ? $_POST['password'] : '';
+    $password_confirm = is_string($_POST['password_confirm'] ?? null) ? $_POST['password_confirm'] : '';
     $account_type = 'usuario';
 
-    if ($password !== $password_confirm) {
+    if ($name === '' || mb_strlen($name, 'UTF-8') > 100) {
+        $message = "Ingresá un nombre de hasta 100 caracteres.";
+        $message_type = "danger";
+    } elseif ($email === '' || mb_strlen($email, 'UTF-8') > 100 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $message = "Ingresá un correo electrónico válido de hasta 100 caracteres.";
+        $message_type = "danger";
+    } elseif ($phone === '' || !preg_match('/^[0-9+\s().-]{6,20}$/', $phone)) {
+        $message = "Ingresá un teléfono válido de entre 6 y 20 caracteres.";
+        $message_type = "danger";
+    } elseif (strlen($password) < 8 || strlen($password) > 8) {
+        $message = "La contraseña debe tener exactamente 8 caracteres.";
+        $message_type = "danger";
+    } elseif ($password !== $password_confirm) {
         $message = "Las contraseñas no coinciden.";
         $message_type = "danger";
     } else {
@@ -111,27 +126,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="col-md-8 col-lg-6">
         <div class="card shadow-sm mt-3">
             <div class="card-body p-4">
-                <h4 class="card-title text-center mb-4">Formulario de registro</h4>
+                <h1 class="h4 card-title text-center mb-4">Formulario de registro</h1>
                 
                 <?php if($message): ?>
-                    <div class="alert alert-<?= $message_type; ?> p-2 text-center"><?= $message; ?></div>
+                    <div id="registro-mensaje" class="alert alert-<?= htmlspecialchars($message_type, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?> p-2 text-center" role="alert" aria-live="assertive"><?= htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></div>
                 <?php endif; ?>
 
                 <form action="registro.php" method="POST" class="row g-3">
                     <div class="col-12">
-                        <input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required>
+                        <label for="nombre" class="form-label">Nombre completo <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" maxlength="100" autocomplete="name" value="<?= htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="telefono" class="form-control" placeholder="Teléfono" required>
+                        <label for="telefono" class="form-label">Teléfono <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control" maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" value="<?= htmlspecialchars($phone, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
-                        <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required>
+                        <label for="email" class="form-label">Correo electrónico <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="email" id="email" name="email" class="form-control" maxlength="100" autocomplete="email" value="<?= htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required maxlength="8">
+                        <label for="password" class="form-label">Contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
-                        <input type="password" name="password_confirm" class="form-control" placeholder="Repetir contraseña" required maxlength="8">
+                        <label for="password_confirm" class="form-label">Repetir contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-12 mt-4 text-center">
                         <button type="submit" class="btn btn-primary px-5">Registrarme</button>

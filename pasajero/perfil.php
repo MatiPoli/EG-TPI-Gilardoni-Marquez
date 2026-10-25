@@ -6,13 +6,22 @@ require '../includes/conexion.php';
 $user_id = $_SESSION['codUsuario'];
 $mensaje = '';
 $tipoMensaje = '';
+$nombreFormulario = '';
+$telefonoFormulario = '';
+$esActualizacion = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['accion'] === 'actualizar') {
-    $nombre = trim($_POST['nombre'] ?? '');
-    $telefono = trim($_POST['telefono'] ?? '');
+    $esActualizacion = true;
+    $nombre = is_string($_POST['nombre'] ?? null) ? trim($_POST['nombre']) : '';
+    $telefono = is_string($_POST['telefono'] ?? null) ? trim($_POST['telefono']) : '';
+    $nombreFormulario = $nombre;
+    $telefonoFormulario = $telefono;
 
-    if (empty($nombre) || empty($telefono)) {
-        $mensaje = "Todos los campos marcados con asterisco (*) son obligatorios.";
+    if ($nombre === '' || mb_strlen($nombre, 'UTF-8') > 100) {
+        $mensaje = "Ingresá un nombre de hasta 100 caracteres.";
+        $tipoMensaje = "danger";
+    } elseif ($telefono === '' || !preg_match('/^[0-9+\s().-]{6,20}$/', $telefono)) {
+        $mensaje = "Ingresá un teléfono válido de entre 6 y 20 caracteres.";
         $tipoMensaje = "danger";
     } else {
         $sqlUpdate = "UPDATE USUARIOS SET nombreUsuario = ?, telefonoUsuario = ? WHERE codUsuario = ?";
@@ -52,6 +61,11 @@ $stmtUser->bind_param("i", $user_id);
 $stmtUser->execute();
 $user = $stmtUser->get_result()->fetch_assoc();
 
+if (!$esActualizacion) {
+    $nombreFormulario = $user['nombreUsuario'];
+    $telefonoFormulario = $user['telefonoUsuario'];
+}
+
 $title = "Mi Perfil | ViajAir";
 require '../includes/header.php';
 ?>
@@ -73,8 +87,8 @@ require '../includes/header.php';
         
 
         <?php if (!empty($mensaje)): ?>
-            <div class="alert alert-<?= $tipoMensaje; ?> alert-dismissible fade show" role="alert">
-                <?= $mensaje; ?>
+            <div id="perfil-mensaje" class="alert alert-<?= htmlspecialchars($tipoMensaje, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?> alert-dismissible fade show" role="alert" aria-live="assertive">
+                <?= htmlspecialchars($mensaje, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar notificación"></button>
             </div>
         <?php endif; ?>
@@ -104,21 +118,21 @@ require '../includes/header.php';
 
                         <div class="mb-3">
                             <label for="nombre" class="form-label fw-semibold text-dark">
-                                Nombre y Apellido <span class="text-danger" aria-hidden="true">*</span>
+                                Nombre y Apellido <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span>
                             </label>
                             <input type="text" class="form-control" id="nombre" name="nombre" 
-                                   value="<?= htmlspecialchars($user['nombreUsuario']); ?>" 
-                                   required aria-required="true">
+                                   value="<?= htmlspecialchars($nombreFormulario, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
+                                   maxlength="100" autocomplete="name" required aria-required="true" <?= $mensaje ? 'aria-describedby="perfil-mensaje"' : ''; ?>>
                         </div>
 
 
                         <div class="mb-4">
                             <label for="telefono" class="form-label fw-semibold text-dark">
-                                Teléfono de contacto <span class="text-danger" aria-hidden="true">*</span>
+                                Teléfono de contacto <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span>
                             </label>
                             <input type="tel" class="form-control" id="telefono" name="telefono" 
-                                   value="<?= htmlspecialchars($user['telefonoUsuario']); ?>" 
-                                   required aria-required="true">
+                                   value="<?= htmlspecialchars($telefonoFormulario, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>"
+                                   maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" required aria-required="true" <?= $mensaje ? 'aria-describedby="perfil-mensaje"' : ''; ?>>
                         </div>
                     </fieldset>
 

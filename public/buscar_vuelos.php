@@ -158,7 +158,8 @@ require '../includes/header.php';
                             <div class="d-flex align-items-center gap-2 mb-2">
                                 <span class="badge bg-light text-dark border"><?= htmlspecialchars($vuelo['nombreAerolinea']); ?></span>
                                 <?php if ($tienePromo): ?>
-                                    <span class="badge bg-success" aria-label="Descuento aplicado: <?= $descuento; ?> por ciento">
+                                    <span class="badge bg-success">
+                                        <span class="visually-hidden">Descuento aplicado: </span>
                                         <?= $descuento; ?>% OFF
                                     </span>
                                 <?php endif; ?>

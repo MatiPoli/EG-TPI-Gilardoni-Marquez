@@ -29,11 +29,17 @@ if (isset($_GET['token'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
-    $password = $_POST['password'];
-    $password_confirm = $_POST['password_confirm'];
-    $id = $_POST['user_id'];
+    $password = is_string($_POST['password']) ? $_POST['password'] : '';
+    $password_confirm = is_string($_POST['password_confirm'] ?? null) ? $_POST['password_confirm'] : '';
+    $id = filter_input(INPUT_POST, 'user_id', FILTER_VALIDATE_INT);
 
-    if ($password !== $password_confirm) {
+    if (!$id) {
+        $message = 'La solicitud no es válida.';
+        $message_type = 'danger';
+    } elseif (strlen($password) < 8 || strlen($password) > 8) {
+        $message = 'La contraseña debe tener exactamente 8 caracteres.';
+        $message_type = 'danger';
+    } elseif ($password !== $password_confirm) {
         $message = "Las contraseñas no coinciden.";
         $message_type = "danger";
         $is_valid_token = true; 
@@ -66,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
     <div class="col-md-6 col-lg-4">
         <div class="card shadow-sm mt-3">
             <div class="card-body p-4">
-                <h4 class="card-title text-center mb-4">Formulario de nueva contraseña</h4>
+                <h1 class="h4 card-title text-center mb-4">Formulario de nueva contraseña</h1>
                 
                 <?php if($message): ?>
-                    <div class="alert alert-<?= $message_type; ?> p-2 text-center"><?= $message; ?></div>
+                    <div id="restablecer-mensaje" class="alert alert-<?= htmlspecialchars($message_type, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?> p-2 text-center" role="alert" aria-live="assertive"><?= htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></div>
                     <?php if(!$is_valid_token && $message_type === 'success'): ?>
                         <div class="text-center mt-3">
                             <a href="/tpi/auth/login.php" class="btn btn-primary">Ir al Login</a>
@@ -81,10 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['password'])) {
                     <form action="restablecer.php?token=<?= $token; ?>" method="POST">
                         <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                         <div class="mb-3">
-                            <input type="password" name="password" class="form-control" placeholder="Nueva Contraseña" required maxlength="8">
+                            <label for="password" class="form-label">Nueva contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                            <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" aria-describedby="password-ayuda">
+                            <div id="password-ayuda" class="form-text">La contraseña debe tener exactamente 8 caracteres.</div>
                         </div>
                         <div class="mb-4">
-                            <input type="password" name="password_confirm" class="form-control" placeholder="Repetir Contraseña" required maxlength="8">
+                            <label for="password_confirm" class="form-label">Repetir contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
+                            <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" aria-describedby="password-confirm-ayuda">
+                            <div id="password-confirm-ayuda" class="form-text">Repetí la contraseña ingresada.</div>
                         </div>
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary">Guardar</button>

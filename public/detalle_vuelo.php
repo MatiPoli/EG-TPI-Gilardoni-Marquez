@@ -64,7 +64,8 @@ require '../includes/header.php';
                         <div class="d-flex align-items-center gap-2 mb-2">
                             <span class="badge bg-secondary text-dark border"><?= htmlspecialchars($vuelo['nombreAerolinea']); ?> (<?= htmlspecialchars($vuelo['codigoIATA']); ?>)</span>
                             <?php if ($tienePromo): ?>
-                                <span class="badge bg-success" aria-label="Promoción aprobada del <?= $descuento; ?> por ciento">
+                                <span class="badge bg-success">
+                                    <span class="visually-hidden">Promoción aprobada del </span>
                                     <?= $descuento; ?>% OFF
                                 </span>
                             <?php endif; ?>

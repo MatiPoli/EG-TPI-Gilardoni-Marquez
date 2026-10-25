@@ -42,8 +42,8 @@ if (isset($_GET['id']) && isset($_GET['hash'])) {
     <div class="col-md-6">
         <div class="card shadow-sm">
             <div class="card-body p-5 text-center">
-                <h4 class="mb-4">Validación de Cuenta</h4>
-                <div class="alert alert-<?= $message_type; ?>"><?= $message; ?></div>
+                <h1 class="h4 mb-4">Validación de cuenta</h1>
+                <div class="alert alert-<?= htmlspecialchars($message_type, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" role="alert" aria-live="assertive"><?= htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></div>
                 <a href="/tpi/auth/login.php" class="btn btn-primary mt-3">Ir al Login</a>
             </div>
         </div>

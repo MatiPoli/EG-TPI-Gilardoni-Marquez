@@ -7,6 +7,9 @@ require '../includes/header.php';
 
 $message = '';
 $message_type = '';
+$name = '';
+$email = '';
+$phone = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = filter_input(INPUT_POST, 'nombre', FILTER_UNSAFE_RAW);
@@ -21,12 +24,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password_confirm = is_string($password_confirm) ? $password_confirm : '';
     $account_type = 'ceo';
 
-    if ($password !== $password_confirm) {
+    if ($name === '' || mb_strlen($name, 'UTF-8') > 100) {
+        $message = "Ingresá un nombre de hasta 100 caracteres.";
+        $message_type = "danger";
+    } elseif ($email === '' || mb_strlen($email, 'UTF-8') > 100 || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $message = "Ingresá un correo electrónico válido de hasta 100 caracteres.";
+        $message_type = "danger";
+    } elseif ($phone === '' || !preg_match('/^[0-9+\s().-]{6,20}$/', $phone)) {
+        $message = "Ingresá un teléfono válido de entre 6 y 20 caracteres.";
+        $message_type = "danger";
+    } elseif (strlen($password) < 8 || strlen($password) > 8) {
+        $message = "La contraseña debe tener exactamente 8 caracteres.";
+        $message_type = "danger";
+    } elseif ($password !== $password_confirm) {
         $message = "Las contraseñas no coinciden.";
         $message_type = "danger";
     } else {
-        $stmt_check = $conexion->prepare("SELECT codUsuario FROM USUARIOS WHERE emailUsuario = ? OR telefonoUsuario = ?");
-        $stmt_check->bind_param("ss", $email, $phone);
+        $stmt_check = $conexion->prepare("SELECT codUsuario FROM USUARIOS WHERE emailUsuario = ?");
+        $stmt_check->bind_param("s", $email);
         $stmt_check->execute();
         
         if ($stmt_check->get_result()->num_rows > 0) {
@@ -64,29 +79,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h1 class="h4 card-title text-center mb-4">Formulario de registro CEO</h1>
                 
                 <?php if($message): ?>
-                    <div class="alert alert-<?= $message_type; ?> p-2 text-center"><?= $message; ?></div>
+                    <div id="registro-ceo-mensaje" class="alert alert-<?= htmlspecialchars($message_type, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?> p-2 text-center" role="alert" aria-live="assertive"><?= htmlspecialchars($message, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></div>
                 <?php endif; ?>
 
                 <form action="registro_ceo.php" method="POST" class="row g-3">
                     <div class="col-12">
                         <label for="nombre" class="form-label">Nombre y apellido <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" required aria-required="true">
+                        <input type="text" id="nombre" name="nombre" class="form-control" maxlength="100" autocomplete="name" value="<?= htmlspecialchars($name, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-ceo-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="telefono" class="form-label">Teléfono corporativo <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="text" id="telefono" name="telefono" class="form-control" required aria-required="true">
+                        <input type="tel" id="telefono" name="telefono" class="form-control" maxlength="20" pattern="[0-9+(). -]{6,20}" inputmode="tel" autocomplete="tel" value="<?= htmlspecialchars($phone, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-ceo-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="email" class="form-label">Correo electrónico <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="email" id="email" name="email" class="form-control" required aria-required="true">
+                        <input type="email" id="email" name="email" class="form-control" maxlength="100" autocomplete="email" value="<?= htmlspecialchars($email, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" required aria-required="true" <?= $message ? 'aria-describedby="registro-ceo-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="password" class="form-label">Contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="password" id="password" name="password" class="form-control" required aria-required="true" maxlength="8">
+                        <input type="password" id="password" name="password" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-ceo-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-md-6">
                         <label for="password_confirm" class="form-label">Repetir contraseña <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" required aria-required="true" maxlength="8">
+                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" autocomplete="new-password" required aria-required="true" minlength="8" maxlength="8" <?= $message ? 'aria-describedby="registro-ceo-mensaje"' : ''; ?>>
                     </div>
                     <div class="col-12 mt-4 text-center">
                         <button type="submit" class="btn btn-primary px-5">Enviar Solicitud</button>
