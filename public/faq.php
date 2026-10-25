@@ -91,10 +91,9 @@ require '../includes/header.php';
                             ¿Dónde veo mis reservas y mis compras anteriores?
                         </button>
                     </h3>
-                    <!-- TODO: Una vez creado el Historial de Compras, vincular el <a> -->
                     <div id="rta6" class="accordion-collapse collapse" data-bs-parent="#faq">
                         <div class="accordion-body"> 
-                            En la sección <a href="/tpi/pasajero/reservas.php">Mis Reservas</a> encontrás tus reservas activas y en <a href="">Historial de Compras</a>, el detalle de las compras anteriores. En ambas podés consultar los datos de cada vuelo.
+                            En la sección <a href="/tpi/pasajero/historial.php">Mis Reservas</a> encontrás tus reservas activas y en <a href="">Historial de Compras</a>, el detalle de las compras anteriores. En ambas podés consultar los datos de cada vuelo.
                         </div>
                     </div>
                 </div>
