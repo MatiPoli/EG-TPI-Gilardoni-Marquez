@@ -102,10 +102,10 @@ para la demostración:
 
 | Rol | Correo | Contraseña | Estado | Aerolínea |
 |---|---|---|---|---|
-| Administrador | `admin@viajair.test` | `Admin123!` | Activa | — |
-| CEO | `ceo@viajair.test` | `Ceo123!` | Activa | Aerolíneas Argentinas |
-| Pasajero | `usuario@viajair.test` | `Usuario123!` | Activa | — |
-| CEO | `ceo.pendiente@viajair.test` | `Pendiente123!` | Pendiente de aprobación | Sin asignar |
+| Administrador | `admin@viajair.test` | `1234` | Activa | — |
+| CEO | `ceo@viajair.test` | `1234` | Activa | Aerolíneas Argentinas |
+| Pasajero | `usuario@viajair.test` | `1234` | Activa | — |
+| CEO | `ceo.pendiente@viajair.test` | `1234` | Pendiente de aprobación | Sin asignar |
 
 La cuenta CEO pendiente permite probar la bandeja de solicitudes del
 administrador. Para acceder a las funciones del CEO activo, debe utilizarse la

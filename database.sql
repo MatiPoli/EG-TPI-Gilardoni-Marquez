@@ -76,12 +76,12 @@ VALUES
 INSERT INTO USUARIOS
     (nombreUsuario, claveUsuario, tipoUsuario, estadoUsuario, codAerolinea, emailUsuario, telefonoUsuario)
 VALUES
-    ('Administrador de prueba', '2637a5c30af69a7bad877fdb65fbd78b', 'administrador', 'activo', NULL, 'admin@viajair.test', '3415550001'),
-    ('CEO de prueba', '10b92a76e6a9ce8c1052ec2ce8a7fc3b', 'ceo', 'activo',
+    ('Administrador de prueba', '81dc9bdb52d04dc20036dbd8313ed055', 'administrador', 'activo', NULL, 'admin@viajair.test', '3415550001'),
+    ('CEO de prueba', '81dc9bdb52d04dc20036dbd8313ed055', 'ceo', 'activo',
         (SELECT codAerolinea FROM AEROLINEAS WHERE codigoIATA = 'ARG'),
         'ceo@viajair.test', '3415550002'),
-    ('Pasajero de prueba', '27eb0b7c4a4b620159fef5a83e52b69b', 'usuario', 'activo', NULL, 'usuario@viajair.test', '3415550003'),
-    ('CEO pendiente de prueba', 'fbbbabf6510c8429d49924ff665a2e39', 'ceo', 'pendiente', NULL, 'ceo.pendiente@viajair.test', '3415550004');
+    ('Pasajero de prueba', '81dc9bdb52d04dc20036dbd8313ed055', 'usuario', 'activo', NULL, 'usuario@viajair.test', '3415550003'),
+    ('CEO pendiente de prueba', '81dc9bdb52d04dc20036dbd8313ed055', 'ceo', 'pendiente', NULL, 'ceo.pendiente@viajair.test', '3415550004');
 
 INSERT INTO VUELOS
     (codAerolinea, origenVuelo, destinoVuelo, fechaSalidaVuelo, horaSalidaVuelo, precioVuelo, asientosDisponibles)
