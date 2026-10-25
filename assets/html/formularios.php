@@ -2,7 +2,7 @@
 
 require '../../includes/sesiones.php';
 require '../../includes/conexion.php';
-// checkRole('asset');
+checkRole('asset');
 
 $pagina = 'Formulario genérico';
 $title = $pagina . ' | ViajAir';
