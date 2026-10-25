@@ -114,8 +114,7 @@ require '../../includes/header.php';
                                         <td><?= htmlspecialchars($promocion['descripcionPromocion'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></td>
                                         <td><?= htmlspecialchars($promocion['descuentoPromocion'], ENT_QUOTES, 'UTF-8'); ?>%</td>
                                         <td>
-                                            <span class="badge bg-warning text-dark"
-                                                  aria-label="Estado: Pendiente">Pendiente</span>
+                                            <span class="badge bg-warning text-dark">Pendiente</span>
                                         </td>
                                         <td class="text-center">
                                             <form action="/tpi/admin/promociones/procesar_auditoria.php" method="POST"

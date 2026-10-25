@@ -101,8 +101,7 @@ require '../../includes/header.php';
                                         </td>
                                         <td><?= htmlspecialchars($promocion['descuentoPromocion'], ENT_QUOTES, 'UTF-8'); ?>%</td>
                                         <td>
-                                            <span class="badge <?= $estado['clase']; ?>"
-                                                  aria-label="Estado: <?= $estado['texto']; ?>">
+                                            <span class="badge <?= $estado['clase']; ?>">
                                                 <?= $estado['texto']; ?>
                                             </span>
                                         </td>

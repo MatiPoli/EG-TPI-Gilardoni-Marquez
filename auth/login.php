@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 exit();
             }
         } else {
-            $error = "ContraseÃ±a incorrecta.";
+            $error = "Contraseña incorrecta.";
         }
     } else {
-        $error = "El correo no estÃ¡ registrado.";
+        $error = "El correo no está registrado.";
     }
 }
 

@@ -90,7 +90,7 @@ require '../../includes/header.php';
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h1 class="h5 mb-0"><?= $id ? 'Modificar novedad' : 'Registrar nueva novedad'; ?></h1>
-                <a href="abm_novedades.php" class="btn btn-outline-light btn-sm">Volver al listado</a>
+                <a href="abm_novedades.php" class="btn btn-light btn-sm fw-bold">Volver al listado</a>
             </div>
             <div class="card-body p-4">
                 <?php if ($errores): ?><div class="alert alert-danger" role="alert" aria-live="assertive">Revisá los campos marcados y volvé a intentar.</div><?php endif; ?>
@@ -99,25 +99,25 @@ require '../../includes/header.php';
                     <fieldset class="row g-3 border-0 p-0 m-0"><legend class="visually-hidden">Datos de la novedad</legend>
                         <div class="col-12">
                             <label for="titulo" class="form-label">Título <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <input type="text" id="titulo" name="titulo" class="form-control<?= isset($errores['titulo']) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores['titulo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" maxlength="150" required aria-required="true" aria-describedby="titulo-ayuda<?= isset($errores['titulo']) ? ' titulo-error' : ''; ?>" <?= isset($errores['titulo']) ? 'aria-invalid="true"' : ''; ?>>
+                            <input type="text" id="titulo" name="titulo" class="form-control<?= isset($errores['titulo']) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores['titulo'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" maxlength="150" required aria-describedby="titulo-ayuda<?= isset($errores['titulo']) ? ' titulo-error' : ''; ?>" <?= isset($errores['titulo']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="titulo-ayuda" class="form-text">Un título breve para la novedad.</div>
                             <?php if (isset($errores['titulo'])): ?><div id="titulo-error" class="invalid-feedback d-block"><?= htmlspecialchars($errores['titulo'], ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
                         </div>
                         <div class="col-12">
                             <label for="text" class="form-label">Texto de la novedad <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <textarea id="text" name="text" class="form-control<?= isset($errores['text']) ? ' is-invalid' : ''; ?>" rows="4" maxlength="200" required aria-required="true" aria-describedby="texto-ayuda<?= isset($errores['text']) ? ' texto-error' : ''; ?>" <?= isset($errores['text']) ? 'aria-invalid="true"' : ''; ?>><?= htmlspecialchars($valores['text'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></textarea>
+                            <textarea id="text" name="text" class="form-control<?= isset($errores['text']) ? ' is-invalid' : ''; ?>" rows="4" maxlength="200" required aria-describedby="texto-ayuda<?= isset($errores['text']) ? ' texto-error' : ''; ?>" <?= isset($errores['text']) ? 'aria-invalid="true"' : ''; ?>><?= htmlspecialchars($valores['text'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></textarea>
                             <div id="texto-ayuda" class="form-text">Hasta 200 caracteres.</div>
                             <?php if (isset($errores['text'])): ?><div id="texto-error" class="invalid-feedback d-block"><?= htmlspecialchars($errores['text'], ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
                         </div>
                         <div class="col-md-6">
                             <label for="pub_date" class="form-label">Fecha de publicación <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <input type="date" id="pub_date" name="pub_date" class="form-control<?= isset($errores['pub_date']) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores['pub_date'], ENT_QUOTES, 'UTF-8'); ?>" min="<?= $id ? '' : $hoy; ?>" required aria-required="true" aria-describedby="pub-ayuda<?= isset($errores['pub_date']) ? ' pub-error' : ''; ?>">
+                            <input type="date" id="pub_date" name="pub_date" class="form-control<?= isset($errores['pub_date']) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores['pub_date'], ENT_QUOTES, 'UTF-8'); ?>" min="<?= $id ? '' : $hoy; ?>" required aria-describedby="pub-ayuda<?= isset($errores['pub_date']) ? ' pub-error' : ''; ?>">
                             <div id="pub-ayuda" class="form-text">No puede ser anterior a hoy.</div>
                             <?php if (isset($errores['pub_date'])): ?><div id="pub-error" class="invalid-feedback d-block"><?= htmlspecialchars($errores['pub_date'], ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
                         </div>
                         <div class="col-md-6">
                             <label for="exp_date" class="form-label">Fecha de expiración <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <input type="date" id="exp_date" name="exp_date" class="form-control<?= isset($errores['exp_date']) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores['exp_date'], ENT_QUOTES, 'UTF-8'); ?>" min="<?= $id ? '' : date('Y-m-d', strtotime('+1 day')); ?>" required aria-required="true" aria-describedby="exp-ayuda<?= isset($errores['exp_date']) ? ' exp-error' : ''; ?>">
+                            <input type="date" id="exp_date" name="exp_date" class="form-control<?= isset($errores['exp_date']) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores['exp_date'], ENT_QUOTES, 'UTF-8'); ?>" min="<?= $id ? '' : date('Y-m-d', strtotime('+1 day')); ?>" required aria-describedby="exp-ayuda<?= isset($errores['exp_date']) ? ' exp-error' : ''; ?>">
                             <div id="exp-ayuda" class="form-text">Debe ser posterior a la publicación.</div>
                             <?php if (isset($errores['exp_date'])): ?><div id="exp-error" class="invalid-feedback d-block"><?= htmlspecialchars($errores['exp_date'], ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
                         </div>

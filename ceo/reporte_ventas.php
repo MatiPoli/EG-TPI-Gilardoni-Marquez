@@ -157,7 +157,7 @@ require '../includes/header.php';
                             <div style="position: relative; height: 230px;">
                                 <canvas id="graficoEvolucion" role="img" aria-labelledby="titulo-grafico-evolucion"></canvas>
                             </div>
-                            <h3 id="titulo-grafico-evolucion" class="h6 fw-bold text-dark mt-3 mb-0">Evolución de Facturación Diaria</h3>
+                            <h2 id="titulo-grafico-evolucion" class="h6 fw-bold text-dark mt-3 mb-0">Evolución de Facturación Diaria</h2>
                         </div>
                     </div>
 
@@ -166,7 +166,7 @@ require '../includes/header.php';
                             <div style="position: relative; height: 230px;">
                                 <canvas id="graficoDestinos" role="img" aria-labelledby="titulo-grafico-destinos"></canvas>
                             </div>
-                            <h3 id="titulo-grafico-destinos" class="h6 fw-bold text-dark mt-3 mb-0">Distribución de Ingresos por Destino</h3>
+                            <h2 id="titulo-grafico-destinos" class="h6 fw-bold text-dark mt-3 mb-0">Distribución de Ingresos por Destino</h2>
                         </div>
                     </div>
                 </div>
@@ -180,7 +180,7 @@ require '../includes/header.php';
             </div>
         <?php else: ?>
             <div class="alert alert-info text-center p-4 shadow-sm border-0" role="alert" aria-live="assertive">
-                <h3 class="h5 mb-0">No se encontraron suficientes datos</h3>
+                <h2 class="h5 mb-0">No se encontraron suficientes datos</h2>
                 <p class="mt-2 mb-0">No existen ventas confirmadas registradas en el período seleccionado para tu aerolínea.</p>
             </div>
         <?php endif; ?>

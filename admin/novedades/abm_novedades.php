@@ -74,7 +74,7 @@ require '../../includes/header.php';
                                         </td>
                                         <td><?= date('d/m/Y', strtotime($novedad['fechaPublicacionNovedad'])); ?></td>
                                         <td><?= date('d/m/Y', strtotime($novedad['fechaExpiracionNovedad'])); ?></td>
-                                        <td><span class="badge <?= $estado['clase']; ?>" aria-label="Estado: <?= $estado['texto']; ?>"><?= $estado['texto']; ?></span></td>
+                                        <td><span class="badge <?= $estado['clase']; ?>"><?= $estado['texto']; ?></span></td>
                                         <td class="text-center text-nowrap">
                                             <a href="form_novedad.php?id=<?= $idNovedad; ?>" class="btn btn-sm btn-warning">Editar <span class="visually-hidden">novedad <?= $idNovedad; ?></span></a>
                                             <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarNovedad<?= $idNovedad; ?>">Eliminar <span class="visually-hidden">novedad <?= $idNovedad; ?></span></button>

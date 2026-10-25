@@ -128,7 +128,7 @@ require '../../includes/header.php';
                             </label>
                             <textarea id="descripcionPromocion" name="descripcionPromocion"
                                       class="form-control<?= isset($errores['descripcionPromocion']) ? ' is-invalid' : ''; ?>"
-                                      maxlength="200" rows="3" required aria-required="true"
+                                      maxlength="200" rows="3" required
                                       aria-describedby="descripcion-ayuda<?= isset($errores['descripcionPromocion']) ? ' descripcion-error' : ''; ?>"
                                       <?= isset($errores['descripcionPromocion']) ? 'aria-invalid="true"' : ''; ?>><?= htmlspecialchars($valores['descripcionPromocion'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></textarea>
                             <div id="descripcion-ayuda" class="form-text">Describí la oferta comercial, hasta 200 caracteres.</div>
@@ -148,7 +148,7 @@ require '../../includes/header.php';
                                    class="form-control<?= isset($errores['descuentoPromocion']) ? ' is-invalid' : ''; ?>"
                                    value="<?= htmlspecialchars($valores['descuentoPromocion'], ENT_QUOTES, 'UTF-8'); ?>"
                                    min="1" max="100" step="0.01" inputmode="decimal"
-                                   required aria-required="true"
+                                   required
                                    aria-describedby="descuento-ayuda<?= isset($errores['descuentoPromocion']) ? ' descuento-error' : ''; ?>"
                                    <?= isset($errores['descuentoPromocion']) ? 'aria-invalid="true"' : ''; ?>>
                             <div id="descuento-ayuda" class="form-text">Ingresá un porcentaje entre 1 y 100.</div>

@@ -143,7 +143,7 @@ require '../includes/header.php';
                             <div style="position: relative; height: 210px;">
                                 <canvas id="graficoBarrasOcupacion" role="img" aria-labelledby="titulo-grafico-barras"></canvas>
                             </div>
-                            <h3 id="titulo-grafico-barras" class="h6 fw-bold text-dark mt-2 mb-0">Porcentaje de Ocupación por Vuelo</h3>
+                            <h2 id="titulo-grafico-barras" class="h6 fw-bold text-dark mt-2 mb-0">Porcentaje de Ocupación por Vuelo</h2>
                         </div>
                     </div>
 
@@ -152,13 +152,13 @@ require '../includes/header.php';
                             <div style="position: relative; height: 210px;">
                                 <canvas id="graficoTortaGlobal" role="img" aria-labelledby="titulo-grafico-torta"></canvas>
                             </div>
-                            <h3 id="titulo-grafico-torta" class="h6 fw-bold text-dark mt-2 mb-0">Asientos Vendidos vs Libres</h3>
+                            <h2 id="titulo-grafico-torta" class="h6 fw-bold text-dark mt-2 mb-0">Asientos Vendidos vs Libres</h2>
                         </div>
                     </div>
                 </div>
 
                 <div class="bloque-tabla-imprimir mt-4">
-                    <h3 class="h6 fw-bold text-dark mb-3">Detalle de Cupos por Vuelo</h3>
+                    <h2 class="h6 fw-bold text-dark mb-3">Detalle de Cupos por Vuelo</h2>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover align-middle mb-0">
                             <caption class="caption-top">Detalle de ocupación y disponibilidad de asientos por vuelo</caption>

@@ -86,7 +86,7 @@ require '../../includes/header.php';
         <div class="card shadow-sm">
             <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                 <h1 class="h5 mb-0"><?= $id ? 'Modificar aerolínea' : 'Registrar nueva aerolínea'; ?></h1>
-                <a href="abm_aerolineas.php" class="btn btn-outline-light btn-sm">Volver al listado</a>
+                <a href="abm_aerolineas.php" class="btn btn-light btn-sm fw-bold">Volver al listado</a>
             </div>
             <div class="card-body p-4">
                 <?php if ($errores): ?><div class="alert alert-danger" role="alert" aria-live="assertive">Revisá los campos marcados y volvé a intentar.</div><?php endif; ?>
@@ -104,14 +104,14 @@ require '../../includes/header.php';
                         ?>
                             <div class="<?= $config['class']; ?>">
                                 <label for="<?= $campo; ?>" class="form-label"><?= $config['label']; ?> <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                                <input type="<?= $config['type']; ?>" id="<?= $campo; ?>" name="<?= $campo; ?>" class="form-control<?= isset($errores[$campo]) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores[$campo], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" maxlength="<?= $config['maxlength']; ?>" required aria-required="true" aria-describedby="<?= $campo; ?>-ayuda<?= isset($errores[$campo]) ? ' ' . $campo . '-error' : ''; ?>" <?= isset($errores[$campo]) ? 'aria-invalid="true"' : ''; ?>>
+                                <input type="<?= $config['type']; ?>" id="<?= $campo; ?>" name="<?= $campo; ?>" class="form-control<?= isset($errores[$campo]) ? ' is-invalid' : ''; ?>" value="<?= htmlspecialchars($valores[$campo], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?>" maxlength="<?= $config['maxlength']; ?>" required aria-describedby="<?= $campo; ?>-ayuda<?= isset($errores[$campo]) ? ' ' . $campo . '-error' : ''; ?>" <?= isset($errores[$campo]) ? 'aria-invalid="true"' : ''; ?>>
                                 <div id="<?= $campo; ?>-ayuda" class="form-text"><?= $campo === 'iata' ? 'Tres letras identificadoras.' : ($campo === 'country' ? 'Código de país de 2 o 3 letras.' : 'Hasta 100 caracteres.'); ?></div>
                                 <?php if (isset($errores[$campo])): ?><div id="<?= $campo; ?>-error" class="invalid-feedback d-block"><?= htmlspecialchars($errores[$campo], ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                         <div class="col-12">
                             <label for="desc" class="form-label">Descripción <span class="text-danger" aria-hidden="true">*</span><span class="visually-hidden">(campo obligatorio)</span></label>
-                            <textarea id="desc" name="desc" class="form-control<?= isset($errores['desc']) ? ' is-invalid' : ''; ?>" rows="3" maxlength="200" required aria-required="true" aria-describedby="desc-ayuda<?= isset($errores['desc']) ? ' desc-error' : ''; ?>" <?= isset($errores['desc']) ? 'aria-invalid="true"' : ''; ?>><?= htmlspecialchars($valores['desc'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></textarea>
+                            <textarea id="desc" name="desc" class="form-control<?= isset($errores['desc']) ? ' is-invalid' : ''; ?>" rows="3" maxlength="200" required aria-describedby="desc-ayuda<?= isset($errores['desc']) ? ' desc-error' : ''; ?>" <?= isset($errores['desc']) ? 'aria-invalid="true"' : ''; ?>><?= htmlspecialchars($valores['desc'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); ?></textarea>
                             <div id="desc-ayuda" class="form-text">Hasta 200 caracteres.</div>
                             <?php if (isset($errores['desc'])): ?><div id="desc-error" class="invalid-feedback d-block"><?= htmlspecialchars($errores['desc'], ENT_QUOTES, 'UTF-8'); ?></div><?php endif; ?>
                         </div>
