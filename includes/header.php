@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?? 'ViajAir'; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/zephyr/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= $app_url ?>/tpi/assets/css/styles.css" rel="stylesheet">
+    <link href="/tpi/assets/css/styles.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="<?= $app_url ?>/tpi/assets/img/favicon.png">
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
