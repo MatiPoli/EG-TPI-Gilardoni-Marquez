@@ -8,6 +8,13 @@ vuelos, usuarios y reportes según el rol de cada usuario.
 
 ---
 
+### Integrantes
+
+- Gilardoni, Lucio - 51189
+- Márquez, Matías Tomás - 51419
+
+---
+
 ### Tecnologías utilizadas
 
 - **PHP:** lógica del sistema y generación de las páginas.
