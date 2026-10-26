@@ -262,13 +262,13 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 
 ## 17. Presupuesto Económico 
 
-- [ ] Realizó el diagrama de Gantt con las actividades que deben realizar para llevar a cabo el proyecto.
-- [ ] Definió los costos en recursos humanos para el proyecto.
-- [ ] Citó las fuentes de donde obtuvo los diferentes valores monetarios que se considera en el presupuesto (ejemplo: valor hora hombre, costo de hosting, costo de amortizaciones según valores reales de máquinas, etc).
-- [ ] Realizó la estimación del tamaño del proyecto según Puntos de Función.
-- [ ] Calculó el costo y el precio del sitio web.
-- [ ] Armó y dejó plasmado en el informe un presupuesto modelo con la información que analizó para entregar a un cliente.
-- [ ] Los valores del presupuesto se citan de fuentes reales. Valor hora hombre, costo de hosting, amortizaciones y cualquier otro monto deben tener fuente
+- [x] Realizó el diagrama de Gantt con las actividades que deben realizar para llevar a cabo el proyecto.
+- [x] Definió los costos en recursos humanos para el proyecto.
+- [x] Citó las fuentes de donde obtuvo los diferentes valores monetarios que se considera en el presupuesto (ejemplo: valor hora hombre, costo de hosting, costo de amortizaciones según valores reales de máquinas, etc).
+- [x] Realizó la estimación del tamaño del proyecto según Puntos de Función.
+- [x] Calculó el costo y el precio del sitio web.
+- [x] Armó y dejó plasmado en el informe un presupuesto modelo con la información que analizó para entregar a un cliente.
+- [x] Los valores del presupuesto se citan de fuentes reales. Valor hora hombre, costo de hosting, amortizaciones y cualquier otro monto deben tener fuente
       verificable y fecha. Un número generado por IA sin fuente se considera un dato inventado e invalida la sección.
 - [x] No se cargan credenciales, datos reales de usuarios ni volcados de la base de datos en herramientas públicas de IA. Vale como criterio profesional, no solo
       como regla de la materia.
@@ -277,29 +277,29 @@ Antes de entregar, revisá **cada punto** de esta lista. Si algo no se cumple, e
 
 ## 18. Modelos 
 
-- [ ] Realizó y dejó plasmado en el informe el diagrama del MODELO lógico de Datos
-- [ ] Realizó y dejó plasmado en el informe el diagrama del MODELO Físico
+- [x] Realizó y dejó plasmado en el informe el diagrama del MODELO lógico de Datos
+- [x] Realizó y dejó plasmado en el informe el diagrama del MODELO Físico
 
 ## 19. Check List 
 
-- [ ] Realizó los check list de Usabilidad y fundamentó los items que no se cumplen o no aplican.
-- [ ] Realizó los check list de Accesibilidad y fundamentó los items que no se cumplen o no aplican.
-- [ ] Realizó los check list de Rapidez de Acceso y fundamentó los items que no se cumplen o no aplican.
-- [ ] Realizó los check list de Perceptibilidad y fundamentó los items que no se cumplen o no aplican.
-- [ ] Realizó los check list de Operabilidad y fundamentó los items que no se cumplen o no aplican.
-- [ ] Realizó los check list de Comprensibilidad y fundamentó los items que no se cumplen o no aplican.
-- [ ] Realizó los check list de Robustez y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Usabilidad y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Accesibilidad y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Rapidez de Acceso y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Perceptibilidad y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Operabilidad y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Comprensibilidad y fundamentó los items que no se cumplen o no aplican.
+- [x] Realizó los check list de Robustez y fundamentó los items que no se cumplen o no aplican.
 
 ## 20. Test de Validación de Estándares
 
-- [ ] Realizó los test de validación de HTML.
-- [ ] Realizó los test de validación de CSS.
-- [ ] Realizó los test de validación de ACCESIBLIDAD.
-- [ ] Pegó reportes de cada uno de los test de validación en el informe
-- [ ] Explicó lo mostrado en los reportes.
-- [ ] Realizó los cambios sugeridos por los test de validación.
-- [ ] Fundamentó los cambios realizados según lo solicitado por los test de validación.
-- [ ] En caso de haber tenido que realizar modificaciones, volvió a pasar los test, y pegó cada reporte.
+- [x] Realizó los test de validación de HTML.
+- [x] Realizó los test de validación de CSS.
+- [x] Realizó los test de validación de ACCESIBLIDAD.
+- [x] Pegó reportes de cada uno de los test de validación en el informe
+- [x] Explicó lo mostrado en los reportes.
+- [x] Realizó los cambios sugeridos por los test de validación.
+- [x] Fundamentó los cambios realizados según lo solicitado por los test de validación.
+- [x] En caso de haber tenido que realizar modificaciones, volvió a pasar los test, y pegó cada reporte.
 
 --
 ## 21. Uso de herramientas de IA
@@ -319,10 +319,10 @@ explicar, no deben entregarlo.
 
 El informe debe incluir una sección "Uso de herramientas de IA" (media carilla alcanza no debe ser extenso) con:
 
-- [ ] *Qué herramientas usaron* (nombre y versión aproximada).
-- [ ] *Para qué las usaron*: código, redacción del informe, diagramas, estimaciones,
+- [x] *Qué herramientas usaron* (nombre y versión aproximada).
+- [x] *Para qué las usaron*: código, redacción del informe, diagramas, estimaciones,
       debugging, traducción, etc.
-- [ ] *Qué verificaron y cómo*: para el código y los datos generados, qué chequearon
+- [x] *Qué verificaron y cómo*: para el código y los datos generados, qué chequearon
       a mano, qué corrigieron y por qué.
 
 Si el grupo no utilizó ninguna herramienta de IA, también debe declararlo.
